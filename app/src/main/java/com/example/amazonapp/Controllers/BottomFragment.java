@@ -2,16 +2,16 @@ package com.example.amazonapp.Controllers;
 
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.example.amazonapp.R;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
@@ -22,7 +22,7 @@ import com.google.android.material.navigation.NavigationView;
  */
 public class BottomFragment extends BottomSheetDialogFragment {
     NavigationView navigationView;
-    Login login;
+
 
     public BottomFragment() {
         // Required empty public constructor
@@ -44,7 +44,10 @@ public class BottomFragment extends BottomSheetDialogFragment {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()){
                     case R.id.login:
-                        login=new Login();
+                        Login login =new Login();
+                        FragmentManager manager=getFragmentManager();
+                        manager.beginTransaction().replace(R.id.main_layout,login,login.getTag()).commit();
+
                         break;
                        // Toast.makeText(getActivity(), "Login", Toast.LENGTH_SHORT).show();
                         //break;

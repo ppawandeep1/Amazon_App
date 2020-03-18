@@ -36,9 +36,9 @@ public class MainActivity extends AppCompatActivity {
 
         toolbar_top = findViewById(R.id.top_navigation_view);
         setSupportActionBar(toolbar_top);
-       // toolbar_top.setLogo(R.drawable.logo);
-        //getSupportActionBar().setTitle("Logo");
-        //toolbar_top.setSubtitle("welcome");
+        toolbar_top.setLogo(R.drawable.navlogo);
+        getSupportActionBar().setTitle("Logo");
+        toolbar_top.setSubtitle("welcome");
 
         //CAtegory List...//
         categoryList = findViewById(R.id.categoryList);
