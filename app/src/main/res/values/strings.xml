@@ -3,4 +3,50 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--string use in registration form  -->
+    <string name="Registration_message">New User Registration</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="email_address">Email address</string>
+    <string name="Contact_number">Contact Number</string>
+    <string name="country">Country</string>
+    <string name="city">City</string>
+    <string name="province">Province</string>
+    <string name="postal_code">Postal Code</string>
+    <string name="address">Address</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="btn_sign_up">Sign up</string>
+
+
+    <!--display error message in registration form -->
+    <string name="first_name_error">Enter your First Name</string>
+    <string name="last_name_error">Enter Last Name</string>
+    <string name="email_error">Enter Correct Email</string>
+    <string name="contact_error">Enter Correct Contact no</string>
+    <string name="password_error">Enter Password</string>
+    <string name="confirm_password_error">Password do not match</string>
+
+    <string-array name="clothes_names">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+    </string-array>
+
+    <string-array name="clothes_description">
+        <item>This is a good quality</item>
+        <item>This is a good quality</item>
+        <item>This is a good quality</item>
+        <item>This is a good quality</item>
+        <item>This is a good quality</item>
+        <item>This is a good quality</item>
+        <item>This is a good quality</item>
+        <item>This is a good quality</item>
+    </string-array>
 </resources>

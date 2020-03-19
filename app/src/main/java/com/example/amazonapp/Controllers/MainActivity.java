@@ -6,9 +6,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -29,10 +32,12 @@ public class MainActivity extends AppCompatActivity {
     CategoryAdapter adapter;
     PopularProductAdapter popularProductAdapter;
     BottomAppBar bottomAppBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         toolbar_top = findViewById(R.id.top_navigation_view);
         setSupportActionBar(toolbar_top);
@@ -64,11 +69,7 @@ public class MainActivity extends AppCompatActivity {
         categoryList.setLayoutManager(gridLayoutManager);
         categoryList.setAdapter(adapter);
     }
-
-
     //Bottom Navigation menu
-
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
