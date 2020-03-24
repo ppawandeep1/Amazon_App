@@ -1,6 +1,7 @@
 package com.example.amazonapp.Controllers;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -12,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.amazonapp.R;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
@@ -44,9 +46,16 @@ public class BottomFragment extends BottomSheetDialogFragment {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()){
                     case R.id.login:
-                        Login login =new Login();
-                        FragmentManager manager=getFragmentManager();
-                        manager.beginTransaction().replace(R.id.main_layout,login,login.getTag()).commit();
+                       /* Login login =new Login();
+                        FragmentManager manager=getFragmentManager();*/
+                       // FragmentTransaction fragmentTransaction=manager.beginTransaction();
+                        /*manager.beginTransaction().replace(R.id.main_layout,login,login.getTag()).commit();
+                        navigationView.setVisibility(View.GONE);*/
+                        /*fragmentTransaction.replace(R.id.container, login);
+                        fragmentTransaction.addToBackStack(null);
+                        fragmentTransaction.commit();*/
+                        Intent intent=new Intent(getActivity(),LoginActivity.class);
+                        getActivity().startActivity(intent);
 
                         break;
                        // Toast.makeText(getActivity(), "Login", Toast.LENGTH_SHORT).show();
@@ -68,6 +77,8 @@ public class BottomFragment extends BottomSheetDialogFragment {
 
                         break;
 
+                    default:
+                        throw new IllegalStateException("Unexpected value: " + menuItem.getItemId());
                 }
                 return true;
             }

@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_app"
     tools:context=".Controllers.SplashScreen">
+
     <ImageView
         android:id="@+id/logo"
         android:layout_width="83dp"

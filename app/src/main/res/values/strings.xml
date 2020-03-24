@@ -4,20 +4,67 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <string name="Registration">Profile Page</string>
-    <string name="first_name">FIRST NAME</string>
-    <string name="last_name">LAST NAME</string>
-    <string name="email_address">EMAIL ADDRESS</string>
-    <string name="Contact_number">CONTACT NUMBER</string>
-    <string name="country">COUNTRY</string>
-    <string name="city">CITY</string>
-    <string name="province">PROVINCE</string>
-    <string name="postal_code">POSTAL CODE</string>
-    <string name="address">ADDRESS</string>
+
+    <string name="Registrationp">Profile Page</string>
+    <string name="first_namep">FIRST NAME</string>
+    <string name="last_namep">LAST NAME</string>
+    <string name="email_addressp">EMAIL ADDRESS</string>
+    <string name="Contact_numberp">CONTACT NUMBER</string>
+    <string name="countryp">COUNTRY</string>
+    <string name="cityp">CITY</string>
+    <string name="provincep">PROVINCE</string>
+    <string name="postal_codep">POSTAL CODE</string>
+    <string name="addressp">ADDRESS</string>
     <string name="btn_save">SAVE CHANGES</string>
     <string name="btn_edit">Edit</string>
 
     <string name="nameerror">Enter a valid name</string>
     <string name="emailerror">Enter a valid email</string>
     <string name="mobileerror">Enter a valid mobile number</string>
+
+    <!--string use in registration form  -->
+    <string name="Registration_message">New User Registration</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="email_address">Email address</string>
+    <string name="Contact_number">Contact Number</string>
+    <string name="country">Country</string>
+    <string name="city">City</string>
+    <string name="province">Province</string>
+    <string name="postal_code">Postal Code</string>
+    <string name="address">Address</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="btn_sign_up">Sign up</string>
+
+
+    <!--display error message in registration form -->
+    <string name="first_name_error">Enter your First Name</string>
+    <string name="last_name_error">Enter Last Name</string>
+    <string name="email_error">Enter Correct Email</string>
+    <string name="contact_error">Enter Correct Contact no</string>
+    <string name="password_error">Enter Password</string>
+    <string name="confirm_password_error">Password do not match</string>
+
+    <string-array name="clothes_names">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+    </string-array>
+
+    <string-array name="clothes_description">
+        <item>This is a good quality</item>
+        <item>This is a good quality</item>
+        <item>This is a good quality</item>
+        <item>This is a good quality</item>
+        <item>This is a good quality</item>
+        <item>This is a good quality</item>
+        <item>This is a good quality</item>
+        <item>This is a good quality</item>
+    </string-array>
 </resources>

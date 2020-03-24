@@ -6,70 +6,72 @@
     android:layout_height="match_parent"
     tools:context=".Controllers.MainActivity">
     <!--top layout , it uses toolbar-->
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <androidx.appcompat.widget.Toolbar
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/top_navigation_view"
+        android:id="@+id/toolbar"
+        android:layout_width="413dp"
+        android:layout_height="64dp"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:navigationIcon="@drawable/navlogo">
+
+        <Spinner
+            android:id="@+id/spinner_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="160dp"
+            app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+            tools:layout_editor_absoluteX="16dp"
+            android:layout_marginStart="160dp" />
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/bg_app">
+            app:iconifiedByDefault="false"
+            app:queryHint="Search Here">
 
+        </androidx.appcompat.widget.SearchView>
 
-            <Spinner
-                android:id="@+id/city"
-                android:layout_width="120dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="70dp"
-                android:background="@drawable/et_bg"
-                android:hint="Select category"
-                android:textColor="@color/login_form_details_medium"
-                android:textColorHint="@color/login_form_details" />
-
-
-            <EditText
-                android:id="@+id/searchEditText"
-                android:layout_width="150dp"
-                android:layout_height="40dp" />
-
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:srcCompat="@android:drawable/ic_search_category_default" />
-
-        </androidx.appcompat.widget.Toolbar>
-    </com.google.android.material.appbar.AppBarLayout>
+    </androidx.appcompat.widget.Toolbar>
     <!--top layout end-->
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    android:id="@+id/main_layout"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/popularproduct"
-        android:layout_width="422dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="0dp"
-        android:layout_marginBottom="25dp"
-        android:textColor="@color/white"
-        app:layout_anchor="@+id/categoryList" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/categoryList"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/main_layout"
         android:layout_width="match_parent"
-        android:layout_height="261dp"
-        android:layout_alignParentTop="true"
+        android:layout_height="602dp"
+        android:layout_marginTop="65dp">
 
-        android:layout_marginTop="200dp"
-        android:orientation="horizontal"
-        android:textColor="@color/white"
 
-        tools:layout_editor_absoluteX="74dp" />
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/popularproduct"
+            android:layout_width="422dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="25dp"
+            android:textColor="@color/white"
+            app:layout_anchor="@+id/categoryList" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/categoryList"
+            android:layout_width="match_parent"
+            android:layout_height="261dp"
+            android:layout_alignParentTop="true"
+
+            android:layout_marginTop="200dp"
+            android:orientation="horizontal"
+            android:textColor="@color/white"
+
+            tools:layout_editor_absoluteX="74dp" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bar"
@@ -77,14 +79,8 @@
         android:layout_height="64dp"
         android:layout_gravity="bottom"
         android:paddingLeft="200dp"
-
         app:hideOnScroll="true">
 
     </com.google.android.material.bottomappbar.BottomAppBar>
-
-
-
-
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
