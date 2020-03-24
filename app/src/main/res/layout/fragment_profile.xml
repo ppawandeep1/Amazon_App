@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_app">
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="24dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="24dp" />
+
+
+        <TextView
+            android:id="@+id/text_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Registrationp"
+            android:textSize="22sp"
+            android:textAllCaps="true"
+            android:textAlignment="center"
+            android:textColor="@color/login_form_details"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintEnd_toEndOf="@id/guideline_left"
+            app:layout_constraintStart_toStartOf="@id/guideline_right"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <Button
+            android:id="@+id/btn_update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="40dp"
+            android:background="@color/login_form_details_light"
+            android:text="@string/btn_edit"
+            android:textAllCaps="false"
+            android:textColor="@color/login_form_details_medium"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_left"
+            app:layout_constraintTop_toBottomOf="@+id/text_profile" />
+
+
+
+
+
+        <EditText
+            android:focusable="false"
+            android:id="@+id/firstName_pr"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/et_bg"
+            android:hint="@string/first_name"
+            android:textColorHint="@color/login_form_details"
+            android:textColor="@color/login_form_details_medium"
+            android:padding="16dp"
+            app:layout_constraintEnd_toEndOf="@id/guideline_left"
+            app:layout_constraintStart_toStartOf="@id/guideline_right"
+            app:layout_constraintTop_toBottomOf="@id/btn_update" />
+
+        <EditText
+            android:focusable="false"
+            android:id="@+id/lastName_pr"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/et_bg"
+            android:hint="@string/last_name"
+            android:textColorHint="@color/login_form_details"
+            android:textColor="@color/login_form_details_medium"
+            android:padding="16dp"
+            app:layout_constraintEnd_toEndOf="@id/guideline_left"
+            app:layout_constraintStart_toStartOf="@id/guideline_right"
+            app:layout_constraintTop_toBottomOf="@+id/firstName_pr" />
+
+        <EditText
+            android:focusable="false"
+
+            android:id="@+id/emailaddress_pr"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:inputType="textEmailAddress"
+            android:background="@drawable/et_bg"
+            android:hint="@string/email_address"
+            android:textColorHint="@color/login_form_details"
+            android:textColor="@color/login_form_details_medium"
+            android:padding="16dp"
+            app:layout_constraintEnd_toEndOf="@id/guideline_left"
+            app:layout_constraintStart_toStartOf="@id/guideline_right"
+            app:layout_constraintTop_toBottomOf="@+id/lastName_pr" />
+
+        <EditText
+            android:id="@+id/contactnumber_pr"
+            android:focusable="false"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:inputType="phone"
+            android:background="@drawable/et_bg"
+            android:hint="@string/Contact_number"
+            android:textColorHint="@color/login_form_details"
+            android:textColor="@color/login_form_details_medium"
+            android:padding="16dp"
+            app:layout_constraintEnd_toEndOf="@id/guideline_left"
+            app:layout_constraintStart_toStartOf="@id/guideline_right"
+            app:layout_constraintTop_toBottomOf="@+id/emailaddress_pr" />
+
+        <Spinner
+            android:focusable="false"
+            android:id="@+id/country_pr"
+            android:layout_width="168dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/et_bg"
+            android:hint="@string/country"
+            android:padding="16dp"
+            android:textColor="@color/login_form_details_medium"
+            android:textColorHint="@color/login_form_details"
+            app:layout_constraintEnd_toStartOf="@id/city_pr"
+            app:layout_constraintHorizontal_bias="0.097"
+            app:layout_constraintStart_toStartOf="@id/guideline_right"
+            app:layout_constraintTop_toBottomOf="@+id/contactnumber_pr" />
+
+        <Spinner
+            android:focusable="false"
+            android:id="@+id/city_pr"
+            android:layout_width="168dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/et_bg"
+            android:hint="@string/city"
+            android:padding="16dp"
+            android:textColor="@color/login_form_details_medium"
+            android:textColorHint="@color/login_form_details"
+            app:layout_constraintEnd_toEndOf="@id/guideline_left"
+            app:layout_constraintStart_toEndOf="@id/country_pr"
+            app:layout_constraintTop_toBottomOf="@+id/contactnumber_pr" />
+
+        <Spinner
+            android:focusable="false"
+            android:id="@+id/province_pr"
+            android:layout_width="168dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/et_bg"
+            android:hint="@string/province"
+            android:padding="16dp"
+            android:textColor="@color/login_form_details_medium"
+            android:textColorHint="@color/login_form_details"
+            app:layout_constraintEnd_toStartOf="@id/postalcode_pr"
+            app:layout_constraintHorizontal_bias="0.097"
+            app:layout_constraintStart_toStartOf="@id/guideline_right"
+            app:layout_constraintTop_toBottomOf="@+id/country_pr" />
+
+        <EditText
+            android:focusable="false"
+            android:id="@+id/postalcode_pr"
+            android:layout_width="168dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/et_bg"
+            android:hint="@string/postal_code"
+            android:inputType="textPostalAddress"
+            android:padding="16dp"
+            android:textColor="@color/login_form_details_medium"
+            android:textColorHint="@color/login_form_details"
+            app:layout_constraintEnd_toEndOf="@id/guideline_left"
+            app:layout_constraintStart_toEndOf="@id/province_pr"
+            app:layout_constraintTop_toBottomOf="@+id/city_pr" />
+
+        <EditText
+            android:focusable="false"
+            android:id="@+id/address_pr"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:inputType="textPostalAddress"
+            android:background="@drawable/et_bg"
+            android:hint="@string/address"
+            android:textColorHint="@color/login_form_details"
+            android:textColor="@color/login_form_details_medium"
+            android:padding="16dp"
+            app:layout_constraintEnd_toEndOf="@id/guideline_left"
+            app:layout_constraintStart_toStartOf="@id/guideline_right"
+            app:layout_constraintTop_toBottomOf="@+id/province_pr" />
+
+
+
+
+        <Button
+            android:id="@+id/btn_savechanges"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="70dp"
+            android:background="@color/login_form_details_light"
+            android:text="@string/btn_save"
+            android:textAllCaps="false"
+            android:textColor="@color/login_form_details_medium"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_left"
+            app:layout_constraintStart_toStartOf="@+id/guideline_right"
+            app:layout_constraintTop_toBottomOf="@+id/address_pr" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
