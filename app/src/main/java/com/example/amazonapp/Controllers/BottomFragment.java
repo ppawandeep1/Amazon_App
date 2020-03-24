@@ -61,7 +61,11 @@ public class BottomFragment extends BottomSheetDialogFragment {
                         Toast.makeText(getActivity(), "Oder History ", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.profile:
-                        Toast.makeText(getActivity(), "Profile", Toast.LENGTH_SHORT).show();
+                        ProfilePage profile =new ProfilePage();
+                        FragmentManager managerpofile=getFragmentManager();
+                        managerpofile.beginTransaction().replace(R.id.main_layout,profile,profile.getTag()).commit();
+
+
                         break;
 
                 }

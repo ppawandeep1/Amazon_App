@@ -3,4 +3,21 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="Registration">Profile Page</string>
+    <string name="first_name">FIRST NAME</string>
+    <string name="last_name">LAST NAME</string>
+    <string name="email_address">EMAIL ADDRESS</string>
+    <string name="Contact_number">CONTACT NUMBER</string>
+    <string name="country">COUNTRY</string>
+    <string name="city">CITY</string>
+    <string name="province">PROVINCE</string>
+    <string name="postal_code">POSTAL CODE</string>
+    <string name="address">ADDRESS</string>
+    <string name="btn_save">SAVE CHANGES</string>
+    <string name="btn_edit">Edit</string>
+
+    <string name="nameerror">Enter a valid name</string>
+    <string name="emailerror">Enter a valid email</string>
+    <string name="mobileerror">Enter a valid mobile number</string>
 </resources>
