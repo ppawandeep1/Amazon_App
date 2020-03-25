@@ -6,6 +6,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -21,9 +24,13 @@ import com.example.amazonapp.Adapters.CategoryAdapter;
 import com.example.amazonapp.Adapters.PopularProductAdapter;
 import com.example.amazonapp.AsyncTasks.AsyncResponse;
 import com.example.amazonapp.AsyncTasks.WebserviceCall;
+import com.example.amazonapp.Async_Tasks_One.AsyncResponse_One;
+import com.example.amazonapp.Async_Tasks_One.WebserviceCall_One;
 import com.example.amazonapp.Helper.Config;
 import com.example.amazonapp.Helper.Utils;
 import com.example.amazonapp.Models.CategoryModel;
+import com.example.amazonapp.Models.PopularProductModel;
+import com.example.amazonapp.Models.PopularProductResponseModel;
 import com.example.amazonapp.Models.ResponseModel;
 import com.example.amazonapp.R;
 
@@ -31,6 +38,11 @@ import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import com.google.gson.Gson;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements Spinner.OnItemSel
         spinner_category=(Spinner)findViewById(R.id.spinner_category);
         spinner_category.setOnItemSelectedListener(this);
         //CAtegory List...//
-
+        PopularProduct();
         String[] keys=new String[]{"CompanyId"};
         String[] values=new String[]{"1"};
         final String JSONREQUEST= Utils.createJsonRequest(keys,values);
@@ -101,17 +113,7 @@ public class MainActivity extends AppCompatActivity implements Spinner.OnItemSel
                     productList.setLayoutManager(gridLayoutManagerProduct);
                     productList.setAdapter(popularProductAdapter);
 
-                    /*Intent intent = new Intent(Feedback.this, Home_Page_Navigation.class);
-                    startActivity(intent);*/
 
-               /*     // Creating adapter for spinner
-                    ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, userType);
-
-                    // Drop down layout style - list view with radio button
-                    dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-                    // attaching data adapter to spinner
-                    spinner.setAdapter(dataAdapter);*/
 
 
 
@@ -173,6 +175,63 @@ public class MainActivity extends AppCompatActivity implements Spinner.OnItemSel
         requestQueue.add(postRequest);
 
     }*/
+    public void PopularProduct(){
+      /*  String[] keys=new String[]{"CompanyId"};
+        String[] values=new String[]{"1"};
+        final String JSONREQUEST= Utils.createJsonRequest(keys,values);*/
+        String URL= Config.POPULAR_PRODUCT;
+
+        new WebserviceCall_One(MainActivity.this, URL, "Menu", true, new AsyncResponse_One() {
+            @Override
+            public void onCallback_One(String response) {
+                Log.d("kj", response);
+                try {
+                    JSONArray j = new JSONArray(response);
+                    for (int i = 0; i < j.length(); i++) {
+                        JSONObject obj = j.getJSONObject(i);
+                        /*menuid = obj.getString("menuid");
+                        menuname = obj.getString("menuname");*/
+                        //Toast.makeText(Home_Page_Navigation.this, "hii"+menuname, Toast.LENGTH_SHORT).show();
+//                        m_date=obj.getString("date");
+//                        quantity=obj.getString("quantity");
+                        // Toast.makeText(Home_Page_Navigation.this, "qty"+quantity, Toast.LENGTH_SHORT).show();
+                        /*addingValueToHasMap(menuid,menuname);*/
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+               /* Next15 ca=new Next15(Next_15_Days_Menu.this,R.layout.custom_list_15days_menu,menulist);
+                type.setAdapter(ca);
+
+                type.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        pos = i+1;
+                        showitem.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+
+                                String dateselected = date.getText().toString();
+                                if (dateselected.isEmpty()){
+                                    date.setError("ye bhai date to nakh");
+
+                                }
+                                else {
+                                    Intent in = new Intent(Next_15_Days_Menu.this, next_15day_item_menu.class);
+                                    in.putExtra("date", dateselected);
+                                    in.putExtra("pos", pos);
+                                    startActivity(in);
+                                }
+
+                            }
+                        });
+                    }});*/
+
+            }
+        }).execute();
+
+    }
 
     //Bottom Navigation menu
     @Override
@@ -182,7 +241,7 @@ public class MainActivity extends AppCompatActivity implements Spinner.OnItemSel
                 Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.menu:
-                BottomSheetDialogFragment bottomSheetDialogFragment = new BottomFragment();
+                BottomSheetDialogFragment bottomSheetDialogFragment = new BottomFragment(getApplicationContext());
                 bottomSheetDialogFragment.show(getSupportFragmentManager(),bottomSheetDialogFragment.getClass().getSimpleName());
                 //Toast.makeText(this, "Menu ", Toast.LENGTH_SHORT).show();
                 break;
