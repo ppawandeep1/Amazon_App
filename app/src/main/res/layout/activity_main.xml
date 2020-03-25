@@ -57,16 +57,15 @@
             android:layout_alignParentTop="true"
             android:layout_marginTop="0dp"
             android:layout_marginBottom="25dp"
-            android:textColor="@color/white"
-            app:layout_anchor="@+id/categoryList" />
+            android:textColor="@color/white" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/categoryList"
             android:layout_width="match_parent"
-            android:layout_height="261dp"
-            android:layout_alignParentTop="true"
+            android:layout_height="400dp"
+            android:layout_below="@+id/popularproduct"
 
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="220dp"
             android:orientation="horizontal"
             android:textColor="@color/white"
 

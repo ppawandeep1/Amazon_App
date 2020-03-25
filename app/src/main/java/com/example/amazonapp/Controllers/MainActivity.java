@@ -6,7 +6,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -15,16 +14,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.amazonapp.Adapters.CategoryAdapter;
 import com.example.amazonapp.Adapters.PopularProductAdapter;
 import com.example.amazonapp.AsyncTasks.AsyncResponse;
@@ -32,7 +24,7 @@ import com.example.amazonapp.AsyncTasks.WebserviceCall;
 import com.example.amazonapp.Helper.Config;
 import com.example.amazonapp.Helper.Utils;
 import com.example.amazonapp.Models.CategoryModel;
-import com.example.amazonapp.Models.CategoryResponseModel;
+import com.example.amazonapp.Models.ResponseModel;
 import com.example.amazonapp.R;
 
 import com.google.android.material.bottomappbar.BottomAppBar;
@@ -40,11 +32,9 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import com.google.gson.Gson;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Spinner.OnItemSelectedListener{
     private static final String TAG =MainActivity.class.getName() ;
     RecyclerView categoryList, productList;
    Toolbar toolbar_top;
@@ -61,16 +51,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
         setSupportActionBar(toolbar_top);
-       // toolbar_top.setLogo(R.drawable.logo);
-        //getSupportActionBar().setTitle("Logo");
-        //toolbar_top.setSubtitle("welcome");
 
+        spinner_category=(Spinner)findViewById(R.id.spinner_category);
+        spinner_category.setOnItemSelectedListener(this);
         //CAtegory List...//
-       /* spinner_category=findViewById(R.id.spinner_category);
-        spinner_category.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);*/
+
         String[] keys=new String[]{"CompanyId"};
         String[] values=new String[]{"1"};
         final String JSONREQUEST= Utils.createJsonRequest(keys,values);
@@ -80,23 +66,56 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onCallback(String response) {
                 Log.d("response", response);
-                CategoryResponseModel model = new Gson().fromJson(response, CategoryResponseModel.class);
+                ResponseModel model = new Gson().fromJson(response, ResponseModel.class);
                 ArrayList<CategoryModel> categoryModel=model.getData();
 
-                if (model.getSuccess() == "1") {
+                if (model.getSuccess().equals("1") ) {
                     Toast.makeText(MainActivity.this, "" + response, Toast.LENGTH_SHORT).show();
+
                   /*  ArrayList<String> categoryName=new ArrayList<>();*/
 
                    ArrayList<String> categoryString=new ArrayList<>();
 
 
-                    for(CategoryModel cm:categoryModel){
-                        categoryString.add(cm.getCategoryname());                    }
+                    for(CategoryModel cm:categoryModel)
+                    {
+                        categoryString.add(cm.getCategoryname());
+                        titles.add(cm.getCategoryname());
+                    }
+
                     ArrayAdapter<String> bindCategory=new ArrayAdapter<String>(MainActivity.this,android.R.layout.simple_spinner_item,categoryString);
+                    bindCategory.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
                     spinner_category.setAdapter(bindCategory);
+                    //binding cardview with api data
+                    adapter = new CategoryAdapter(MainActivity.this, titles);
+                    GridLayoutManager gridLayoutManager = new GridLayoutManager(MainActivity.this, 2, GridLayoutManager.VERTICAL, false);
+                    categoryList.setLayoutManager(gridLayoutManager);
+                    categoryList.setAdapter(adapter);
+
+                    //will call api of popular product
+                    popularProductAdapter=new PopularProductAdapter(MainActivity.this,titles);
+
+                    GridLayoutManager gridLayoutManagerProduct = new GridLayoutManager(MainActivity.this, 1, GridLayoutManager.HORIZONTAL, false);
+
+                    productList.setLayoutManager(gridLayoutManagerProduct);
+                    productList.setAdapter(popularProductAdapter);
+
                     /*Intent intent = new Intent(Feedback.this, Home_Page_Navigation.class);
                     startActivity(intent);*/
-                } else if (model.getSuccess() == "0") {
+
+               /*     // Creating adapter for spinner
+                    ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, userType);
+
+                    // Drop down layout style - list view with radio button
+                    dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+                    // attaching data adapter to spinner
+                    spinner.setAdapter(dataAdapter);*/
+
+
+
+                } else if (model.getSuccess().equals("0")) {
                     Toast.makeText(MainActivity.this, "" + model.getSuccess(), Toast.LENGTH_SHORT).show();
 
                 }
@@ -114,22 +133,10 @@ public class MainActivity extends AppCompatActivity {
         titles = new ArrayList<>();
         //Spinner put data using api
 
-        //add title names of category by calling from api
 
-        titles.add("One");
-        titles.add("Two");
-        titles.add("Three");
-        titles.add("Four");
 
-        adapter = new CategoryAdapter(this, titles);
-        popularProductAdapter=new PopularProductAdapter(this,titles);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
-        GridLayoutManager gridLayoutManagerProduct = new GridLayoutManager(this, 2, GridLayoutManager.HORIZONTAL, false);
 
-        productList.setLayoutManager(gridLayoutManagerProduct);
-        productList.setAdapter(popularProductAdapter);
-        categoryList.setLayoutManager(gridLayoutManager);
-        categoryList.setAdapter(adapter);
+
     }
 
     /*private void BindCategory() {
@@ -192,4 +199,24 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.main_menu,menu);
         return true;
     }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
+    /*@Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }*/
 }
