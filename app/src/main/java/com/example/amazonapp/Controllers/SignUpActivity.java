@@ -1,6 +1,8 @@
 package com.example.amazonapp.Controllers;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -23,8 +25,14 @@ import com.android.volley.toolbox.Volley;
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.basgeekball.awesomevalidation.utility.RegexTemplate;
+import com.example.amazonapp.AsyncTasks.AsyncResponse;
+import com.example.amazonapp.AsyncTasks.WebserviceCall;
 import com.example.amazonapp.Helper.Config;
+import com.example.amazonapp.Helper.Utils;
+import com.example.amazonapp.Models.ResponseSignupModel;
+import com.example.amazonapp.Models.SignupModel;
 import com.example.amazonapp.R;
+import com.google.gson.Gson;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,15 +40,10 @@ import java.util.Map;
 public class SignUpActivity extends AppCompatActivity {
 
     // variables
-    private EditText fname,lname,email,contactno, postalcode, address, password,cnfpassword;
-    private Spinner city, country, province;
-    //countryid, provinceid, companyid
+    private EditText fname,lname,email,contactno, city, postalcode, address, password,cnfpassword;
+    private Spinner country, province;
     private Button signup;
-
-    //AwesomeValidation awesomeValidation;
-
-    //variable for calling api
-    String URL_CREATE_USER= Config.CREATE_USER;
+    ResponseSignupModel signupModelmodel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +57,8 @@ public class SignUpActivity extends AppCompatActivity {
         //spinner
         country =(Spinner) findViewById(R.id.country);
         province =(Spinner) findViewById(R.id.province);
-        city =(Spinner) findViewById(R.id.city);
         //***
+        city = (EditText) findViewById(R.id.city);
         postalcode =(EditText)findViewById(R.id.postal_code);
         address =(EditText)findViewById(R.id.address);
         password =(EditText)findViewById(R.id.password);
@@ -66,14 +69,8 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 registerUser();
-                if (v==signup) {
-                    startActivity(new Intent(SignUpActivity.this, SignUpActivity.class));
-                }
             }
         });
-
-        //awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
-        //updateUI();
     }
 
     private void registerUser(){
@@ -97,124 +94,76 @@ public class SignUpActivity extends AppCompatActivity {
             return;
         }
 
-        if (TextUtils.isEmpty(get_lastname)) {
+        else if (TextUtils.isEmpty(get_lastname)) {
             lname.setError("Please enter your last name");
             lname.requestFocus();
             return;
         }
 
-        if (!Patterns.EMAIL_ADDRESS.matcher(get_email).matches()) {
+        else if (!Patterns.EMAIL_ADDRESS.matcher(get_email).matches()) {
             email.setError("Enter a valid email");
             email.requestFocus();
             return;
         }
 
-        if (TextUtils.isEmpty(get_password)) {
+        else if (TextUtils.isEmpty(get_password)) {
             email.setError("Enter a valid password");
             email.requestFocus();
             return;
         }
 
-        if (TextUtils.isEmpty(get_conf_password)&& TextUtils.equals(get_password, get_conf_password)) {
+        else if (TextUtils.isEmpty(get_conf_password)&& TextUtils.equals(get_password, get_conf_password)) {
             cnfpassword.setError("Enter your confirmation password");
             cnfpassword.requestFocus();
             return;
         }
 
-        if (TextUtils.isEmpty(get_contactno)) {
+        else if (TextUtils.isEmpty(get_contactno)) {
             contactno.setError("Enter a contact number");
             contactno.requestFocus();
             return;
         }
 
-        if (TextUtils.isEmpty(get_postalcode)) {
+        else if (TextUtils.isEmpty(get_postalcode)) {
             postalcode.setError("Enter a contact number");
             postalcode.requestFocus();
             return;
         }
 
-        if (TextUtils.isEmpty(get_postalcode)) {
+        else if (TextUtils.isEmpty(get_postalcode)) {
             postalcode.setError("Enter a contact number");
             postalcode.requestFocus();
             return;
         }
 
-        if (TextUtils.isEmpty(get_address)) {
+        else if (TextUtils.isEmpty(get_address)) {
             address.setError("Enter a address");
             address.requestFocus();
             return;
         }
 
-        StringRequest postRequest = new StringRequest(Request.Method.POST, URL_CREATE_USER,
-                new Response.Listener<String>()
-                {
-                    @Override
-                    public void onResponse(String response) {
-                        // response
-                        Toast.makeText(getApplication(), response, Toast.LENGTH_SHORT).show();
-                        //Log.d("Response", response);
+        else {
+            String[] keys=new String[]{"Fname","Lname","email","phonenumber","countryid","provinceid","city","postal","address","password","companyid"};
+            String[] values=new String[]{get_firstname,get_lastname,get_email,get_contactno, "3", "3","montreal",get_postalcode,get_address,get_password, "1"};
+            String jsonReq= Utils.createJsonRequest(keys,values);
+
+            //variable for calling api
+            String URL_CREATE_USER= Config.CREATE_USER;
+
+            new WebserviceCall(SignUpActivity.this, URL_CREATE_USER, jsonReq, "Login...!!", true, new AsyncResponse() {
+                @Override
+                public void onCallback(String response) {
+                    signupModelmodel = new Gson().fromJson(response, ResponseSignupModel.class);
+                      if (signupModelmodel.getSuccess().equals("1")) {
+                        Toast.makeText(SignUpActivity.this, ""+signupModelmodel.getMessage(), Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+                        startActivity(intent);
                     }
-                },
-                new Response.ErrorListener()
-                {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(SignUpActivity.this, "error", Toast.LENGTH_SHORT).show();
-                        // error
-                        //Log.d("Error.Response", response);
+                    else if (signupModelmodel.getSuccess().equals("0") ) {
+                        Toast.makeText(SignUpActivity.this, ""+signupModelmodel.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
-        ) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError
-            {
-                Map<String, String>  params = new HashMap<String, String>();
-
-                params.put("Fname", get_firstname);
-                params.put("Lname", get_lastname);
-                params.put("email", get_email);
-                params.put("phonenumber", get_contactno);
-                params.put("countryid", "3");
-                params.put("provinceid", "4");
-                params.put("city", "montreal");
-                params.put("postal", get_postalcode);
-                params.put("address", get_address);
-                params.put("password", get_password);
-                params.put("companyid", "1");
-
-                return params;
-            }
-        };
-
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(postRequest);
+            }).execute();
+        }
     }
-
-    /*private void updateUI()
-    {
-
-        String regexPassword = "(?=.*[a-z])(?=.*[A-Z])(?=.*[\\d])(?=.*[~`!@#\\$%\\^&\\*\\(\\)\\-_\\+=\\{\\}\\[\\]\\|\\;:\"<>,./\\?]).{8,}";
-        awesomeValidation.addValidation(SignUpActivity.this,R.id.firstName, "[a-zA-Z\\s]+",R.string.first_name_error);
-        awesomeValidation.addValidation(SignUpActivity.this,R.id.lastName,"[a-zA-Z\\s]+",R.string.last_name_error);
-        awesomeValidation.addValidation(SignUpActivity.this,R.id.email_address, Patterns.EMAIL_ADDRESS,R.string.email_error);
-        awesomeValidation.addValidation(SignUpActivity.this,R.id.contact_number, RegexTemplate.TELEPHONE,R.string.contact_error);
-        awesomeValidation.addValidation(SignUpActivity.this,R.id.password,regexPassword,R.string.password_error);
-        awesomeValidation.addValidation(SignUpActivity.this,R.id.confirm_password,R.id.password,R.string.confirm_password_error);
-
-        signup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (awesomeValidation.validate())
-                {
-
-                    Toast.makeText(SignUpActivity.this, "Data save Succesfully in the Database.", Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
-                    Toast.makeText(SignUpActivity.this, "Fill all the fields.", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-    }*/
 }
