@@ -28,7 +28,7 @@ public class PopularProductAdapter extends RecyclerView.Adapter<PopularProductAd
     @NonNull
     @Override
     public PopularProductAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.category_home,parent,false);
+        View view = inflater.inflate(R.layout.popularproduct_home,parent,false);
         return new PopularProductAdapter.ViewHolder(view);
     }
 
