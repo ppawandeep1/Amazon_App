@@ -121,7 +121,7 @@
             app:layout_constraintStart_toStartOf="@id/guideline_right"
             app:layout_constraintTop_toBottomOf="@+id/contact_number" />
 
-        <Spinner
+        <EditText
             android:id="@+id/city"
             android:layout_width="168dp"
             android:layout_height="56dp"

@@ -48,7 +48,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recylerView1"
-        app:layout_constraintBottom_toTopOf="@id/recylerView">
+        app:layout_constraintBottom_toTopOf="@id/recylerViewOrder_History">
 
         <TextView
             android:id="@+id/h_image"
@@ -74,7 +74,7 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recylerView"
+        android:id="@+id/recylerViewOrder_History"
         android:layout_width="403dp"
         android:layout_height="450dp"
         app:layout_constraintBottom_toBottomOf="parent"

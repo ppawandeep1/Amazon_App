@@ -1,6 +1,7 @@
 package com.example.amazonapp.Controllers;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -25,8 +26,9 @@ import com.google.android.material.navigation.NavigationView;
 public class BottomFragment extends BottomSheetDialogFragment {
     NavigationView navigationView;
 
-
+    Context context;
     public BottomFragment() {
+        this.context=context;
         // Required empty public constructor
     }
 
@@ -67,9 +69,10 @@ public class BottomFragment extends BottomSheetDialogFragment {
                         Toast.makeText(getActivity(), "Log out ", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.order_history:
-                        OrderHistory orderHistory=new OrderHistory();
+                        OrderHistory orderHistory=new OrderHistory(context);
 
                         FragmentManager fragmentManager = getFragmentManager();
+
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                         fragmentTransaction.replace(android.R.id.content, orderHistory);
                         fragmentTransaction.commit();

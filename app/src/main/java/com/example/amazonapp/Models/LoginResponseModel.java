@@ -6,7 +6,15 @@ public class LoginResponseModel {
     public String success;
     public String message;
     public String token;
-    public ArrayList<CategoryModel> data;
+    public ArrayList<LoginModel> data;
+
+    public ArrayList<LoginModel> getData() {
+        return data;
+    }
+
+    public void setData(ArrayList<LoginModel> data) {
+        this.data = data;
+    }
 
     public String getMessage() {
         return message;
@@ -34,13 +42,7 @@ public class LoginResponseModel {
         this.token = token;
     }
 
-    public ArrayList<CategoryModel> getData() {
-        return data;
-    }
 
-    public void setData(ArrayList<CategoryModel> data) {
-        this.data = data;
-    }
 
 
 
