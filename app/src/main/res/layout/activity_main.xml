@@ -77,9 +77,30 @@
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:layout_gravity="bottom"
-        android:paddingLeft="200dp"
-        app:hideOnScroll="true">
+        app:hideOnScroll="true"
+        app:subtitleTextColor="@color/colorGradientEnd"
+        app:titleTextColor="@android:color/holo_orange_dark">
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_account_circle_black_24dp"
+            android:paddingBottom="19dp"
+            >
 
+        </ImageView>
+
+        <TextView
+            android:id="@+id/txtWlcmUser"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:fontFamily="sans-serif"
+            android:paddingTop="5dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#000"
+            >
+
+        </TextView>
     </com.google.android.material.bottomappbar.BottomAppBar>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
