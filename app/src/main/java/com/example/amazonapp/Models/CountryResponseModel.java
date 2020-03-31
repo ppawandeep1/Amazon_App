@@ -2,9 +2,8 @@ package com.example.amazonapp.Models;
 
 import java.util.ArrayList;
 
-public class PopularProductResponseModel {
+public class CountryResponseModel {
     public String success;
-    public ArrayList<PopularProductModel> data;
 
     public String getSuccess() {
         return success;
@@ -14,11 +13,13 @@ public class PopularProductResponseModel {
         this.success = success;
     }
 
-    public ArrayList<PopularProductModel> getData() {
+    public ArrayList<CountryModel> getData() {
         return data;
     }
 
-    public void setData(ArrayList<PopularProductModel> data) {
+    public void setData(ArrayList<CountryModel> data) {
         this.data = data;
     }
+
+    public ArrayList<CountryModel> data;
 }

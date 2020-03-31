@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class ResponseSignupModel {
     public String success;
     public String message;
-    public ArrayList<LoginModel> data;
-
+    /*public ArrayList<SignupModel> data;
+*/
     public String getSuccess() {
         return success;
     }
@@ -23,11 +23,11 @@ public class ResponseSignupModel {
         this.message = message;
     }
 
-    public ArrayList<LoginModel> getData() {
+   /* public ArrayList<SignupModel> getData() {
         return data;
     }
 
-    public void setData(ArrayList<LoginModel> data) {
+    public void setData(ArrayList<SignupModel> data) {
         this.data = data;
-    }
+    }*/
 }

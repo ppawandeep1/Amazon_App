@@ -6,13 +6,13 @@ public class LoginResponseModel {
     public String success;
     public String message;
     public String token;
-    public ArrayList<LoginModel> data;
+    public  LoginModel data;
 
-    public ArrayList<LoginModel> getData() {
+    public LoginModel getData() {
         return data;
     }
 
-    public void setData(ArrayList<LoginModel> data) {
+    public void setData(LoginModel data) {
         this.data = data;
     }
 
