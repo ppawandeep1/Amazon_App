@@ -68,13 +68,12 @@ public class BottomFragment extends BottomSheetDialogFragment {
                         break;
                     case R.id.order_history:
                         OrderHistory orderHistory=new OrderHistory();
-
                         FragmentManager fragmentManager = getFragmentManager();
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(android.R.id.content, orderHistory);
-                        fragmentTransaction.commit();
-
-                        Toast.makeText(getActivity(), "Oder History ", Toast.LENGTH_SHORT).show();
+                        fragmentTransaction.replace(R.id.main_layout,orderHistory,orderHistory.getTag()).commit();
+                        //fragmentTransaction.replace(android.R.id.main_layout, orderHistory);
+                        //fragmentTransaction.commit();
+                        Toast.makeText(getActivity(), "Order History ", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.profile:
                         ProfilePage profile =new ProfilePage();

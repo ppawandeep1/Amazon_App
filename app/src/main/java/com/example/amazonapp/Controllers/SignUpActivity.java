@@ -79,7 +79,7 @@ public class SignUpActivity extends AppCompatActivity {
         final String get_lastname = lname.getText().toString().trim();
         final String get_email = email.getText().toString().trim();
         final String get_contactno = contactno.getText().toString().trim();
-        //final String get_city = city.get.toString().trim();
+        final String get_city = city.getText().toString().trim();
         final String get_postalcode = postalcode.getText().toString().trim();
         final String get_address = address.getText().toString().trim();
         final String get_password = password.getText().toString().trim();
@@ -144,7 +144,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         else {
             String[] keys=new String[]{"Fname","Lname","email","phonenumber","countryid","provinceid","city","postal","address","password","companyid"};
-            String[] values=new String[]{get_firstname,get_lastname,get_email,get_contactno, "3", "3","montreal",get_postalcode,get_address,get_password, "1"};
+            String[] values=new String[]{get_firstname,get_lastname,get_email,get_contactno, "3", "3",get_city,get_postalcode,get_address,get_password, "1"};
             String jsonReq= Utils.createJsonRequest(keys,values);
 
             //variable for calling api
