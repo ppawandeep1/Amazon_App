@@ -8,8 +8,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.amazonapp.Controllers.ProdFragment;
 import com.example.amazonapp.R;
 
 import java.util.List;
@@ -35,29 +37,44 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.title.setText(titles.get(position));
-        // holder.gridIcon.setImageResource(images.get(position));
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                AppCompatActivity activity = (AppCompatActivity) v.getContext();
+                ProdFragment productFragment = new ProdFragment();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.container, productFragment).addToBackStack(null).commit();
+
+                // holder.gridIcon.setImageResource(images.get(position));
+
+            }
+        });
     }
 
-    @Override
-    public int getItemCount() {
-        return titles.size();
-    }
-
-    public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView title;
-        //ImageView gridIcon;
-
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            title = itemView.findViewById(R.id.txtCategory);
-            // gridIcon = itemView.findViewById(R.id.imageCategory);
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(v.getContext(), "Clicked -> " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
-                }
-            });
+        @Override
+        public int getItemCount () {
+            return titles.size();
         }
+
+
+        public class ViewHolder extends RecyclerView.ViewHolder {
+
+            TextView title;
+            //ImageView gridIcon;
+
+            public ViewHolder(@NonNull View itemView) {
+                super(itemView);
+                title = itemView.findViewById(R.id.txtCategory);
+                // gridIcon = itemView.findViewById(R.id.imageCategory);
+
+                itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(v.getContext(), "Clicked -> " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        }
+
     }
-}
