@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Controllers.LoginActivity"></activity>
+        <activity android:name=".Controllers.LoginActivity" />
         <activity android:name=".Controllers.SignUpActivity" />
         <activity android:name=".Controllers.MainActivity" />
         <activity android:name=".Controllers.SplashScreen">
