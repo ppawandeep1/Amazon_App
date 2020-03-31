@@ -1,7 +1,11 @@
 package com.example.amazonapp.Controllers;
 
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -65,9 +69,42 @@ public class BottomFragment extends BottomSheetDialogFragment {
                         break;
                     case R.id.logout:
                         Toast.makeText(getActivity(), "Log out ", Toast.LENGTH_SHORT).show();
+                        AlertDialog.Builder AlertLogout=new AlertDialog.Builder(getActivity());
+                        AlertLogout.setMessage("Do you want to Signout ?").setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("AmazonApp", Context.MODE_PRIVATE);
+
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.clear();
+                                editor.commit();
+                                Intent logout = new Intent(getActivity(), MainActivity.class);
+                                startActivity(logout);
+
+
+                            }
+                        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+                        AlertLogout.create().show();
+                        /*AlertDialog alertDialog=AlertLogout.create();
+                        alertDialog.setTitle("Sign out");
+                        alertDialog.show();*/
                         break;
                     case R.id.order_history:
+                        OrderHistory orderHistory=new OrderHistory();
+
+
+                        FragmentManager fragmentManager = getFragmentManager();
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(android.R.id.content, orderHistory);
+                        fragmentTransaction.commit();
+
                         Toast.makeText(getActivity(), "Oder History ", Toast.LENGTH_SHORT).show();
+
                         break;
                     case R.id.profile:
                         ProfilePage profile =new ProfilePage();

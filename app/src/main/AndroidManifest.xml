@@ -15,6 +15,7 @@
         <activity android:name=".Controllers.SignUpActivity" />
         <activity android:name=".Controllers.MainActivity" />
         <activity android:name=".Controllers.SplashScreen">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -62,11 +62,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.container, new ProdFragment())
-                .disallowAddToBackStack()
-                .commit();
+
         setSupportActionBar(toolbar_top);
        // toolbar_top.setLogo(R.drawable.logo);
         //getSupportActionBar().setTitle("Logo");

@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">AmazonApp</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="description">A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. There are usually between three and eight sentences. Paragraphs can begin with an indentation (about five spaces), or by missing a line out, and then starting again. This makes it easier to see when one paragraph ends and another begins. </string>
 
@@ -39,13 +38,13 @@
     <string name="btn_sign_up">Sign up</string>
 
 
-    <!--display error message in registration form -->
+    <!--display error message in registration form
     <string name="first_name_error">Enter your First Name</string>
     <string name="last_name_error">Enter Last Name</string>
     <string name="email_error">Enter Correct Email</string>
     <string name="contact_error">Enter Correct Contact no</string>
     <string name="password_error">Enter Password</string>
-    <string name="confirm_password_error">Password do not match</string>
+    <string name="confirm_password_error">Password do not match</string>-->
 
     <string-array name="clothes_names">
         <item>1</item>
