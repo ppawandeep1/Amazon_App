@@ -3,9 +3,13 @@ package com.example.amazonapp.Controllers;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -14,22 +18,27 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
-
 
 import com.example.amazonapp.Adapters.CategoryAdapter;
 import com.example.amazonapp.Adapters.PopularProductAdapter;
 import com.example.amazonapp.AsyncTasks.AsyncResponse;
+import com.example.amazonapp.AsyncTasks.WebServiceCallGet;
 import com.example.amazonapp.AsyncTasks.WebserviceCall;
+
 import com.example.amazonapp.Helper.Config;
 import com.example.amazonapp.Helper.Utils;
 import com.example.amazonapp.Models.CategoryModel;
+import com.example.amazonapp.Models.PopularProductModel;
+import com.example.amazonapp.Models.PopularProductResponseModel;
 import com.example.amazonapp.Models.ResponseModel;
 import com.example.amazonapp.R;
 
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
+import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,14 +46,18 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements Spinner.OnItemSelectedListener{
     private static final String TAG =MainActivity.class.getName() ;
     RecyclerView categoryList, productList;
-   Toolbar toolbar_top;
+    Toolbar toolbar_top;
     List<String> titles;
     CategoryAdapter adapter;
     PopularProductAdapter popularProductAdapter;
     BottomAppBar bottomAppBar;
     Spinner spinner_category;
+    List<String> productName;
+    List<String> imgUrl;
+    TextView txtUserWlcm;
+    //Hiding menu items on different items
+    Toolbar toolbar;
 
-    //Calling api using volley
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +65,53 @@ public class MainActivity extends AppCompatActivity implements Spinner.OnItemSel
         setContentView(R.layout.activity_main);
 
         setSupportActionBar(toolbar_top);
+        productName=new ArrayList<>();
+        imgUrl=new ArrayList<>();
+        txtUserWlcm=findViewById(R.id.txtWlcmUser);
+        SharedPreferences myPrefs = getSharedPreferences("AmazonApp", Context.MODE_PRIVATE);
+
+
+        txtUserWlcm.setText(myPrefs.getString("Fname","Welcome Guest"));
+
+
+        String PRODUCTURL= Config.POPULAR_PRODUCT;
+        new WebServiceCallGet(MainActivity.this, PRODUCTURL,null, "Getting Popular Product..", true, new AsyncResponse() {
+            @Override
+            public void onCallback(String response) {
+                Log.d("response", response);
+                PopularProductResponseModel model = new Gson().fromJson(response, PopularProductResponseModel.class);
+                ArrayList<PopularProductModel> popularProductModels=model.getData();
+
+
+                if (model.getSuccess().equals("1") ) {
+                    Toast.makeText(MainActivity.this, "" + response, Toast.LENGTH_SHORT).show();
+
+
+
+
+                    for(PopularProductModel pm:popularProductModels)
+                    {
+                        productName.add(pm.getProductname());
+                        imgUrl.add(pm.getImage());
+
+
+                    }
+                    popularProductAdapter=new PopularProductAdapter(MainActivity.this,productName,imgUrl);
+
+                    GridLayoutManager gridLayoutManagerProduct = new GridLayoutManager(MainActivity.this, 1, GridLayoutManager.HORIZONTAL, false);
+
+                    productList.setLayoutManager(gridLayoutManagerProduct);
+                    productList.setAdapter(popularProductAdapter);
+
+                } else if (model.getSuccess().equals("0")) {
+                    Toast.makeText(MainActivity.this, "" + model.getSuccess(), Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        }).execute();
+
+
+        ///--------------------------------------------------------------------------------------
 
         spinner_category=(Spinner)findViewById(R.id.spinner_category);
         spinner_category.setOnItemSelectedListener(this);
@@ -72,9 +132,9 @@ public class MainActivity extends AppCompatActivity implements Spinner.OnItemSel
                 if (model.getSuccess().equals("1") ) {
                     Toast.makeText(MainActivity.this, "" + response, Toast.LENGTH_SHORT).show();
 
-                  /*  ArrayList<String> categoryName=new ArrayList<>();*/
+                    /*  ArrayList<String> categoryName=new ArrayList<>();*/
 
-                   ArrayList<String> categoryString=new ArrayList<>();
+                    ArrayList<String> categoryString=new ArrayList<>();
 
 
                     for(CategoryModel cm:categoryModel)
@@ -94,24 +154,9 @@ public class MainActivity extends AppCompatActivity implements Spinner.OnItemSel
                     categoryList.setAdapter(adapter);
 
                     //will call api of popular product
-                    popularProductAdapter=new PopularProductAdapter(MainActivity.this,titles);
 
-                    GridLayoutManager gridLayoutManagerProduct = new GridLayoutManager(MainActivity.this, 1, GridLayoutManager.HORIZONTAL, false);
 
-                    productList.setLayoutManager(gridLayoutManagerProduct);
-                    productList.setAdapter(popularProductAdapter);
 
-                    /*Intent intent = new Intent(Feedback.this, Home_Page_Navigation.class);
-                    startActivity(intent);*/
-
-               /*     // Creating adapter for spinner
-                    ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, userType);
-
-                    // Drop down layout style - list view with radio button
-                    dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-                    // attaching data adapter to spinner
-                    spinner.setAdapter(dataAdapter);*/
 
 
 
@@ -139,40 +184,7 @@ public class MainActivity extends AppCompatActivity implements Spinner.OnItemSel
 
     }
 
-    /*private void BindCategory() {
 
-
-        StringRequest postRequest = new StringRequest(Request.Method.POST, getCategoryURL,
-                new Response.Listener<String>()
-                {
-                    @Override
-                    public void onResponse(String response) {
-                        // response
-                        Log.d("Response", response);
-                    }
-                },
-                new Response.ErrorListener()
-                {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // error
-                        Log.d("Error.Response", error.toString());
-                    }
-                }
-        ) {
-            @Override
-            protected Map<String, String> getParams()
-            {
-                Map<String, String>  params = new HashMap<String, String>();
-                params.put("CompanyId", "1");
-
-
-                return params;
-            }
-        };
-        requestQueue.add(postRequest);
-
-    }*/
 
     //Bottom Navigation menu
     @Override
@@ -187,6 +199,9 @@ public class MainActivity extends AppCompatActivity implements Spinner.OnItemSel
                 //Toast.makeText(this, "Menu ", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.cart:
+                Fragment selectedFragment = null;
+                selectedFragment = new CartFragment();
+                getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, selectedFragment).commit();
                 Toast.makeText(this, "Cart ", Toast.LENGTH_SHORT).show();
                 break;
 
@@ -210,13 +225,4 @@ public class MainActivity extends AppCompatActivity implements Spinner.OnItemSel
 
     }
 
-    /*@Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }*/
 }
