@@ -5,6 +5,17 @@ public class LoginModel {
     public String Fname;
     public String Email;
     public String CompanyId;
+    public String Company_name;
+    public String Logo;
+
+    public String getLogo() {
+        return Logo;
+    }
+
+    public void setLogo(String logo) {
+        Logo = logo;
+    }
+
 
     public String getCustomerId() {
         return CustomerId;
@@ -46,7 +57,7 @@ public class LoginModel {
         Company_name = company_name;
     }
 
-    public String Company_name;
+
 
 
 }

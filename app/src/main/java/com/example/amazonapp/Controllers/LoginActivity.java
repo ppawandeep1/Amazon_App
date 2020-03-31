@@ -12,14 +12,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.example.amazonapp.AsyncTasks.AsyncResponse;
 import com.example.amazonapp.AsyncTasks.WebserviceCall;
 import com.example.amazonapp.Helper.Config;
 import com.example.amazonapp.Helper.Utils;
+import com.example.amazonapp.Models.CategoryModel;
+import com.example.amazonapp.Models.LoginModel;
 import com.example.amazonapp.Models.LoginResponseModel;
+import com.example.amazonapp.Models.ResponseModel;
 import com.example.amazonapp.R;
 import com.google.gson.Gson;
+
+import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -29,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText userName;
     EditText password;
     LoginResponseModel model;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,16 +81,31 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onCallback(String response) {
                             Log.d("myapp", response);
-                            model = new Gson().fromJson(response, LoginResponseModel.class);
+
+                            LoginResponseModel model = new Gson().fromJson(response, LoginResponseModel.class);
+                            LoginModel loginModels=model.getData();
+                            SharedPreferences preferences=getSharedPreferences("AmazonApp", Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor=preferences.edit();
+
                             //                           Toast.makeText(LoginActivity.this,model.getMessage() , Toast.LENGTH_SHORT).show();
                             if (model.getSuccess().equals("1")) {
 
-                                SharedPreferences preferences=getSharedPreferences("profile", Context.MODE_PRIVATE);
-                                SharedPreferences.Editor editor=preferences.edit();
 
-                                editor.putString("Email",username);
-                                //editor.putString("psn_no",e);
-                                editor.apply();
+
+
+
+
+                                editor.putString(
+                                        "Fname","Welcome "+
+                                        loginModels.getFname());
+                                editor.putString("CustomerId",loginModels.getCustomerId());
+                                editor.putString("Token",model.getToken());
+                                editor.putBoolean("IsAutho",true);
+
+                                editor.commit();
+
+
+
 
                                 Toast.makeText(LoginActivity.this, ""+model.getMessage(), Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
@@ -91,6 +113,7 @@ public class LoginActivity extends AppCompatActivity {
                             }
                             else if (model.getSuccess().equals("0") ) {
                                 Toast.makeText(LoginActivity.this, ""+model.getMessage(), Toast.LENGTH_SHORT).show();
+                                editor.putBoolean("IsAutho",false);
                             }
                         }
                     }).execute();
@@ -99,7 +122,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         });
-
-
+        /*toolbar.findViewById(R.id.bar);
+        toolbar.getMenu().findItem(R.id.login).setVisible(false);*/
     }
 }
