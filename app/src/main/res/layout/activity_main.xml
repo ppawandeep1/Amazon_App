@@ -11,7 +11,6 @@
         android:id="@+id/toolbar"
         android:layout_width="413dp"
         android:layout_height="64dp"
-        android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -26,10 +25,9 @@
             android:id="@+id/spinner_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="160dp"
             app:layout_constraintBottom_toBottomOf="@+id/toolbar"
             tools:layout_editor_absoluteX="16dp"
-            android:layout_marginStart="160dp" />
+            />
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/search"
@@ -46,18 +44,20 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/main_layout"
         android:layout_width="match_parent"
-        android:layout_height="602dp"
-        android:layout_marginTop="65dp">
+        android:layout_height="match_parent"
+        android:layout_marginTop="65dp"
+        android:background="#c3c4c7">
 
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/popularproduct"
-            android:layout_width="422dp"
+            android:layout_width="410dp"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_marginTop="0dp"
             android:layout_marginBottom="25dp"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/categoryList"
@@ -77,9 +77,31 @@
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:layout_gravity="bottom"
-        android:paddingLeft="200dp"
-        app:hideOnScroll="true">
+        app:hideOnScroll="true"
+        app:subtitleTextColor="@color/colorGradientEnd"
+        app:titleTextColor="@android:color/holo_orange_dark"
+        >
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_account_circle_black_24dp"
+            android:paddingBottom="19dp"
+            >
 
+        </ImageView>
+
+        <TextView
+            android:id="@+id/txtWlcmUser"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:fontFamily="sans-serif"
+            android:paddingTop="5dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#000"
+            >
+
+        </TextView>
     </com.google.android.material.bottomappbar.BottomAppBar>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

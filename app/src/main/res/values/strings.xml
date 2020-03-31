@@ -38,13 +38,13 @@
     <string name="btn_sign_up">Sign up</string>
 
 
-    <!--display error message in registration form -->
+    <!--display error message in registration form
     <string name="first_name_error">Enter your First Name</string>
     <string name="last_name_error">Enter Last Name</string>
     <string name="email_error">Enter Correct Email</string>
     <string name="contact_error">Enter Correct Contact no</string>
     <string name="password_error">Enter Password</string>
-    <string name="confirm_password_error">Password do not match</string>
+    <string name="confirm_password_error">Password do not match</string>-->
 
     <string-array name="clothes_names">
         <item>1</item>
