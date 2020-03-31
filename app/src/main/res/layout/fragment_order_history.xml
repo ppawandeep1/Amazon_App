@@ -1,40 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Controllers.OrderHistory">
 
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/order_detail_heading"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorGradientCenter"
-        android:minHeight="?attr/actionBarSize"
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:id="@+id/title_order"
+        android:layout_width="407dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="110dp"
+        android:background="@color/colorGradientStart"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/recylerView1">
 
         <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="ORDER HISTORY"
-            android:textAlignment="center"
-            android:textColor="@color/design_default_color_primary"
-            android:textSize="30dp"
+            android:text="Order Detail"
+            android:textColor="@color/white"
+            android:textSize="25dp"
             android:textStyle="bold" />
-    </androidx.appcompat.widget.Toolbar>
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recylerView1"
-        android:layout_width="399dp"
-        android:layout_height="120dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="422dp"
+        android:layout_height="192dp"
+        app:layout_constraintBottom_toTopOf="@+id/title_heading"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/order_detail_heading">
+        app:layout_constraintTop_toBottomOf="@+id/title_order"
+        app:layout_constraintTop_toTopOf="parent">
 
     </androidx.recyclerview.widget.RecyclerView>
 
@@ -42,12 +43,12 @@
         android:id="@+id/title_heading"
         android:layout_width="407dp"
         android:layout_height="45dp"
-        android:layout_marginTop="20dp"
         android:orientation="horizontal"
         android:background="@color/colorGradientCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recylerView1">
+        app:layout_constraintTop_toBottomOf="@+id/recylerView1"
+        app:layout_constraintBottom_toTopOf="@id/recylerViewOrder_History">
 
         <TextView
             android:id="@+id/h_image"
@@ -63,24 +64,24 @@
             android:id="@+id/h_description"
             android:layout_width="150dp"
             android:layout_height="match_parent"
-            android:gravity="center"
             android:paddingLeft="20dp"
             android:text="Description"
             android:textColor="@color/white"
             android:textSize="25dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:gravity="center"/>
     </LinearLayout>
 
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recylerView"
-        android:layout_width="410dp"
-        android:layout_height="430dp"
+        android:id="@+id/recylerViewOrder_History"
+        android:layout_width="403dp"
+        android:layout_height="450dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title_heading">
+        app:layout_constraintTop_toBottomOf="@id/title_heading"
+        app:layout_constraintVertical_bias="1.0"></androidx.recyclerview.widget.RecyclerView>
 
-    </androidx.recyclerview.widget.RecyclerView>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
