@@ -3,6 +3,7 @@ package com.example.amazonapp.Controllers;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -45,7 +46,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements Spinner.OnItemSelectedListener{
     private static final String TAG =MainActivity.class.getName() ;
     RecyclerView categoryList, productList;
-   Toolbar toolbar_top;
+    Toolbar toolbar_top;
     List<String> titles;
     CategoryAdapter adapter;
     PopularProductAdapter popularProductAdapter;
@@ -54,13 +55,13 @@ public class MainActivity extends AppCompatActivity implements Spinner.OnItemSel
     List<String> productName;
     List<String> imgUrl;
     TextView txtUserWlcm;
-   //Hiding menu items on different items
+    //Hiding menu items on different items
     Toolbar toolbar;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-         super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         setSupportActionBar(toolbar_top);
@@ -70,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements Spinner.OnItemSel
         SharedPreferences myPrefs = getSharedPreferences("AmazonApp", Context.MODE_PRIVATE);
 
 
-            txtUserWlcm.setText(myPrefs.getString("Fname","Welcome Guest"));
+        txtUserWlcm.setText(myPrefs.getString("Fname","Welcome Guest"));
 
 
         String PRODUCTURL= Config.POPULAR_PRODUCT;
@@ -131,9 +132,9 @@ public class MainActivity extends AppCompatActivity implements Spinner.OnItemSel
                 if (model.getSuccess().equals("1") ) {
                     Toast.makeText(MainActivity.this, "" + response, Toast.LENGTH_SHORT).show();
 
-                  /*  ArrayList<String> categoryName=new ArrayList<>();*/
+                    /*  ArrayList<String> categoryName=new ArrayList<>();*/
 
-                   ArrayList<String> categoryString=new ArrayList<>();
+                    ArrayList<String> categoryString=new ArrayList<>();
 
 
                     for(CategoryModel cm:categoryModel)
@@ -198,8 +199,10 @@ public class MainActivity extends AppCompatActivity implements Spinner.OnItemSel
                 //Toast.makeText(this, "Menu ", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.cart:
+                Fragment selectedFragment = null;
+                selectedFragment = new CartFragment();
+                getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, selectedFragment).commit();
                 Toast.makeText(this, "Cart ", Toast.LENGTH_SHORT).show();
-
                 break;
 
         }

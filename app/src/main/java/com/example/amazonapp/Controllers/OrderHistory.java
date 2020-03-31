@@ -33,8 +33,10 @@ public class OrderHistory extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View v = inflater.inflate(R.layout.fragment_order_history, container, false);
         recyclerView = (RecyclerView)v.findViewById(R.id.recylerView);
+
 
         s1 = getResources().getStringArray(R.array.clothes_names);
         s2 = getResources().getStringArray(R.array.clothes_description);
@@ -43,7 +45,9 @@ public class OrderHistory extends Fragment {
         recyclerView.setAdapter(myAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         // Inflate the layout for this fragment
+
         return v;
+
     }
 
 }
