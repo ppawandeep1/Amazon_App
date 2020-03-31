@@ -89,24 +89,13 @@ public class LoginActivity extends AppCompatActivity {
 
                             //                           Toast.makeText(LoginActivity.this,model.getMessage() , Toast.LENGTH_SHORT).show();
                             if (model.getSuccess().equals("1")) {
-
-
-
-
-
-
-                                editor.putString(
+                              editor.putString(
                                         "Fname","Welcome "+
                                         loginModels.getFname());
                                 editor.putString("CustomerId",loginModels.getCustomerId());
                                 editor.putString("Token",model.getToken());
                                 editor.putBoolean("IsAutho",true);
-
                                 editor.commit();
-
-
-
-
                                 Toast.makeText(LoginActivity.this, ""+model.getMessage(), Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 startActivity(intent);
