@@ -87,7 +87,7 @@ public class BottomFragment extends BottomSheetDialogFragment {
                         Toast.makeText(getActivity(), "Log out ", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.order_history:
-                        OrderHistory orderHistory=new OrderHistory(context);
+                        OrderHistory orderHistory=new OrderHistory();
 
                         FragmentManager fragmentManager = getFragmentManager();
 

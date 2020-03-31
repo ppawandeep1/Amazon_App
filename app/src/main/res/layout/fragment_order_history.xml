@@ -6,82 +6,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Controllers.OrderHistory">
 
-    <!-- TODO: Update blank fragment layout -->
-    <LinearLayout
-        android:id="@+id/title_order"
-        android:layout_width="407dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="110dp"
-        android:background="@color/colorGradientStart"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/recylerView1">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Order Detail"
-            android:textColor="@color/white"
-            android:textSize="25dp"
-            android:textStyle="bold" />
-    </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recylerView1"
-        android:layout_width="422dp"
-        android:layout_height="192dp"
-        app:layout_constraintBottom_toTopOf="@+id/title_heading"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_order"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </androidx.recyclerview.widget.RecyclerView>
-
-    <LinearLayout
-        android:id="@+id/title_heading"
-        android:layout_width="407dp"
-        android:layout_height="45dp"
-        android:orientation="horizontal"
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/colorGradientCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recylerView1"
-        app:layout_constraintBottom_toTopOf="@id/recylerViewOrder_History">
+        android:minHeight="?attr/actionBarSize">
 
         <TextView
-            android:id="@+id/h_image"
-            android:layout_width="200dp"
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Image"
-            android:textColor="@color/white"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            android:gravity="center"/>
-
-        <TextView
-            android:id="@+id/h_description"
-            android:layout_width="150dp"
-            android:layout_height="match_parent"
-            android:paddingLeft="20dp"
-            android:text="Description"
-            android:textColor="@color/white"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            android:gravity="center"/>
-    </LinearLayout>
-
+            android:text="ORDER HISTORY"
+            android:textAlignment="center"
+            android:textColor="@color/design_default_color_primary"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+    </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recylerViewOrder_History"
+        android:id="@+id/recylerView"
         android:layout_width="403dp"
-        android:layout_height="450dp"
+        android:layout_height="492dp"
+        android:layout_marginTop="55dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title_heading"
-        app:layout_constraintVertical_bias="1.0"></androidx.recyclerview.widget.RecyclerView>
+        app:layout_constraintVertical_bias="1.0">
+    </androidx.recyclerview.widget.RecyclerView>
 
 </FrameLayout>

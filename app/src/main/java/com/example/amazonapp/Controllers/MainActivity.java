@@ -199,6 +199,7 @@ public class MainActivity extends AppCompatActivity implements Spinner.OnItemSel
                 break;
             case R.id.cart:
                 Toast.makeText(this, "Cart ", Toast.LENGTH_SHORT).show();
+
                 break;
 
         }
