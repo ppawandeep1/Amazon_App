@@ -6,10 +6,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -19,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
+
 
 import com.example.amazonapp.Adapters.CategoryAdapter;
 import com.example.amazonapp.Adapters.PopularProductAdapter;
@@ -46,11 +43,6 @@ public class MainActivity extends AppCompatActivity implements Spinner.OnItemSel
     PopularProductAdapter popularProductAdapter;
     BottomAppBar bottomAppBar;
     Spinner spinner_category;
-
-    //final Fragment fragmenthome = new MainActivity();
-
-
-    //Fragment active = fragment1;
 
     //Calling api using volley
 
@@ -129,11 +121,22 @@ public class MainActivity extends AppCompatActivity implements Spinner.OnItemSel
                 }
             }
         }).execute();
+
+
+
+
+
         categoryList = findViewById(R.id.categoryList);
         productList=findViewById(R.id.popularproduct);
         bottomAppBar=findViewById(R.id.bar);
         setSupportActionBar(bottomAppBar);
         titles = new ArrayList<>();
+        //Spinner put data using api
+
+
+
+
+
     }
 
     /*private void BindCategory() {
@@ -174,38 +177,20 @@ public class MainActivity extends AppCompatActivity implements Spinner.OnItemSel
     //Bottom Navigation menu
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
-
         switch (item.getItemId()) {
             case android.R.id.home:
                 Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.menu:
                 BottomSheetDialogFragment bottomSheetDialogFragment = new BottomFragment();
-                bottomSheetDialogFragment.show(getSupportFragmentManager(), bottomSheetDialogFragment.getClass().getSimpleName());
+                bottomSheetDialogFragment.show(getSupportFragmentManager(),bottomSheetDialogFragment.getClass().getSimpleName());
                 //Toast.makeText(this, "Menu ", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.cart:
-                Fragment selectedFragment = null;
-                selectedFragment = new CartFragment();
-                getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, selectedFragment).commit();
-                //final Fragment fragmentcart = new CartFragment();
-                //fragmentcart.show(getSupportFragmentManager(),fragmentcart.getClass().getSimpleName());
-                //final FragmentManager fm = getSupportFragmentManager();
-                //fm.beginTransaction().show(fragmentcart).commit();
-                //active = fragment1;
-
-
-                /*CartFragment cartFragment = new CartFragment();
-                FragmentManager fragmentManagerCart = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManagerCart.beginTransaction();
-                fragmentTransaction.replace(android.R.id.content, cartFragment);
-               // fragmentTransaction.commit();*/
-                //Toast.makeText(this, "Order History ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Cart ", Toast.LENGTH_SHORT).show();
                 break;
 
         }
-
         return true;
     }
 

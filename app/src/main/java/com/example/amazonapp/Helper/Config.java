@@ -13,6 +13,11 @@ public class Config {
   public static final String GET_CATEGORIES="  http://18.218.124.225:3000/api/category/getcategories";
   public static final String LOGIN_USER="  http://18.218.124.225:3000/api/customeruser/authcustomeruser";
 
+
+<<<<<<<<< Temporary merge branch 1
+=========
+
   public static final String CREATE_USER = "http://18.218.124.225:3000/api/customeruser/createcustomeruser";
+>>>>>>>>> Temporary merge branch 2
 
 }

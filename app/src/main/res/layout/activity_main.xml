@@ -77,7 +77,8 @@
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:layout_gravity="bottom"
-        android:paddingLeft="200dp">
+        android:paddingLeft="200dp"
+        app:hideOnScroll="true">
 
     </com.google.android.material.bottomappbar.BottomAppBar>
 

@@ -67,13 +67,14 @@ public class BottomFragment extends BottomSheetDialogFragment {
                         Toast.makeText(getActivity(), "Log out ", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.order_history:
-                        OrderHistory orderHistory =new OrderHistory();
+                        OrderHistory orderHistory=new OrderHistory();
+
                         FragmentManager fragmentManager = getFragmentManager();
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(R.id.main_layout,orderHistory,orderHistory.getTag()).commit();
-                        //fragmentTransaction.replace(android.R.id.main_layout, orderHistory);
-                        //fragmentTransaction.commit();
-                        Toast.makeText(getActivity(), "Order History ", Toast.LENGTH_SHORT).show();
+                        fragmentTransaction.replace(android.R.id.content, orderHistory);
+                        fragmentTransaction.commit();
+
+                        Toast.makeText(getActivity(), "Oder History ", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.profile:
                         ProfilePage profile =new ProfilePage();
@@ -81,7 +82,6 @@ public class BottomFragment extends BottomSheetDialogFragment {
                         managerpofile.beginTransaction().replace(R.id.main_layout,profile,profile.getTag()).commit();
 
 
-                        Toast.makeText(getActivity(), "Profile", Toast.LENGTH_SHORT).show();
                         break;
 
                     default:
