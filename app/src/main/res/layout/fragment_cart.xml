@@ -31,7 +31,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recylerViewCart"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="500dp"
         android:background="#bfbfbf"
         app:layout_constraintTop_toBottomOf="@+id/itemoncart"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,6 +44,7 @@
         android:elevation="8dp"
         android:background="#e6e6e6"
         android:orientation="horizontal"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">

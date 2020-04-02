@@ -1,6 +1,5 @@
 package com.example.amazonapp.Controllers;
 
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -52,7 +51,7 @@ public class BottomFragment extends BottomSheetDialogFragment {
                     case R.id.login:
                        /* Login login =new Login();
                         FragmentManager manager=getFragmentManager();*/
-                        // FragmentTransaction fragmentTransaction=manager.beginTransaction();
+                       // FragmentTransaction fragmentTransaction=manager.beginTransaction();
                         /*manager.beginTransaction().replace(R.id.main_layout,login,login.getTag()).commit();
                         navigationView.setVisibility(View.GONE);*/
                         /*fragmentTransaction.replace(R.id.container, login);
@@ -62,8 +61,8 @@ public class BottomFragment extends BottomSheetDialogFragment {
                         getActivity().startActivity(intent);
 
                         break;
-                    // Toast.makeText(getActivity(), "Login", Toast.LENGTH_SHORT).show();
-                    //break;
+                       // Toast.makeText(getActivity(), "Login", Toast.LENGTH_SHORT).show();
+                        //break;
                     case R.id.contact_us:
                         Toast.makeText(getActivity(), "Contact US", Toast.LENGTH_SHORT).show();
                         break;
@@ -97,22 +96,16 @@ public class BottomFragment extends BottomSheetDialogFragment {
                         break;
                     case R.id.order_history:
                         OrderHistory orderHistory=new OrderHistory();
-
-
                         FragmentManager fragmentManager = getFragmentManager();
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                         fragmentTransaction.replace(android.R.id.content, orderHistory);
                         fragmentTransaction.commit();
-
                         Toast.makeText(getActivity(), "Oder History ", Toast.LENGTH_SHORT).show();
-
                         break;
                     case R.id.profile:
                         ProfilePage profile =new ProfilePage();
                         FragmentManager managerpofile=getFragmentManager();
                         managerpofile.beginTransaction().replace(R.id.main_layout,profile,profile.getTag()).commit();
-
-
                         break;
 
                     default:
