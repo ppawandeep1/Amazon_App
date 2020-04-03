@@ -20,13 +20,22 @@ import com.example.amazonapp.R;
 
 import java.util.ArrayList;
 
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.example.amazonapp.R;
+
+
 
 public class ProductDetailsFragment extends Fragment {
+
 
     private DBProductAdapter dbProduct;
     private Button cart_btn;
     private ImageView product_img;
     private TextView product_title, product_price, product_qty;
+
 
     View view;
     public ProductDetailsFragment() {
@@ -62,4 +71,9 @@ public class ProductDetailsFragment extends Fragment {
         });
         return view ;
     }
+
+
+ 
+
+
 }

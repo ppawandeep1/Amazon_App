@@ -1,5 +1,8 @@
 package com.example.amazonapp.Controllers;
 
+
+import android.app.AlertDialog;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -93,14 +96,23 @@ public class BottomFragment extends BottomSheetDialogFragment {
                         alertDialog.setTitle("Sign out");
                         alertDialog.show();*/
 
+
                         break;
                     case R.id.order_history:
                         OrderHistory orderHistory=new OrderHistory();
+
+                        break;
+                    case R.id.order_history:
+                        OrderHistory orderHistory=new OrderHistory();
+
+
                         FragmentManager fragmentManager = getFragmentManager();
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                         fragmentTransaction.replace(android.R.id.content, orderHistory);
                         fragmentTransaction.commit();
+
                         Toast.makeText(getActivity(), "Oder History ", Toast.LENGTH_SHORT).show();
+
                         break;
                     case R.id.profile:
                         ProfilePage profile =new ProfilePage();

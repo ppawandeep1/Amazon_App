@@ -7,6 +7,11 @@
     android:id="@+id/rec"
     android:orientation="vertical">
 
+    android:orientation="vertical"
+    >
+
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerr"
         android:layout_width="match_parent"
