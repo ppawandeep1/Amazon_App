@@ -3,11 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#e6e6e6"
+
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Controllers.CartFragment">
 
 
     <androidx.appcompat.widget.Toolbar
+        android:id="@+id/itemoncart"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/colorGradientCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorGradientCenter"
@@ -32,6 +42,11 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recylerViewCart"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:background="#bfbfbf"
+        app:layout_constraintTop_toBottomOf="@+id/itemoncart"
+
         android:layout_width="427dp"
         android:layout_height="404dp"
         app:layout_constraintBottom_toTopOf="@+id/orderSummary"
@@ -42,6 +57,11 @@
         android:id="@+id/orderSummary"
         android:layout_width="0dp"
         android:layout_height="180dp"
+        android:elevation="8dp"
+        android:background="#e6e6e6"
+        android:orientation="horizontal"
+
+
         android:background="@color/login_form_details"
         android:elevation="8dp"
         android:orientation="horizontal"
@@ -73,6 +93,8 @@
                 android:layout_height="wrap_content"
                 android:text="Total Items ="
                 android:textSize="20dp"
+                android:textColor="@android:color/background_dark"
+
                 android:textStyle="bold" />
 
                 <TextView
@@ -80,6 +102,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" $5"
+
+                    android:textColor="@android:color/background_dark"
+
                     android:textSize="23dp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -91,6 +116,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Shipping charges"
+                    android:textColor="@android:color/background_dark"
                     android:textSize="20dp"
                     android:textStyle="bold" />
                 <TextView
@@ -98,6 +124,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" $33"
+                    android:textColor="@android:color/background_dark"
+
                     android:textSize="23dp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -108,6 +136,8 @@
                 android:layout_height="wrap_content"
                 android:text="Total Amount"
                 android:textSize="20dp"
+                android:textColor="@android:color/background_dark"
+
                 android:textStyle="bold" />
 
             <TextView
@@ -116,6 +146,8 @@
                 android:layout_height="wrap_content"
                 android:text=" $399599"
                 android:textSize="23dp"
+                android:textColor="@android:color/background_dark"
+
                 android:textStyle="bold" />
 
 
@@ -123,6 +155,9 @@
 
         <Button
             android:id="@+id/purchase"
+            android:layout_width="340dp"
+            android:layout_height="70dp"
+
             android:layout_width="370dp"
             android:layout_height="80dp"
             android:layout_marginTop="50dp"

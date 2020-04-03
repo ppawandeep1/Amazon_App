@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:orientation="vertical"
+    android:background="#d9d9d9"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:background="@color/login_form_details"
+
     android:elevation="3dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -26,6 +31,9 @@
         android:layout_marginTop="16dp"
         android:text="Skirt"
         android:textColor="@android:color/background_dark"
+        android:textSize="30dp"
+        android:textStyle="bold"
+
         android:textSize="25dp"
         app:layout_constraintStart_toEndOf="@+id/product_image"
         app:layout_constraintTop_toTopOf="parent" />
@@ -44,6 +52,15 @@
 
     <TextView
         android:id="@+id/product_quantity"
+        android:layout_width="70dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="#000000"
+        android:padding="3dp"
+        android:text="Qty: 1"
+        android:textSize="25dp"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -64,6 +81,8 @@
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:orientation="horizontal"
+        android:background="#bfbfbf"
+
         android:background="@color/login_form_details"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
@@ -74,6 +93,9 @@
             android:layout_height="match_parent"
             android:layout_width="wrap_content"
             android:text="Remove item"
+            android:textColor="@android:color/background_dark"
+
+
             android:gravity="center"
             android:drawableStart="@drawable/delete_item"
             android:drawablePadding="4dp"/>

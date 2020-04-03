@@ -2,6 +2,7 @@ package com.example.amazonapp.Controllers;
 
 
 import android.app.AlertDialog;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -93,6 +95,12 @@ public class BottomFragment extends BottomSheetDialogFragment {
                         /*AlertDialog alertDialog=AlertLogout.create();
                         alertDialog.setTitle("Sign out");
                         alertDialog.show();*/
+
+
+                        break;
+                    case R.id.order_history:
+                        OrderHistory orderHistory=new OrderHistory();
+
                         break;
                     case R.id.order_history:
                         OrderHistory orderHistory=new OrderHistory();
@@ -110,8 +118,6 @@ public class BottomFragment extends BottomSheetDialogFragment {
                         ProfilePage profile =new ProfilePage();
                         FragmentManager managerpofile=getFragmentManager();
                         managerpofile.beginTransaction().replace(R.id.main_layout,profile,profile.getTag()).commit();
-
-
                         break;
 
                     default:
