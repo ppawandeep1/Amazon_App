@@ -75,20 +75,7 @@ public class ProdRecyclerAdapter  extends RecyclerView.Adapter<ProdRecyclerAdapt
 
                 tv_title = (TextView) itemView.findViewById(R.id.productTitle);
                 img = (ImageView) itemView.findViewById(R.id.productImage);
-                //cardView = (CardView) itemView.findViewById(R.id.cardview_id);
-                /*itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                AppCompatActivity activity = (AppCompatActivity) v.getContext();
 
-                                         ProductDetailsFragment produFragment = new ProductDetailsFragment(prodId.get(getAdapterPosition()));
-                        activity.getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, produFragment).addToBackStack(null).commit();
-
-                        Spinner spinner = v.findViewById(R.id.spiner);
-
-
-                    }
-                });*/
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

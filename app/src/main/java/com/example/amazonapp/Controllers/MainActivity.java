@@ -2,10 +2,11 @@ package com.example.amazonapp.Controllers;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
+
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 
 import android.content.Context;
@@ -17,31 +18,28 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.amazonapp.Adapters.CategoryAdapter;
-import com.example.amazonapp.Adapters.PopularProductAdapter;
+import com.example.amazonapp.Adapters.ProdRecyclerAdapter;
 import com.example.amazonapp.AsyncTasks.AsyncResponse;
-import com.example.amazonapp.AsyncTasks.WebServiceCallGet;
 import com.example.amazonapp.AsyncTasks.WebserviceCall;
 
 import com.example.amazonapp.Helper.Config;
 import com.example.amazonapp.Helper.Utils;
 import com.example.amazonapp.Models.CategoryModel;
-import com.example.amazonapp.Models.PopularProductModel;
-import com.example.amazonapp.Models.PopularProductResponseModel;
+import com.example.amazonapp.Models.GetProductByCategory;
+import com.example.amazonapp.Models.ResponseGetProductById;
 import com.example.amazonapp.Models.ResponseModel;
 import com.example.amazonapp.R;
 
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
-import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements Spinner.OnItemSelectedListener{
     private static final String TAG =MainActivity.class.getName() ;
@@ -55,10 +53,12 @@ public class MainActivity extends AppCompatActivity implements Spinner.OnItemSel
     TextView txtUserWlcm;
     //Hiding menu items on different items
     Toolbar toolbar;
+    //
+    public static String category;
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements Spinner.OnItemSel
         txtUserWlcm.setText(myPrefs.getString("Fname","Welcome Guest"));
 
 
-        HomeFragment fragment=new HomeFragment(MainActivity.this);
+        final HomeFragment fragment=new HomeFragment(MainActivity.this);
         if (findViewById(R.id.main_layout) != null) {
 
             // However, if we're being restored from a previous state,
@@ -111,8 +111,6 @@ public class MainActivity extends AppCompatActivity implements Spinner.OnItemSel
                 if (model.getSuccess().equals("1") ) {
                     Toast.makeText(MainActivity.this, "" + response, Toast.LENGTH_SHORT).show();
 
-                    /*  ArrayList<String> categoryName=new ArrayList<>();*/
-
                     ArrayList<String> categoryString=new ArrayList<>();
 
 
@@ -142,7 +140,38 @@ public class MainActivity extends AppCompatActivity implements Spinner.OnItemSel
 
         //Spinner put data using api
 
+        //SearchView binding with API
+        SearchView simpleSearchView = (SearchView) findViewById(R.id.search); // inititate a search view
 
+        // perform set on query text listener event
+        simpleSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                // do something on text submit
+                Toast.makeText(MainActivity.this," "+query,Toast.LENGTH_SHORT).show();
+                //calling the api
+
+                SearchProduct product=new SearchProduct(MainActivity.this,category,query);
+                if (findViewById(R.id.main_layout) != null) {
+
+
+                    getSupportFragmentManager().beginTransaction()
+                            .add(R.id.main_layout, product).commit();
+
+
+                    bottomAppBar = findViewById(R.id.bar);
+                    setSupportActionBar(bottomAppBar);
+                }
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+            // do something when text changes
+
+                return false;
+            }
+        });
 
 
 
@@ -181,6 +210,9 @@ public class MainActivity extends AppCompatActivity implements Spinner.OnItemSel
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        category= (String) spinner_category.getSelectedItem();
+
+
 
     }
 
