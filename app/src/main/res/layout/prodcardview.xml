@@ -19,14 +19,14 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/book_img_id"
+            android:id="@+id/productImage"
             android:layout_width="match_parent"
             android:layout_height="210dp"
             android:background="#2d2d2d"
             android:scaleType="centerCrop" />
 
         <TextView
-            android:id="@+id/book_title_id"
+            android:id="@+id/productTitle"
             android:textColor="#2d2d2d"
             android:textSize="13sp"
             android:gravity="center"

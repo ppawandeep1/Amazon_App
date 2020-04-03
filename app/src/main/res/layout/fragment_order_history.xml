@@ -8,8 +8,9 @@
 
     <LinearLayout
         android:id="@+id/title_heading"
-        android:layout_width="407dp"
+        android:layout_width="match_parent"
         android:layout_height="45dp"
+        android:layout_marginTop="65dp"
         android:background="@color/colorGradientCenter"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,14 +41,11 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recylerView"
-        android:layout_width="421dp"
-        android:layout_height="582dp"
-
+        android:layout_width="match_parent"
+        android:layout_height="620dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title_heading">
 
     </androidx.recyclerview.widget.RecyclerView>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
