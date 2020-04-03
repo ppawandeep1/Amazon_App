@@ -101,14 +101,10 @@
                     android:layout_gravity="right"
                     android:layout_marginLeft="120dp"
                     android:text="Add to Cart" />
-
-
             </LinearLayout>
         </LinearLayout>
 
-
-
-
+        </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
 </FrameLayout>

@@ -16,7 +16,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -100,12 +99,6 @@ public class BottomFragment extends BottomSheetDialogFragment {
                         break;
                     case R.id.order_history:
                         OrderHistory orderHistory=new OrderHistory();
-
-                        break;
-                    case R.id.order_history:
-                        OrderHistory orderHistory=new OrderHistory();
-
-
                         FragmentManager fragmentManager = getFragmentManager();
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                         fragmentTransaction.replace(android.R.id.content, orderHistory);
