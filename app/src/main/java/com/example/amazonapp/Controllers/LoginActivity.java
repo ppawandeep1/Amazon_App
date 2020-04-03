@@ -84,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             LoginResponseModel model = new Gson().fromJson(response, LoginResponseModel.class);
                             LoginModel loginModels=model.getData();
-                            SharedPreferences preferences=getSharedPreferences("AmazonApp", Context.MODE_PRIVATE);
+                                                  SharedPreferences preferences=getSharedPreferences("AmazonApp", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor=preferences.edit();
 
                             //                           Toast.makeText(LoginActivity.this,model.getMessage() , Toast.LENGTH_SHORT).show();

@@ -45,15 +45,13 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements Spinner.OnItemSelectedListener{
     private static final String TAG =MainActivity.class.getName() ;
-    RecyclerView categoryList, productList;
+
     Toolbar toolbar_top;
-    List<String> titles;
-    CategoryAdapter adapter;
-    PopularProductAdapter popularProductAdapter;
+   //for header
     BottomAppBar bottomAppBar;
+    //for bottom
     Spinner spinner_category;
-    List<String> productName;
-    List<String> imgUrl;
+
     TextView txtUserWlcm;
     //Hiding menu items on different items
     Toolbar toolbar;
@@ -65,8 +63,7 @@ public class MainActivity extends AppCompatActivity implements Spinner.OnItemSel
         setContentView(R.layout.activity_main);
 
         setSupportActionBar(toolbar_top);
-        productName=new ArrayList<>();
-        imgUrl=new ArrayList<>();
+
         txtUserWlcm=findViewById(R.id.txtWlcmUser);
         SharedPreferences myPrefs = getSharedPreferences("AmazonApp", Context.MODE_PRIVATE);
 
@@ -74,41 +71,23 @@ public class MainActivity extends AppCompatActivity implements Spinner.OnItemSel
         txtUserWlcm.setText(myPrefs.getString("Fname","Welcome Guest"));
 
 
-        String PRODUCTURL= Config.POPULAR_PRODUCT;
-        new WebServiceCallGet(MainActivity.this, PRODUCTURL,null, "Getting Popular Product..", true, new AsyncResponse() {
-            @Override
-            public void onCallback(String response) {
-                Log.d("response", response);
-                PopularProductResponseModel model = new Gson().fromJson(response, PopularProductResponseModel.class);
-                ArrayList<PopularProductModel> popularProductModels=model.getData();
+        HomeFragment fragment=new HomeFragment(MainActivity.this);
+        if (findViewById(R.id.main_layout) != null) {
 
-
-                if (model.getSuccess().equals("1") ) {
-                    Toast.makeText(MainActivity.this, "" + response, Toast.LENGTH_SHORT).show();
-
-
-
-
-                    for(PopularProductModel pm:popularProductModels)
-                    {
-                        productName.add(pm.getProductname());
-                        imgUrl.add(pm.getImage());
-
-
-                    }
-                    popularProductAdapter=new PopularProductAdapter(MainActivity.this,productName,imgUrl);
-
-                    GridLayoutManager gridLayoutManagerProduct = new GridLayoutManager(MainActivity.this, 1, GridLayoutManager.HORIZONTAL, false);
-
-                    productList.setLayoutManager(gridLayoutManagerProduct);
-                    productList.setAdapter(popularProductAdapter);
-
-                } else if (model.getSuccess().equals("0")) {
-                    Toast.makeText(MainActivity.this, "" + model.getSuccess(), Toast.LENGTH_SHORT).show();
-
-                }
+            // However, if we're being restored from a previous state,
+            // then we don't need to do anything and should return or else
+            // we could end up with overlapping fragments.
+            if (savedInstanceState != null) {
+                return;
             }
-        }).execute();
+
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.main_layout, fragment).commit();
+
+
+            bottomAppBar = findViewById(R.id.bar);
+            setSupportActionBar(bottomAppBar);
+        }
 
 
         ///--------------------------------------------------------------------------------------
@@ -140,20 +119,13 @@ public class MainActivity extends AppCompatActivity implements Spinner.OnItemSel
                     for(CategoryModel cm:categoryModel)
                     {
                         categoryString.add(cm.getCategoryname());
-                        titles.add(cm.getCategoryname());
+
                     }
 
                     ArrayAdapter<String> bindCategory=new ArrayAdapter<String>(MainActivity.this,android.R.layout.simple_spinner_item,categoryString);
                     bindCategory.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
                     spinner_category.setAdapter(bindCategory);
-                    //binding cardview with api data
-                    adapter = new CategoryAdapter(MainActivity.this, titles);
-                    GridLayoutManager gridLayoutManager = new GridLayoutManager(MainActivity.this, 2, GridLayoutManager.VERTICAL, false);
-                    categoryList.setLayoutManager(gridLayoutManager);
-                    categoryList.setAdapter(adapter);
-
-                    //will call api of popular product
 
 
 
@@ -168,14 +140,6 @@ public class MainActivity extends AppCompatActivity implements Spinner.OnItemSel
         }).execute();
 
 
-
-
-
-        categoryList = findViewById(R.id.categoryList);
-        productList=findViewById(R.id.popularproduct);
-        bottomAppBar=findViewById(R.id.bar);
-        setSupportActionBar(bottomAppBar);
-        titles = new ArrayList<>();
         //Spinner put data using api
 
 
