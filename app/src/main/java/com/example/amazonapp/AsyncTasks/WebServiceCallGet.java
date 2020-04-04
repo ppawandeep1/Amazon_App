@@ -12,7 +12,7 @@ import com.squareup.okhttp.Response;
 
 import java.io.IOException;
 
-public class WebServiceCallGet extends AsyncTask<Void, Void, String>  {
+public class  WebServiceCallGet extends AsyncTask<Void, Void, String>  {
         AsyncResponse delegate;
 private final MediaType URLENCODE = MediaType.parse("application/json;charset=utf-8");
         ProgressDialog dialog;

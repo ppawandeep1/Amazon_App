@@ -55,9 +55,7 @@ public class ProdRecyclerAdapter  extends RecyclerView.Adapter<ProdRecyclerAdapt
 
                     AppCompatActivity activity = (AppCompatActivity) v.getContext();
                     ProductDetailsFragment produFragment = new ProductDetailsFragment();
-                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.container, produFragment).addToBackStack(null).commit();
-
-                    Spinner spinner = v.findViewById(R.id.spiner);
+                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, produFragment).addToBackStack(null).commit();
 
 
 

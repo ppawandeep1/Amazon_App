@@ -1,6 +1,7 @@
 package com.example.amazonapp.Controllers;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -8,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +20,17 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 
+import com.example.amazonapp.AsyncTasks.AsyncResponse;
+import com.example.amazonapp.AsyncTasks.WebserviceCall;
+import com.example.amazonapp.Helper.Config;
+import com.example.amazonapp.Helper.Utils;
+import com.example.amazonapp.Models.ProfilePageModel;
+import com.example.amazonapp.Models.ResponseSignupModel;
 import com.example.amazonapp.R;
+import com.google.gson.Gson;
+
+import static com.example.amazonapp.Controllers.SignUpActivity.countryId;
+import static com.example.amazonapp.Controllers.SignUpActivity.provinceId;
 
 
 public class ProfilePage extends Fragment implements View.OnClickListener {
@@ -63,6 +75,7 @@ public class ProfilePage extends Fragment implements View.OnClickListener {
         edit_pcode = view.findViewById(R.id.postalcode_pr);
         edit_address = view.findViewById(R.id.address_pr);
 
+        //Spinner
         sp_ctry = view.findViewById(R.id.country_pr);
         sp_city = view.findViewById(R.id.city_pr);
         sp_province = view.findViewById(R.id.province_pr);
@@ -72,26 +85,11 @@ public class ProfilePage extends Fragment implements View.OnClickListener {
 
         btn_edit.setOnClickListener(this);
 
-        //adding validation to edittexts
-       /* awesomeValidation.addValidation(this, R.id.firstName_pr, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.nameerror);
-        awesomeValidation.addValidation(this, R.id.lastName_pr, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.nameerror);
-        awesomeValidation.addValidation(this, R.id.emailaddress_pr, Patterns.EMAIL_ADDRESS, R.string.emailerror);
-        awesomeValidation.addValidation(this, R.id.contactnumber_pr, "^[2-9]{2}[0-9]{8}$", R.string.mobileerror);*/
-
 
         btn_save.setOnClickListener(this);
 
+
     }
-
-  /*  private void submitForm() {
-        //first validate the form then move ahead
-        //if this becomes true that means validation is successfull
-        if (awesomeValidation.validate()) {
-            Toast.makeText(getActivity(), "Validate Successfully", Toast.LENGTH_SHORT).show();
-
-            //process the data further
-        }
-    }*/
 
 
     @Override
@@ -107,9 +105,6 @@ public class ProfilePage extends Fragment implements View.OnClickListener {
                 break;
         }
 
-        /*if (view == btn_save) {
-            submitForm();
-        }*/
     }
 
     //method for enable or disable edittext
