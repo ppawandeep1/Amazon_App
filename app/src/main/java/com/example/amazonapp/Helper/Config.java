@@ -6,6 +6,16 @@ package com.example.amazonapp.Helper;
 
 public class Config {
   // public static final String MAIN_URL = "http://development.ifuturz.com/core/FLAT_TEST/ecart_new/admin/webservice.php";
+<<<<<<<<< Temporary merge branch 1
+<<<<<<<<< Temporary merge branch 1
+    public static final String MAIN_URL = "http://192.168.43.70/Food/api/Food/loginUser";
+  public static final String HOMEPAGE_URL="http://192.168.43.70/Food/api/Food/GetDailyMenu";
+  public static final String WALLET_URL="http://192.168.43.70/Food/api/Food/GetWalletMaster";
+  public static final String ORDER_URL="  http://192.168.43.70/Food/api/Food/PutOrderMaster";
+  public static final String GET_CATEGORIES="  http://18.218.124.225:3000/api/category/getcategories";
+=========
+=========
+>>>>>>>>> Temporary merge branch 2
 
   public static final String GET_CATEGORIES="  http://18.216.15.198:3000/api/category/getcategories";
   public static final String LOGIN_USER="  http://18.216.15.198:3000/api/customeruser/authcustomeruser";
@@ -13,7 +23,13 @@ public class Config {
   public static final String GET_COUNTERY=" http://18.216.15.198:3000/api/countries/country";
   public static final String PROVINCE=" http://18.216.15.198:3000/api/provinces/province";
   /*public static final Boolean isAutho =false;*/
+<<<<<<<<< Temporary merge branch 1
+>>>>>>>>> Temporary merge branch 2
 
+  public static final String LOGIN_USER="  http://18.218.124.225:3000/api/customeruser/authcustomeruser";
+=========
+
+>>>>>>>>> Temporary merge branch 2
 
 
 }

@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     android:background="#ffffff"
     android:id="@+id/rec"
+    android:orientation="vertical">
+
     android:orientation="vertical"
     >
 

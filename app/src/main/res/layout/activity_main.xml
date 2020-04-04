@@ -67,8 +67,15 @@
             android:layout_alignParentTop="true"
             android:layout_marginTop="0dp"
             android:layout_marginBottom="25dp"
+<<<<<<<<< Temporary merge branch 1
+            android:textColor="@color/white" />
+=========
             android:textColor="@color/white"
             />
+<<<<<<<<< Temporary merge branch 1
+>>>>>>>>> Temporary merge branch 2
+=========
+>>>>>>>>> Temporary merge branch 2
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/categoryList"
@@ -88,6 +95,12 @@
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:layout_gravity="bottom"
+<<<<<<<<< Temporary merge branch 1
+<<<<<<<<< Temporary merge branch 1
+        android:paddingLeft="200dp">
+=========
+=========
+>>>>>>>>> Temporary merge branch 2
         app:hideOnScroll="true"
         app:subtitleTextColor="@color/colorGradientEnd"
         app:titleTextColor="@android:color/holo_orange_dark"
@@ -111,6 +124,10 @@
             android:textStyle="bold"
             android:textColor="#000"
             >
+<<<<<<<<< Temporary merge branch 1
+>>>>>>>>> Temporary merge branch 2
+=========
+>>>>>>>>> Temporary merge branch 2
 
         </TextView>
     </com.google.android.material.bottomappbar.BottomAppBar>
