@@ -2,6 +2,7 @@ package com.example.amazonapp.Adapters;
 
 import android.content.Context;
 import android.media.Image;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,16 +42,18 @@ public class PopularProductAdapter extends RecyclerView.Adapter<PopularProductAd
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.title.setText(titles.get(position));
-        String ans=images.get(position);
+       /* String ans=images.get(position);*/
         Picasso.with(context).load(images.get(position)).resize(150, 150).centerCrop().into(holder.gridIcon);
         //fit()
-        //.resize(200, 200).centerInside().
-        //.resize(200, 200).centerCrop()
+        //        //.resize(200, 200).centerInside().
+        //        //.resize(200, 200).centerCrop()
+        //different parameters
     }
 
 
     @Override
     public int getItemCount() {
+        Log.e("ITEMCOUNT","INSIDE ITEMCOUNT");
         return titles.size();
     }
 

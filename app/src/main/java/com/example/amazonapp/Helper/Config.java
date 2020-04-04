@@ -12,7 +12,6 @@ public class Config {
   public static final String POPULAR_PRODUCT=" http://18.216.15.198:3000/api/product/featureproduct?companyid=1";
   public static final String GET_COUNTERY=" http://18.216.15.198:3000/api/countries/country";
   public static final String PROVINCE=" http://18.216.15.198:3000/api/provinces/province";
-  public static final String GET_PROFILE="http://18.216.15.198:3000/api/companyuser/getuserdetailsbyid?userid=1";
   /*public static final Boolean isAutho =false;*/
 
 

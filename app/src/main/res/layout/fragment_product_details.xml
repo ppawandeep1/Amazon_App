@@ -57,21 +57,20 @@
                     android:layout_marginLeft="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorGradientCenter"
+                    android:textColor="@color/colorPrimaryDark"
                     android:text="Quantity"/>
 
 
                 <Spinner
                     android:id="@+id/spiner"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"/>
+                    android:layout_height="wrap_content" />
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:layout_marginLeft="100dp"
+                    android:layout_marginLeft="120dp"
                     android:text="Add to Cart" />
 
 

@@ -9,10 +9,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.amazonapp.Controllers.CartFragment;
 import com.example.amazonapp.Controllers.ProdFragment;
 import com.example.amazonapp.R;
 
@@ -44,14 +42,11 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
             public void onClick(View v) {
 
 
-                 AppCompatActivity activity = (AppCompatActivity) v.getContext();
+                AppCompatActivity activity = (AppCompatActivity) v.getContext();
                 ProdFragment productFragment = new ProdFragment();
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, productFragment).addToBackStack(null).commit();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.container, productFragment).addToBackStack(null).commit();
 
                 // holder.gridIcon.setImageResource(images.get(position));
-                //Fragment pro = null;
-                //pro = new ProdFragment();
-                //getSupportFragmentManager().beginTransaction().replace(R.id.container, pro).commit();
 
             }
         });
@@ -73,7 +68,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
                 title = itemView.findViewById(R.id.txtCategory);
                 // gridIcon = itemView.findViewById(R.id.imageCategory);
 
-               itemView.setOnClickListener(new View.OnClickListener() {
+                itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Toast.makeText(v.getContext(), "Clicked -> " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
