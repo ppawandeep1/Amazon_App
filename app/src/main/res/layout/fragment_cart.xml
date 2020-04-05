@@ -38,8 +38,17 @@
         app:layout_constraintStart_toStartOf="parent"></androidx.recyclerview.widget.RecyclerView>
 
     <LinearLayout
+        android:id="@+id/purchaseDetails"
+        android:layout_width="416dp"
+        android:layout_height="267dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recylerViewCart"
+        android:orientation="horizontal">
+    <LinearLayout
         android:id="@+id/orderSummary"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="180dp"
         android:elevation="8dp"
         android:background="#e6e6e6"
@@ -66,13 +75,13 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Total Items ="
-                android:textSize="20dp"
-                android:textColor="@android:color/background_dark"
-                android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total Items ="
+                    android:textSize="20dp"
+                    android:textColor="@android:color/background_dark"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/total_items"
@@ -126,7 +135,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/purchase"
+            android:id="@+id/btn_purchase"
             android:layout_width="340dp"
             android:layout_height="70dp"
             android:layout_marginTop="50dp"
@@ -136,6 +145,8 @@
             android:textColor="@color/login_form_details"
             android:textSize="16dp"
             android:textStyle="bold" />
-    </LinearLayout>
 
+
+    </LinearLayout>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

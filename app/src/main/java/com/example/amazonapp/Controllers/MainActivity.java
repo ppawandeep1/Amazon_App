@@ -6,7 +6,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.fragment.app.FragmentTransaction;
 
 
 import android.content.Context;
@@ -23,15 +23,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.amazonapp.Adapters.ProdRecyclerAdapter;
 import com.example.amazonapp.AsyncTasks.AsyncResponse;
 import com.example.amazonapp.AsyncTasks.WebserviceCall;
 
 import com.example.amazonapp.Helper.Config;
 import com.example.amazonapp.Helper.Utils;
 import com.example.amazonapp.Models.CategoryModel;
-import com.example.amazonapp.Models.GetProductByCategory;
-import com.example.amazonapp.Models.ResponseGetProductById;
 import com.example.amazonapp.Models.ResponseModel;
 import com.example.amazonapp.R;
 
@@ -69,6 +66,8 @@ public class MainActivity extends AppCompatActivity implements Spinner.OnItemSel
 
 
         txtUserWlcm.setText(myPrefs.getString("Fname","Welcome Guest"));
+
+
 
 
         final HomeFragment fragment=new HomeFragment(MainActivity.this);
@@ -109,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements Spinner.OnItemSel
                 ArrayList<CategoryModel> categoryModel=model.getData();
 
                 if (model.getSuccess().equals("1") ) {
-                    Toast.makeText(MainActivity.this, "" + response, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(MainActivity.this, "" + response, Toast.LENGTH_SHORT).show();
 
                     ArrayList<String> categoryString=new ArrayList<>();
 
@@ -148,20 +147,20 @@ public class MainActivity extends AppCompatActivity implements Spinner.OnItemSel
             @Override
             public boolean onQueryTextSubmit(String query) {
                 // do something on text submit
-                Toast.makeText(MainActivity.this," "+query,Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this," "+query,Toast.LENGTH_SHORT).show();
                 //calling the api
 
-                SearchProduct product=new SearchProduct(MainActivity.this,category,query);
-                if (findViewById(R.id.main_layout) != null) {
 
+                Fragment newFragment = new SearchProduct(MainActivity.this,category,query);
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
-                    getSupportFragmentManager().beginTransaction()
-                            .add(R.id.main_layout, product).commit();
+                // Replace whatever is in the fragment_container view with this fragment,
+                // and add the transaction to the back stack if needed
+                transaction.replace(R.id.main_layout, newFragment);
+                transaction.addToBackStack(null);
 
-
-                    bottomAppBar = findViewById(R.id.bar);
-                    setSupportActionBar(bottomAppBar);
-                }
+                // Commit the transaction
+                transaction.commit();
                 return false;
             }
 
@@ -184,7 +183,10 @@ public class MainActivity extends AppCompatActivity implements Spinner.OnItemSel
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
+                Fragment homeFrag = null;
+                homeFrag = new HomeFragment(MainActivity.this);
+                getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, homeFrag).commit();
                 break;
             case R.id.menu:
                 BottomSheetDialogFragment bottomSheetDialogFragment = new BottomFragment();
@@ -195,7 +197,7 @@ public class MainActivity extends AppCompatActivity implements Spinner.OnItemSel
                 Fragment selectedFragment = null;
                 selectedFragment = new CartFragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, selectedFragment).commit();
-                Toast.makeText(this, "Cart ", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Cart ", Toast.LENGTH_SHORT).show();
                 break;
 
         }

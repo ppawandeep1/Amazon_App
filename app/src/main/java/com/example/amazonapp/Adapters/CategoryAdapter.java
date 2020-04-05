@@ -44,7 +44,6 @@ RecyclerView category,product;
     public CategoryAdapter(Context ctx, List<String> titles){
         this.titles = titles;
         this.context=ctx;
-        //this.images = images;
         this.inflater = LayoutInflater.from(ctx);
 
     }
@@ -55,9 +54,7 @@ RecyclerView category,product;
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.category_home,parent,false);
 
-       /* View view_main = View.inflate(context, R.layout.activity_main, null);
-        category = (RecyclerView) view_main.findViewById(R.id.categoryList);
-        product=(RecyclerView)view_main.findViewById(R.id.popularproduct);*/
+
         return new CategoryAdapter.ViewHolder(view);
     }
 
@@ -77,24 +74,23 @@ RecyclerView category,product;
         public class ViewHolder extends RecyclerView.ViewHolder {
 
             TextView title;
-            //ImageView gridIcon;
+
 
             public ViewHolder(@NonNull final View itemView) {
                 super(itemView);
-                title = itemView.findViewById(R.id.txtCategory);
-                // gridIcon = itemView.findViewById(R.id.imageCategory);
+                title = itemView.findViewById(R.id.category_home);
+
 
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         main_layout=v.findViewById(R.id.main_layout);
-                        Toast.makeText(v.getContext(), "Clicked -> " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(v.getContext(), "Clicked -> " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
                         //calling
                         AppCompatActivity activity = (AppCompatActivity) v.getContext();
                         ProdFragment productFragment = new ProdFragment(v.getContext(),titles.get(getAdapterPosition()));
 
-                        /*category.setAlpha(0);
-                        product.setAlpha(0);*/
+
 
                         activity.getSupportFragmentManager().beginTransaction();
                         activity.getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, productFragment).addToBackStack(null).commit();

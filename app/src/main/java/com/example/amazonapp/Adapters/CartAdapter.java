@@ -1,26 +1,40 @@
 package com.example.amazonapp.Adapters;
 
+import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
+import com.example.amazonapp.Controllers.LoginActivity;
+import com.example.amazonapp.Helper.FireBaseHelper;
+import com.example.amazonapp.Models.CartFireBase;
 import com.example.amazonapp.Models.CartModel;
+import com.example.amazonapp.Models.PurchaseCartModel;
 import com.example.amazonapp.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class CartAdapter extends RecyclerView.Adapter {
 
     private List<CartModel> cartItemModelList;
+    PurchaseCartModel purchaseCartModel;
+    Context context;
 
     //constructor
-    public CartAdapter(List<CartModel> cartItemModelList) {
+    public CartAdapter(List<CartModel> cartItemModelList , Context context) {
         this.cartItemModelList = cartItemModelList;
+        this.context = context;
+        this.purchaseCartModel=purchaseCartModel;
     }
 
     // three methods
@@ -28,54 +42,36 @@ public class CartAdapter extends RecyclerView.Adapter {
     @Override
     public int getItemViewType(int position) {
 
-        switch (cartItemModelList.get(position).getType()){
-            case 0:
-                return CartModel.CART_ITEM;
-                case 1:
-                    return CartModel.TOTAL_AMOUNT;
-            default:
-                return -1;
 
-        }
+        return CartModel.CART_ITEM;
+
+
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        switch (viewType){
-            case CartModel.CART_ITEM:
-                View cartItemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.cart_item_layout, viewGroup, false);
-                return  new CartItemViewHolder(cartItemView);
-            case CartModel.TOTAL_AMOUNT:
-                View cartAmountView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.fragment_cart, viewGroup, false);
-                return  new CartTotalAmountViewHolder(cartAmountView);
-                default:
-                    return null;
 
-        }
+                View cartItemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.cart_item_layout, viewGroup, false);
+            return  new CartItemViewHolder(cartItemView);
+
+
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
-        switch (cartItemModelList.get(position).getType()){
-            case CartModel.CART_ITEM:
-                int resource = cartItemModelList.get(position).getProductImage();
-                String title = cartItemModelList.get(position).getProductTitle();
-                String price = cartItemModelList.get(position).getProductPrice();
-                //int quantity = cartItemModelList.get(position).getProductQuantity();
 
-                ((CartItemViewHolder)viewHolder).setItemDetails(resource, title, price);
-                break;
-                case CartModel.TOTAL_AMOUNT:
-                    String totalItemText = cartItemModelList.get(position).getTotalItems();
-                    String totalShippingChargesText = cartItemModelList.get(position).getTotalShippingCharges();
-                    String totalAmountText = cartItemModelList.get(position).gettotalItemsAmount();
+            String resource = cartItemModelList.get(position).getProductImage();
+            String title = cartItemModelList.get(position).getProduct_name();
+            String price = cartItemModelList.get(position).getProductPrice();
+            String quantity = cartItemModelList.get(position).getProductQuantity();
 
-                    ((CartTotalAmountViewHolder)viewHolder).setTotalAmountDetails(totalItemText, totalShippingChargesText, totalAmountText);
-                    break;
-                    default:
-                        return;
-        }
+            //
+            String snapId = cartItemModelList.get(position).getSnapId();
+            ((CartItemViewHolder) viewHolder).setItemDetails(resource, title, price, quantity, snapId);
+
+
+
     }
 
     @Override
@@ -85,10 +81,12 @@ public class CartAdapter extends RecyclerView.Adapter {
 
     class CartItemViewHolder extends RecyclerView.ViewHolder{
 
+        Button btnRemove;
         private ImageView productImage;
         private TextView productTitle;
         private TextView productPrice;
-        private  TextView productQuantity;
+        private ElegantNumberButton productQuantity;
+        private TextView hiddenSnapId;
 
         public CartItemViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -96,31 +94,47 @@ public class CartAdapter extends RecyclerView.Adapter {
             productTitle = itemView.findViewById(R.id.product_title);
             productPrice = itemView.findViewById(R.id.product_price);
             productQuantity = itemView.findViewById(R.id.product_quantity);
+            hiddenSnapId=itemView.findViewById(R.id.snapShotId);
+            btnRemove =itemView.findViewById(R.id.btnCartRemove);
+            btnRemove.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                   Toast.makeText(v.getContext(),hiddenSnapId.getText().toString(),Toast.LENGTH_SHORT).show();
+                    Log.v("Show id",hiddenSnapId.getText().toString());
+                    FireBaseHelper helper=new FireBaseHelper();
+                    helper.removeItem(hiddenSnapId.getText().toString());
+                    Toast.makeText(v.getContext(),"Item removed successfully..!!",Toast.LENGTH_SHORT).show();
+                }
+            });
+           /* productQuantity.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+
+                }
+            });*/
+            productQuantity.setOnValueChangeListener(new ElegantNumberButton.OnValueChangeListener(){
+
+                @Override
+                public void onValueChange(ElegantNumberButton view, int oldValue, int newValue) {
+                    String qty=productQuantity.getNumber();
+                    FireBaseHelper helper=new FireBaseHelper();
+                    helper.updateItemQty(hiddenSnapId.getText().toString(),qty);
+                   /* Toast.makeText(getContext(),"Quantity updated successfully..!!",Toast.LENGTH_SHORT).show();*/
+                }
+            });
+
         }
-        private void setItemDetails(int resources, String title, String price){
-            productImage.setImageResource(resources);
+        private void setItemDetails(String resources, String title, String price,String quantity,String snapId){
+            /*productImage.setImageResource(Integer.parseInt(resources));*/
+            Picasso.with(context).load(resources).resize(150, 150).centerCrop().into(productImage);
             productTitle.setText(title);
+            productQuantity.setNumber(quantity);
             productPrice.setText(price);
-            //productQuantity.setText(quantity);
+            hiddenSnapId.setText(snapId);
+
 
         }
     }
 
-    class CartTotalAmountViewHolder extends RecyclerView.ViewHolder{
-
-        private TextView totalItems;
-        private TextView totalShippingCharges;
-        private TextView totalItemsAmount;
-        public CartTotalAmountViewHolder(@NonNull View itemView) {
-            super(itemView);
-            totalItems = itemView.findViewById(R.id.total_items);
-            totalShippingCharges = itemView.findViewById(R.id.total_shipping_charges);
-            totalItemsAmount = itemView.findViewById(R.id.total_price);
-        }
-        private void setTotalAmountDetails(String totalItemText,String totalShippingChargesText, String totalItemsAmountText){
-            totalItems.setText(totalItemText);
-            totalShippingCharges.setText(totalShippingChargesText);
-            totalItemsAmount.setText(totalItemsAmountText);
-        }
-    }
 }
