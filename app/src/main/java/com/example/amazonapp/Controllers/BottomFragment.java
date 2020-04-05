@@ -1,14 +1,12 @@
 package com.example.amazonapp.Controllers;
 
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -30,9 +29,8 @@ import com.google.android.material.navigation.NavigationView;
 public class BottomFragment extends BottomSheetDialogFragment {
     NavigationView navigationView;
 
-    Context context;
+
     public BottomFragment() {
-        this.context=context;
         // Required empty public constructor
     }
 
@@ -52,38 +50,29 @@ public class BottomFragment extends BottomSheetDialogFragment {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()){
                     case R.id.login:
+                       /* Login login =new Login();
+                        FragmentManager manager=getFragmentManager();*/
+                        // FragmentTransaction fragmentTransaction=manager.beginTransaction();
+                        /*manager.beginTransaction().replace(R.id.main_layout,login,login.getTag()).commit();
+                        navigationView.setVisibility(View.GONE);*/
+                        /*fragmentTransaction.replace(R.id.container, login);
+                        fragmentTransaction.addToBackStack(null);
+                        fragmentTransaction.commit();*/
                         Intent intent=new Intent(getActivity(),LoginActivity.class);
                         getActivity().startActivity(intent);
 
                         break;
+                    // Toast.makeText(getActivity(), "Login", Toast.LENGTH_SHORT).show();
+                    //break;
+
                     case R.id.contact_us:
+                      /*  ContactFragment contactFragment =new ContactFragment();
+                        FragmentManager fragmentManagerContact=getFragmentManager();
+                        fragmentManagerContact.beginTransaction().replace(R.id.main_layout,contactFragment,contactFragment.getTag()).commit();*/
                         Toast.makeText(getActivity(), "Contact US", Toast.LENGTH_SHORT).show();
                         break;
+
                     case R.id.logout:
-                        AlertDialog.Builder AlertLogout=new AlertDialog.Builder(getActivity());
-                        AlertLogout.setMessage("Do you want to Signout ?").setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("AmazonApp", Context.MODE_PRIVATE);
-
-                                SharedPreferences.Editor editor = sharedPreferences.edit();
-                                editor.clear();
-                                editor.commit();
-                                Intent logout = new Intent(getActivity(), MainActivity.class);
-                                startActivity(logout);
-
-
-                            }
-                        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-
-                            }
-                        });
-                        AlertLogout.create().show();
-                        /*AlertDialog alertDialog=AlertLogout.create();
-                        alertDialog.setTitle("Sign out");
-                        alertDialog.show();*/
                         Toast.makeText(getActivity(), "Log out ", Toast.LENGTH_SHORT).show();
                         AlertDialog.Builder AlertLogout=new AlertDialog.Builder(getActivity());
                         AlertLogout.setMessage("Do you want to Signout ?").setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -109,34 +98,17 @@ public class BottomFragment extends BottomSheetDialogFragment {
                         /*AlertDialog alertDialog=AlertLogout.create();
                         alertDialog.setTitle("Sign out");
                         alertDialog.show();*/
+
                         break;
                     case R.id.order_history:
-<<<<<<<<< Temporary merge branch 1
-<<<<<<<<< Temporary merge branch 1
                         OrderHistory orderHistory=new OrderHistory();
-=========
-                        OrderHistory orderHistory=new OrderHistory(context);
-
->>>>>>>>> Temporary merge branch 2
-                        FragmentManager fragmentManager = getFragmentManager();
-
-                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(R.id.main_layout,orderHistory,orderHistory.getTag()).commit();
-                        //fragmentTransaction.replace(android.R.id.main_layout, orderHistory);
-                        //fragmentTransaction.commit();
-                        Toast.makeText(getActivity(), "Order History ", Toast.LENGTH_SHORT).show();
-=========
-                        OrderHistory orderHistory=new OrderHistory();
-
-
                         FragmentManager fragmentManager = getFragmentManager();
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                         fragmentTransaction.replace(android.R.id.content, orderHistory);
                         fragmentTransaction.commit();
 
-                        Toast.makeText(getActivity(), "Oder History ", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Order History ", Toast.LENGTH_SHORT).show();
 
->>>>>>>>> Temporary merge branch 2
                         break;
                     case R.id.profile:
                         ProfilePage profile =new ProfilePage();
