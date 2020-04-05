@@ -15,6 +15,7 @@ public class Config {
   public static final String GETPRODCUTBYCATEGORY="http://18.216.15.198:3000/api/product/getproducts?category=";
   public static final String PRODUCTDETAILS="http://18.216.15.198:3000/api/product/getproductbyId?ProductId=";
   public static final String SEARCHPRODUCT="http://18.216.15.198:3000/api/product/getproducts?ProductName=";
+  public static final String PURCHASEPRODUCT="http://18.216.15.198:3000/api/sales/createsales";
 
 
 }

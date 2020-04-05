@@ -1,11 +1,10 @@
 package com.example.amazonapp.Controllers;
 
 import android.content.Context;
-import android.net.Uri;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,26 +16,27 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.amazonapp.Adapters.ProdRecyclerAdapter;
+import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.example.amazonapp.AsyncTasks.AsyncResponse;
 import com.example.amazonapp.AsyncTasks.WebServiceCallGet;
-import com.example.amazonapp.AsyncTasks.WebserviceCall;
 import com.example.amazonapp.Helper.Config;
-import com.example.amazonapp.Helper.Utils;
-import com.example.amazonapp.Models.GetProductByCategory;
+import com.example.amazonapp.Helper.FireBaseHelper;
+import com.example.amazonapp.Models.CartFireBase;
 import com.example.amazonapp.Models.ProductDetail;
-import com.example.amazonapp.Models.ResponseGetProductById;
 import com.example.amazonapp.Models.ResponseProductDetail;
 import com.example.amazonapp.R;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class ProductDetailsFragment extends Fragment {
 
+
+    static int productId;
+    static  int qty;
+    static String imgURL;
     View view;
     String prodId;
     Context context;
@@ -45,6 +45,8 @@ public class ProductDetailsFragment extends Fragment {
     TextView prodTitle,prodDesc,itemInStock,itemPrice,itemSku;
     EditText txtQty;
     Button addtoCart;
+    ElegantNumberButton numberButton;
+
     public ProductDetailsFragment(Context context,String prodId) {
         this.context=context;
         // Required empty public constructor
@@ -64,8 +66,42 @@ public class ProductDetailsFragment extends Fragment {
         itemInStock=view.findViewById(R.id.itemInSTock);
         itemPrice=view.findViewById(R.id.itemPrice);
         itemSku=view.findViewById(R.id.itemSku);
-        txtQty=view.findViewById(R.id.txtQty);
+        numberButton=view.findViewById(R.id.number_button);
+        numberButton.setOnClickListener(new ElegantNumberButton.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                qty =Integer.parseInt(numberButton.getNumber());
+            }
+        });
+        /*txtQty=view.findViewById(R.id.txtQty);*/
         addtoCart=view.findViewById(R.id.addTocart);
+
+
+        final SharedPreferences preferences = this.getActivity().getSharedPreferences("AmazonApp", Context.MODE_PRIVATE);
+        addtoCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+                   String email=preferences.getString("Email",null);
+                   if(!preferences.contains("Email")){
+                       Toast.makeText(getContext()," Please login ",Toast.LENGTH_SHORT);
+
+                   }
+                   else {
+                       String customerName=preferences.getString("customerName",null);
+                       String customer_id=preferences.getString("CustomerId",null);
+                       FireBaseHelper fireBaseHelper=new FireBaseHelper();
+
+                       fireBaseHelper.InsertCart(customer_id,prodId,String.valueOf(qty),prodDesc.getText().toString(),itemPrice.getText().toString(),imgURL);
+                        Toast.makeText(getContext(),"Added to cart successfully ...!",Toast.LENGTH_SHORT).show();
+                      /* ArrayList<CartFireBase> cartFireBases=fireBaseHelper.ViewCart(customer_id);*/
+                   }
+
+
+            }
+        });
 
         init();
         return view ;    }
@@ -78,10 +114,12 @@ public class ProductDetailsFragment extends Fragment {
             public void onCallback(String response) {
                 Log.d("response", response);
                 ResponseProductDetail model = new Gson().fromJson(response, ResponseProductDetail.class);
-               ArrayList<ProductDetail> productDetails=model.getData();
+                ArrayList<ProductDetail> productDetails=model.getData();
 
                 if (model.getSuccess().equals("1")) {
                     Toast.makeText(view.getContext(), "" + response, Toast.LENGTH_SHORT).show();
+                    prodId=productDetails.get(0).getProductId();
+                    imgURL=productDetails.get(0).getImage();
                     Picasso.with(context).load(productDetails.get(0).getImage()).resize(150, 150).centerCrop().into(prodImage);
                     prodDesc.setText(productDetails.get(0).getDescription());
                     prodTitle.setText(productDetails.get(0).getDescription());

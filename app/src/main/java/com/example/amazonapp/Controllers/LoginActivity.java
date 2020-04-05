@@ -84,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             LoginResponseModel model = new Gson().fromJson(response, LoginResponseModel.class);
                             LoginModel loginModels=model.getData();
-                                                  SharedPreferences preferences=getSharedPreferences("AmazonApp", Context.MODE_PRIVATE);
+                            SharedPreferences preferences=getSharedPreferences("AmazonApp", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor=preferences.edit();
 
                             //                           Toast.makeText(LoginActivity.this,model.getMessage() , Toast.LENGTH_SHORT).show();
@@ -94,6 +94,8 @@ public class LoginActivity extends AppCompatActivity {
                                         loginModels.getFname());
                                 editor.putString("CustomerId",loginModels.getCustomerId());
                                 editor.putString("Token",model.getToken());
+                                editor.putString("Email",loginModels.getEmail());
+                                editor.putString("customerName",loginModels.getFname());
                                 editor.putBoolean("IsAutho",true);
                                 editor.commit();
                                 Toast.makeText(LoginActivity.this, ""+model.getMessage(), Toast.LENGTH_SHORT).show();
