@@ -88,14 +88,22 @@ public class CartAdapter extends RecyclerView.Adapter {
         private ImageView productImage;
         private TextView productTitle;
         private TextView productPrice;
+
+        private  TextView productQuantity;
+
         //private  TextView productQuantity;
+
 
         public CartItemViewHolder(@NonNull View itemView) {
             super(itemView);
             productImage = itemView.findViewById(R.id.product_image);
             productTitle = itemView.findViewById(R.id.product_title);
             productPrice = itemView.findViewById(R.id.product_price);
+
+            productQuantity = itemView.findViewById(R.id.product_quantity);
+
             //productQuantity = itemView.findViewById(R.id.product_quantity);
+
         }
         private void setItemDetails(int resources, String title, String price){
             productImage.setImageResource(resources);

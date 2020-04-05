@@ -1,6 +1,8 @@
 package com.example.amazonapp.Controllers;
 
 
+import android.app.AlertDialog;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -52,7 +54,7 @@ public class BottomFragment extends BottomSheetDialogFragment {
                     case R.id.login:
                        /* Login login =new Login();
                         FragmentManager manager=getFragmentManager();*/
-                        // FragmentTransaction fragmentTransaction=manager.beginTransaction();
+                       // FragmentTransaction fragmentTransaction=manager.beginTransaction();
                         /*manager.beginTransaction().replace(R.id.main_layout,login,login.getTag()).commit();
                         navigationView.setVisibility(View.GONE);*/
                         /*fragmentTransaction.replace(R.id.container, login);
@@ -62,16 +64,11 @@ public class BottomFragment extends BottomSheetDialogFragment {
                         getActivity().startActivity(intent);
 
                         break;
-                    // Toast.makeText(getActivity(), "Login", Toast.LENGTH_SHORT).show();
-                    //break;
-
+                       // Toast.makeText(getActivity(), "Login", Toast.LENGTH_SHORT).show();
+                        //break;
                     case R.id.contact_us:
-                      /*  ContactFragment contactFragment =new ContactFragment();
-                        FragmentManager fragmentManagerContact=getFragmentManager();
-                        fragmentManagerContact.beginTransaction().replace(R.id.main_layout,contactFragment,contactFragment.getTag()).commit();*/
                         Toast.makeText(getActivity(), "Contact US", Toast.LENGTH_SHORT).show();
                         break;
-
                     case R.id.logout:
                         Toast.makeText(getActivity(), "Log out ", Toast.LENGTH_SHORT).show();
                         AlertDialog.Builder AlertLogout=new AlertDialog.Builder(getActivity());
@@ -85,6 +82,8 @@ public class BottomFragment extends BottomSheetDialogFragment {
                                 editor.commit();
                                 Intent logout = new Intent(getActivity(), MainActivity.class);
                                 startActivity(logout);
+<<<<<<<<< Temporary merge branch 1
+=========
 
 
                             }
@@ -98,24 +97,33 @@ public class BottomFragment extends BottomSheetDialogFragment {
                         /*AlertDialog alertDialog=AlertLogout.create();
                         alertDialog.setTitle("Sign out");
                         alertDialog.show();*/
+>>>>>>>>> Temporary merge branch 2
+
 
                         break;
                     case R.id.order_history:
+<<<<<<<<< Temporary merge branch 1
+=========
                         OrderHistory orderHistory=new OrderHistory();
+
+                        break;
+                    case R.id.order_history:
+>>>>>>>>> Temporary merge branch 2
+                        OrderHistory orderHistory=new OrderHistory();
+
+
                         FragmentManager fragmentManager = getFragmentManager();
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                         fragmentTransaction.replace(android.R.id.content, orderHistory);
                         fragmentTransaction.commit();
 
-                        Toast.makeText(getActivity(), "Order History ", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Oder History ", Toast.LENGTH_SHORT).show();
 
                         break;
                     case R.id.profile:
                         ProfilePage profile =new ProfilePage();
                         FragmentManager managerpofile=getFragmentManager();
                         managerpofile.beginTransaction().replace(R.id.main_layout,profile,profile.getTag()).commit();
-
-
                         break;
 
                     default:

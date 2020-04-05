@@ -94,6 +94,8 @@ public class LoginActivity extends AppCompatActivity {
                                         loginModels.getFname());
                                 editor.putString("CustomerId",loginModels.getCustomerId());
                                 editor.putString("Token",model.getToken());
+                                editor.putString("Email",loginModels.getEmail());
+                                editor.putString("customerName",loginModels.getFname());
                                 editor.putBoolean("IsAutho",true);
                                 editor.commit();
                                 Toast.makeText(LoginActivity.this, ""+model.getMessage(), Toast.LENGTH_SHORT).show();

@@ -6,16 +6,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Controllers.OrderHistory">
 
+<<<<<<<<< Temporary merge branch 1
+=========
     <LinearLayout
         android:id="@+id/title_heading"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginTop="65dp"
+
+>>>>>>>>> Temporary merge branch 2
+
+    <LinearLayout
+        android:id="@+id/title_heading"
+        android:layout_width="407dp"
+        android:layout_height="45dp"
         android:background="@color/colorGradientCenter"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        tools:layout_editor_absoluteY="196dp">
 
         <TextView
             android:id="@+id/h_image"
@@ -43,9 +54,16 @@
         android:id="@+id/recylerView"
         android:layout_width="match_parent"
         android:layout_height="620dp"
+
+        android:layout_width="410dp"
+        android:layout_height="430dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title_heading">
 
     </androidx.recyclerview.widget.RecyclerView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

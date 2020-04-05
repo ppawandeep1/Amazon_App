@@ -203,11 +203,8 @@ public class SignUpActivity extends AppCompatActivity implements Spinner.OnItemS
         }
 
         else {
-
-            String[] keys=new String[]{"Fname","Lname","email","phonenumber","countryid","provinceid","city","postal","address","password","companyid"};
-            String[] values=new String[]{get_firstname,get_lastname,get_email,get_contactno, "3", "3",get_city,get_postalcode,get_address,get_password, "1"};
-
-
+            String[] keys=new String[]{"Fname","Lname","email","phonenumber","countryid","provinceid","city","postal","address","password","CompanyId"};
+            String[] values=new String[]{get_firstname,get_lastname,get_email,get_contactno, countryId, provinceId,get_city,get_postalcode,get_address,get_password, "1"};
             String jsonReq= Utils.createJsonRequest(keys,values);
 
             //variable for calling api

@@ -13,8 +13,6 @@
         android:layout_height="match_parent"
         android:id="@+id/container">
 
-
-
     </FrameLayout>
 
     <androidx.appcompat.widget.Toolbar
@@ -24,9 +22,9 @@
         android:layout_height="64dp"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
+        android:background="?attr/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
@@ -67,11 +65,8 @@
             android:layout_alignParentTop="true"
             android:layout_marginTop="0dp"
             android:layout_marginBottom="25dp"
-
-            android:textColor="@color/white" />
-
-
-
+            android:textColor="@color/white"
+            />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/categoryList"
@@ -91,12 +86,6 @@
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:layout_gravity="bottom"
-
-
-        android:paddingLeft="200dp">
-=========
-=========
->>>>>>>>> Temporary merge branch 2
         app:hideOnScroll="true"
         app:subtitleTextColor="@color/colorGradientEnd"
         app:titleTextColor="@android:color/holo_orange_dark"
@@ -105,8 +94,11 @@
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_account_circle_black_24dp"
+
+            android:paddingBottom="19dp">
+
             android:paddingBottom="19dp"
-            >
+   
 
         </ImageView>
 
@@ -118,10 +110,15 @@
             android:paddingTop="5dp"
             android:textSize="16sp"
             android:textStyle="bold"
+
+            android:textColor="#000">
+
             android:textColor="#000"
             >
+<<<<<<<<< Temporary merge branch 1
+=========
 
-
+>>>>>>>>> Temporary merge branch 2
 
         </TextView>
     </com.google.android.material.bottomappbar.BottomAppBar>

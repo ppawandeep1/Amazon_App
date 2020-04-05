@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'com.google.gms.google-services'
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -17,9 +17,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    sourceSets {
-        main { java.srcDirs = ['src/main/java', 'src/main/res/assets', 'src/main/assets/MyDetail'] }
-    }
+
 }
 
 dependencies {
@@ -41,5 +39,11 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'com.squareup.picasso:picasso:2.5.2'
 
+    implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'
+    //firebase api
+    implementation "com.google.firebase:firebase-auth:9.0.2"
+    implementation 'com.google.firebase:firebase-database:16.0.1'
+    implementation 'com.firebaseui:firebase-ui-auth:4.1.0'
+    implementation 'com.google.firebase:firebase-core:16.0.1'
 
 }
