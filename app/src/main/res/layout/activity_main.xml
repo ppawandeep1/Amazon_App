@@ -97,7 +97,6 @@
 
             android:paddingBottom="19dp">
 
-            android:paddingBottom="19dp"
    
 
         </ImageView>
@@ -115,10 +114,7 @@
 
             android:textColor="#000"
             >
-<<<<<<<<< Temporary merge branch 1
-=========
 
->>>>>>>>> Temporary merge branch 2
 
         </TextView>
     </com.google.android.material.bottomappbar.BottomAppBar>

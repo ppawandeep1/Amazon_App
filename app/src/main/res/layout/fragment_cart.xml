@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#e6e6e6"
-
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Controllers.CartFragment">
 
@@ -17,17 +16,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorGradientCenter"
-        android:minHeight="?attr/actionBarSize"
-        app:layout_constraintBottom_toTopOf="@+id/recylerViewCart"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
 
         <TextView
             android:id="@+id/textView2"
@@ -43,130 +31,124 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recylerViewCart"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="400dp"
         android:background="#bfbfbf"
         app:layout_constraintTop_toBottomOf="@+id/itemoncart"
-
-        android:layout_width="427dp"
-        android:layout_height="404dp"
-        app:layout_constraintBottom_toTopOf="@+id/orderSummary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"></androidx.recyclerview.widget.RecyclerView>
 
     <LinearLayout
-        android:id="@+id/orderSummary"
-        android:layout_width="0dp"
-        android:layout_height="180dp"
-        android:elevation="8dp"
-        android:background="#e6e6e6"
-        android:orientation="horizontal"
-
-
-        android:background="@color/login_form_details"
-        android:elevation="8dp"
-        android:orientation="horizontal"
-        android:layout_marginBottom="65dp"
+        android:id="@+id/purchaseDetails"
+        android:layout_width="416dp"
+        android:layout_height="267dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recylerViewCart"
+        android:orientation="horizontal">
         <LinearLayout
+            android:id="@+id/orderSummary"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:paddingStart="16dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Order Summary"
-                android:textColor="@color/white"
-                android:textSize="25dp"
-                android:textStyle="bold" />
+            android:layout_height="180dp"
+            android:elevation="8dp"
+            android:background="#e6e6e6"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Total Items ="
-                android:textSize="20dp"
-                android:textColor="@android:color/background_dark"
-
-                android:textStyle="bold" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingStart="16dp">
 
                 <TextView
-                    android:id="@+id/total_items"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=" $5"
-
-                    android:textColor="@android:color/background_dark"
-
-                    android:textSize="23dp"
+                    android:text="Order Summary"
+                    android:textColor="@color/white"
+                    android:textSize="25dp"
                     android:textStyle="bold" />
-            </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total Items ="
+                        android:textSize="20dp"
+                        android:textColor="@android:color/background_dark"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/total_items"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" $5"
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="23dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Shipping charges"
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/total_shipping_charges"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" $33"
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="23dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
                 <TextView
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Shipping charges"
-                    android:textColor="@android:color/background_dark"
+                    android:text="Total Amount"
                     android:textSize="20dp"
+                    android:textColor="@android:color/background_dark"
                     android:textStyle="bold" />
+
                 <TextView
-                    android:id="@+id/total_shipping_charges"
+                    android:id="@+id/total_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=" $33"
-                    android:textColor="@android:color/background_dark"
-
+                    android:text=" $399599"
                     android:textSize="23dp"
+                    android:textColor="@android:color/background_dark"
                     android:textStyle="bold" />
+
+
             </LinearLayout>
 
-            <TextView
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Total Amount"
-                android:textSize="20dp"
-                android:textColor="@android:color/background_dark"
-
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/total_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" $399599"
-                android:textSize="23dp"
-                android:textColor="@android:color/background_dark"
-
+            <Button
+                android:id="@+id/btn_purchase"
+                android:layout_width="340dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="50dp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:text="Purchase"
+                android:textColor="@color/login_form_details"
+                android:textSize="16dp"
                 android:textStyle="bold" />
 
 
         </LinearLayout>
-
-        <Button
-            android:id="@+id/purchase"
-            android:layout_width="340dp"
-            android:layout_height="70dp"
-
-            android:layout_width="370dp"
-            android:layout_height="80dp"
-            android:layout_marginTop="50dp"
-            android:layout_weight="1"
-            android:background="@color/white"
-            android:text="Purchase"
-            android:textColor="@color/login_form_details"
-            android:textSize="16dp"
-            android:textStyle="bold" />
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+

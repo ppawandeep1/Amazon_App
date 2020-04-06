@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
 
     android:background="#fcfcfc">
 
@@ -23,11 +24,11 @@
                 android:layout_height="170dp"
                 android:background="#2d2d2d"
                 android:src="@drawable/cms"
-                android:id="@+id/bookthumbnail"
+                android:id="@+id/productImage"
                 android:scaleType="centerCrop"/>
 
             <TextView
-                android:id="@+id/txttitle"
+                android:id="@+id/productTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Product Title"
@@ -37,75 +38,128 @@
 
 
             <TextView
-                android:id="@+id/txtDesc"
-                android:textSize="18sp"
-                android:layout_marginTop="10dp"
+                android:id="@+id/productDesc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/description"/>
+                android:layout_marginTop="10dp"
+                android:text="@string/description"
+                android:textSize="18sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="20dp"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="10dp">
 
                 <TextView
-                    android:id="@+id/product_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="20dp"
-                    android:textSize="25sp"
-                    android:layout_marginTop="10dp"
+                    android:layout_width="129dp"
+                    android:layout_height="match_parent"
+                    android:text="Items In Stock"
                     android:layout_marginLeft="20dp"
-                    android:textColor="#000"
-                    android:text="Price "/>
+                    android:textColor="@color/colorPrimary">
 
+                </TextView>
+
+                <TextView
+                    android:id="@+id/itemInSTock"
+                    android:layout_width="129dp"
+                    android:layout_height="match_parent"
+                    android:text="checking"
+                    android:layout_marginLeft="40dp"
+                    android:textColor="@color/white">
+                </TextView>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:layout_width="129dp"
+                    android:layout_height="match_parent"
+                    android:text="Price"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/colorPrimary">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/itemPrice"
+                    android:layout_width="129dp"
+                    android:layout_height="match_parent"
+                    android:text="checking"
+                    android:layout_marginLeft="40dp"
+                    android:textColor="@color/white">
+                </TextView>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:layout_width="129dp"
+                    android:layout_height="match_parent"
+                    android:text="SKU"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/colorPrimary">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/itemSku"
+                    android:layout_width="129dp"
+                    android:layout_height="match_parent"
+                    android:text="checking"
+                    android:layout_marginLeft="40dp"
+                    android:textColor="@color/white">
+                </TextView>
+
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
 
-                <TextView
-                    android:id="@+id/txtQty"
-                    android:textSize="18sp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_width="70dp"
-                    android:layout_height="40dp"
-                    android:textColor="#000"
-                    android:hint="Qty"/>
+                <!--                <EditText-->
+                <!--                    android:id="@+id/txtQty"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginLeft="20dp"-->
+                <!--                    android:layout_marginTop="10dp"-->
+                <!--                    android:text="Quantity"-->
+                <!--                    android:textColor="@color/colorPrimaryDark"-->
+                <!--                    android:textSize="18sp" />-->
 
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:text="Quantity"/>
+                <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="18dp"
+                    android:id="@+id/number_button"
+                    app:backGroundColor="#dee3df"
+                    app:textColor="#000">
 
-
-                <Spinner
-                    android:id="@+id/spiner"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                </com.cepheuen.elegantnumberbutton.view.ElegantNumberButton>
 
                 <Button
-                    android:id="@+id/add_to_cart_btn"
+                    android:id="@+id/addTocart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:text="Add to Cart"
-                    android:layout_marginLeft="20dp"/>
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:layout_marginLeft="120dp"
+                    android:layout_marginLeft="100dp"
                     android:text="Add to Cart" />
 
 
             </LinearLayout>
-        </LinearLayout>
 
+        </LinearLayout>
 
 
 

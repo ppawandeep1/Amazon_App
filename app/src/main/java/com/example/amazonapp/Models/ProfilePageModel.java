@@ -1,97 +1,126 @@
 package com.example.amazonapp.Models;
 
-public class ProfilePageModel {
-    public String Firstname;
-    public String Lastname;
-    public String EAdrress;
-    public String Phnumber;
-    public String Countryid;
-    public String Provinceid;
-    public String city;
-    public String postalcode;
-    public String address;
+import androidx.annotation.NonNull;
 
-    public ProfilePageModel(String firstname, String lastname, String EAdrress, String phnumber, String countryid, String provinceid, String city, String postalcode, String address) {
-        Firstname = firstname;
-        Lastname = lastname;
-        this.EAdrress = EAdrress;
-        Phnumber = phnumber;
-        Countryid = countryid;
-        Provinceid = provinceid;
-        this.city = city;
-        this.postalcode = postalcode;
-        this.address = address;
+import java.util.ArrayList;
+import java.util.stream.Stream;
+
+public class ProfilePageModel  {
+    public String CustomerId;
+    public String Fname;
+    public String Lname;
+    public String Email;
+    public String PhoneNumber;
+    public String CountryId;
+    public String ProvinceId;
+    public String City;
+    public String PostalCode;
+    public String Address;
+    public String Password;
+    public String CompanyId;
+
+
+    public String getCustomerId() {
+        return CustomerId;
     }
 
-    public String getFirstname() {
-        return Firstname;
+    public void setCustomerId(String customerId) {
+        CustomerId = customerId;
     }
 
-    public void setFirstname(String firstname) {
-        Firstname = firstname;
+    public String getFname() {
+
+        return Fname;
     }
 
-    public String getLastname() {
-        return Lastname;
+    public void setFname(String fname)
+    {
+        Fname = fname;
     }
 
-    public void setLastname(String lastname) {
-        Lastname = lastname;
+    public String getLname()
+    {
+        return Lname;
     }
 
-    public String getEAdrress() {
-        return EAdrress;
+    public void setLname(String lname)
+    {
+        Lname = lname;
     }
 
-    public void setEAdrress(String EAdrress) {
-        this.EAdrress = EAdrress;
+    public String getEmail() {
+
+        return Email;
     }
 
-    public String getPhnumber() {
-        return Phnumber;
+    public void setEmail(String email) {
+
+        Email = email;
     }
 
-    public void setPhnumber(String phnumber) {
-        Phnumber = phnumber;
+    public String getPhoneNumber() {
+
+        return PhoneNumber;
     }
 
-    public String getCountryid() {
-        return Countryid;
+    public void setPhoneNumber(String phoneNumber)
+    {
+        PhoneNumber = phoneNumber;
     }
 
-    public void setCountryid(String countryid) {
-        Countryid = countryid;
+    public String getCountryId() {
+        return CountryId;
     }
 
-    public String getProvinceid() {
-        return Provinceid;
+    public void setCountryId(String countryId) {
+        CountryId = countryId;
     }
 
-    public void setProvinceid(String provinceid) {
-        Provinceid = provinceid;
+    public String getProvinceId() {
+        return ProvinceId;
+    }
+
+    public void setProvinceId(String provinceId) {
+        ProvinceId = provinceId;
     }
 
     public String getCity() {
-        return city;
+        return City;
     }
 
     public void setCity(String city) {
-        this.city = city;
+        City = city;
     }
 
-    public String getPostalcode() {
-        return postalcode;
+    public String getPostalCode() {
+        return PostalCode;
     }
 
-    public void setPostalcode(String postalcode) {
-        this.postalcode = postalcode;
+    public void setPostalCode(String postalCode) {
+        PostalCode = postalCode;
     }
 
     public String getAddress() {
-        return address;
+        return Address;
     }
 
     public void setAddress(String address) {
-        this.address = address;
+        Address = address;
+    }
+
+    public String getPassword() {
+        return Password;
+    }
+
+    public void setPassword(String password) {
+        Password = password;
+    }
+
+    public String getCompanyId() {
+        return CompanyId;
+    }
+
+    public void setCompanyId(String companyId) {
+        CompanyId = companyId;
     }
 }
