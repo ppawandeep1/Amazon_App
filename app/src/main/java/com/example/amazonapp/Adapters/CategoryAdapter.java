@@ -16,16 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.amazonapp.AsyncTasks.AsyncResponse;
-import com.example.amazonapp.AsyncTasks.WebserviceCall;
-import com.example.amazonapp.Controllers.MainActivity;
 import com.example.amazonapp.Controllers.ProdFragment;
-import com.example.amazonapp.Helper.Config;
-import com.example.amazonapp.Helper.Utils;
-import com.example.amazonapp.Models.CategoryModel;
-import com.example.amazonapp.Models.ResponseGetProductById;
-import com.example.amazonapp.Models.ResponseModel;
 import com.example.amazonapp.R;
 import com.google.gson.Gson;
 

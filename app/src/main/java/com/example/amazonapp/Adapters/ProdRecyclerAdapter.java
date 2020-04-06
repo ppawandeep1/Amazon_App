@@ -83,13 +83,13 @@ public class ProdRecyclerAdapter  extends RecyclerView.Adapter<ProdRecyclerAdapt
                         Toast.makeText(v.getContext(), "Clicked -> " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
                         //calling
                         AppCompatActivity activity = (AppCompatActivity) v.getContext();
-                        ProductDetailsFragment productFragment = new ProductDetailsFragment(v.getContext(),prodId.get(getAdapterPosition()));
+                       // *****ProductDetailsFragment productFragment = new ProductDetailsFragment(v.getContext(),prodId.get(getAdapterPosition()));
 
                         /*category.setAlpha(0);
                         product.setAlpha(0);*/
 
                         activity.getSupportFragmentManager().beginTransaction();
-                        activity.getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, productFragment).addToBackStack(null).commit();
+                        //****activity.getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, productFragment).addToBackStack(null).commit();
 
 
 

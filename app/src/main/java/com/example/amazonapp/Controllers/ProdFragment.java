@@ -90,19 +90,11 @@ public class ProdFragment extends Fragment {
                         prodId.add(pm.getProductId());
                     }
 
-
                     //binding cardview with api data
                     adapter = new ProdRecyclerAdapter(view.getContext(),prodTitle,prodImgUrl,prodId);
                     GridLayoutManager gridLayoutManager = new GridLayoutManager(view.getContext(), 2, GridLayoutManager.VERTICAL, false);
                     recyclerView.setLayoutManager(gridLayoutManager);
                     recyclerView.setAdapter(adapter);
-
-
-
-
-
-
-
 
                 } else if (model.getSuccess().equals("0")) {
                     Toast.makeText(view.getContext(), "" + model.getSuccess(), Toast.LENGTH_SHORT).show();

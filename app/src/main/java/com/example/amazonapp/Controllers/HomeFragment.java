@@ -43,9 +43,11 @@ public class HomeFragment extends Fragment {
     List<String> productName;
     List<String> imgUrl;
    Context context;
+
+    // Required empty public constructor
     public HomeFragment(Context context) {
         this.context=context;
-        // Required empty public constructor
+
     }
 
 
@@ -57,11 +59,13 @@ public class HomeFragment extends Fragment {
         categoryList=view.findViewById(R.id.categoryList);
         productList=view.findViewById(R.id.popularproduct);
         productName=new ArrayList<>();
-        imgUrl=new ArrayList<>();String PRODUCTURL= Config.POPULAR_PRODUCT;
+        imgUrl=new ArrayList<>();
+        String PRODUCTURL= Config.POPULAR_PRODUCT;
         new WebServiceCallGet(context, PRODUCTURL,null, "Getting Popular Product..", true, new AsyncResponse() {
             @Override
             public void onCallback(String response) {
                 Log.d("response", response);
+
                 PopularProductResponseModel model = new Gson().fromJson(response, PopularProductResponseModel.class);
                 ArrayList<PopularProductModel> popularProductModels=model.getData();
 
@@ -69,14 +73,10 @@ public class HomeFragment extends Fragment {
                 if (model.getSuccess().equals("1") ) {
                     Toast.makeText(context, "" + response, Toast.LENGTH_SHORT).show();
 
-
-
-
                     for(PopularProductModel pm:popularProductModels)
                     {
                         productName.add(pm.getProductname());
                         imgUrl.add(pm.getImage());
-
 
                     }
                     popularProductAdapter=new PopularProductAdapter(context,productName,imgUrl);
@@ -92,6 +92,7 @@ public class HomeFragment extends Fragment {
                 }
             }
         }).execute();
+
         String[] keys=new String[]{"CompanyId"};
         String[] values=new String[]{"1"};
         final String JSONREQUEST= Utils.createJsonRequest(keys,values);
@@ -118,7 +119,6 @@ public class HomeFragment extends Fragment {
 
                     }
 
-
                     //binding cardview with api data
                     adapter = new CategoryAdapter(getContext(), categoryString);
                     GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false);
@@ -126,11 +126,6 @@ public class HomeFragment extends Fragment {
                     categoryList.setAdapter(adapter);
 
                     //will call api of popular product
-
-
-
-
-
 
                 } else if (model.getSuccess().equals("0")) {
                     Toast.makeText(getContext(), "" + model.getSuccess(), Toast.LENGTH_SHORT).show();

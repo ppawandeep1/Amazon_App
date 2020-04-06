@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -125,11 +126,6 @@ public class MainActivity extends AppCompatActivity implements Spinner.OnItemSel
 
                     spinner_category.setAdapter(bindCategory);
 
-
-
-
-
-
                 } else if (model.getSuccess().equals("0")) {
                     Toast.makeText(MainActivity.this, "" + model.getSuccess(), Toast.LENGTH_SHORT).show();
 
@@ -172,12 +168,7 @@ public class MainActivity extends AppCompatActivity implements Spinner.OnItemSel
                 return false;
             }
         });
-
-
-
     }
-
-
 
     //Bottom Navigation menu
     @Override
@@ -185,6 +176,8 @@ public class MainActivity extends AppCompatActivity implements Spinner.OnItemSel
         switch (item.getItemId()) {
             case android.R.id.home:
                 Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(MainActivity.this,MainActivity.class);
+                startActivity(intent);
                 break;
             case R.id.menu:
                 BottomSheetDialogFragment bottomSheetDialogFragment = new BottomFragment();
@@ -211,9 +204,6 @@ public class MainActivity extends AppCompatActivity implements Spinner.OnItemSel
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         category= (String) spinner_category.getSelectedItem();
-
-
-
     }
 
     @Override

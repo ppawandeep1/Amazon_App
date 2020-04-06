@@ -64,9 +64,14 @@ public class BottomFragment extends BottomSheetDialogFragment {
                         break;
                     // Toast.makeText(getActivity(), "Login", Toast.LENGTH_SHORT).show();
                     //break;
+
                     case R.id.contact_us:
+                        ContactFragment contactFragment =new ContactFragment(getContext());
+                        FragmentManager fragmentManagerContact=getFragmentManager();
+                        fragmentManagerContact.beginTransaction().replace(R.id.main_layout,contactFragment,contactFragment.getTag()).commit();
                         Toast.makeText(getActivity(), "Contact US", Toast.LENGTH_SHORT).show();
                         break;
+
                     case R.id.logout:
                         Toast.makeText(getActivity(), "Log out ", Toast.LENGTH_SHORT).show();
                         AlertDialog.Builder AlertLogout=new AlertDialog.Builder(getActivity());
@@ -97,14 +102,12 @@ public class BottomFragment extends BottomSheetDialogFragment {
                         break;
                     case R.id.order_history:
                         OrderHistory orderHistory=new OrderHistory();
-
-
                         FragmentManager fragmentManager = getFragmentManager();
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                         fragmentTransaction.replace(android.R.id.content, orderHistory);
                         fragmentTransaction.commit();
 
-                        Toast.makeText(getActivity(), "Oder History ", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Order History ", Toast.LENGTH_SHORT).show();
 
                         break;
                     case R.id.profile:

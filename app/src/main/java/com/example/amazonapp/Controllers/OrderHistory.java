@@ -45,9 +45,7 @@ public class OrderHistory extends Fragment {
         recyclerView.setAdapter(myAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         // Inflate the layout for this fragment
-
         return v;
-
     }
 
 }
