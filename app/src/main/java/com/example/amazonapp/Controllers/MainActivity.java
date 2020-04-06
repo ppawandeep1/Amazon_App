@@ -6,8 +6,11 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -179,17 +182,9 @@ public class MainActivity extends AppCompatActivity implements Spinner.OnItemSel
         switch (item.getItemId()) {
             case R.id.home:
                 Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
-                Fragment homeFrag = null;
-                homeFrag = new HomeFragment(MainActivity.this);
-                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                Intent i = new Intent(getBaseContext(), MainActivity.class);
 
-                // Replace whatever is in the fragment_container view with this fragment,
-                // and add the transaction to the back stack if needed
-                transaction.replace(R.id.main_layout, homeFrag);
-                transaction.addToBackStack(null);
-
-                // Commit the transaction
-                transaction.commit();
+                startActivity(i);
                 break;
             case R.id.menu:
                 SharedPreferences myPrefs = getSharedPreferences("AmazonApp", Context.MODE_PRIVATE);

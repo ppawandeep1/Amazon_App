@@ -1,11 +1,11 @@
 package com.example.amazonapp.Helper;
 
 /**
- * Created by admin on 08/11/2017.
+ * Created by Krishna on AmazonApp.
  */
 
 public class Config {
-  // public static final String MAIN_URL = "http://development.ifuturz.com/core/FLAT_TEST/ecart_new/admin/webservice.php";
+
 
 
   public static final String GET_CATEGORIES="  http://18.216.15.198:3000/api/category/getcategories";
