@@ -15,7 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.amazonapp.Adapters.DBProductAdapter;
-import com.example.amazonapp.Models.ProductDetails;
+import com.example.amazonapp.Models.ProductDetail;
 import com.example.amazonapp.R;
 
 import java.util.ArrayList;
@@ -67,13 +67,13 @@ public class ProductDetailsFragment extends Fragment {
                 String getproductqty = product_qty.getText().toString();
 
                 dbProduct.insertData(1, 1, 1, getproducttitle, getproductqty, getproductprice, getproductimg);
-                }
+            }
         });
         return view ;
     }
 
 
- 
+
 
 
 }

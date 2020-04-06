@@ -67,6 +67,18 @@ public class CartAdapter extends RecyclerView.Adapter {
                 ((CartItemViewHolder)viewHolder).setItemDetails(resource, title, price);
                 break;
                 case CartModel.TOTAL_AMOUNT:
+
+                    int totalItems = 0;
+                    int totalItemPrice = 0;
+
+                    for(int x = 0; x<cartItemModelList.size(); x++){
+                        if(cartItemModelList.get(x).getType() == CartModel.CART_ITEM){
+                            totalItems ++;
+
+                            totalItemPrice = totalItemPrice + Integer.parseInt(cartItemModelList.get(x).getProductPrice());
+
+                        }
+                    }
                     String totalItemText = cartItemModelList.get(position).getTotalItems();
                     String totalShippingChargesText = cartItemModelList.get(position).getTotalShippingCharges();
                     String totalAmountText = cartItemModelList.get(position).gettotalItemsAmount();
@@ -88,10 +100,7 @@ public class CartAdapter extends RecyclerView.Adapter {
         private ImageView productImage;
         private TextView productTitle;
         private TextView productPrice;
-
         private  TextView productQuantity;
-
-        //private  TextView productQuantity;
 
 
         public CartItemViewHolder(@NonNull View itemView) {
@@ -99,7 +108,6 @@ public class CartAdapter extends RecyclerView.Adapter {
             productImage = itemView.findViewById(R.id.product_image);
             productTitle = itemView.findViewById(R.id.product_title);
             productPrice = itemView.findViewById(R.id.product_price);
-
             productQuantity = itemView.findViewById(R.id.product_quantity);
 
             //productQuantity = itemView.findViewById(R.id.product_quantity);

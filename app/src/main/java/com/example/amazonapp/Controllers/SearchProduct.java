@@ -1,5 +1,6 @@
 package com.example.amazonapp.Controllers;
 
+
 import android.content.Context;
 import android.os.Bundle;
 
@@ -26,8 +27,10 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProdFragment extends Fragment {
-
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class SearchProduct extends Fragment {
     View view;
     private RecyclerView recyclerView;
     List<String> prodTitle;
@@ -36,15 +39,13 @@ public class ProdFragment extends Fragment {
     ProdRecyclerAdapter adapter;
     Context context;
     String categoryName;
-    //Adapter myadapter;
-    //LayoutManager layoutManager;
+    String search;
 
-
-    public ProdFragment(Context context,String categoryName) {
-        this.categoryName=categoryName;
-        this.context=context;
-
+    public SearchProduct(Context context,String categoryName,String search) {
         // Required empty public constructor
+        this.context=context;
+        this.categoryName=categoryName;
+        this.search=search;
     }
 
 
@@ -52,18 +53,15 @@ public class ProdFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
         view =  inflater.inflate(R.layout.fragment_prod, container, false);
         init();
         return view ;
-
     }
-
     private  void init(){
         String[] keys=new String[]{"CompanyId"};
         String[] values=new String[]{"1"};
         final String JSONREQUEST= Utils.createJsonRequest(keys,values);
-        String URL= Config.GETPRODCUTBYCATEGORY+categoryName;
+        String URL= Config.SEARCHPRODUCT+search+"&category="+categoryName;
 
         new WebserviceCall(context, URL, JSONREQUEST, "Getting products..", true, new AsyncResponse() {
             @Override
@@ -90,11 +88,19 @@ public class ProdFragment extends Fragment {
                         prodId.add(pm.getProductId());
                     }
 
+
                     //binding cardview with api data
                     adapter = new ProdRecyclerAdapter(view.getContext(),prodTitle,prodImgUrl,prodId);
                     GridLayoutManager gridLayoutManager = new GridLayoutManager(view.getContext(), 2, GridLayoutManager.VERTICAL, false);
                     recyclerView.setLayoutManager(gridLayoutManager);
                     recyclerView.setAdapter(adapter);
+
+
+
+
+
+
+
 
                 } else if (model.getSuccess().equals("0")) {
                     Toast.makeText(view.getContext(), "" + model.getSuccess(), Toast.LENGTH_SHORT).show();
@@ -105,5 +111,4 @@ public class ProdFragment extends Fragment {
 
 
     }
-
 }
