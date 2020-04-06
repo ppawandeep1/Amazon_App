@@ -17,7 +17,9 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapter.MyViewHolder> {
-
+/*
+*Adapter for displaying the Order history
+ */
     ArrayList<String> img;
     ArrayList<String> qty;
     ArrayList<String> price;

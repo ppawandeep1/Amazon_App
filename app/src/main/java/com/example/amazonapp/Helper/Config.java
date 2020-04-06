@@ -1,11 +1,11 @@
 package com.example.amazonapp.Helper;
 
 /**
- * Created by admin on 08/11/2017.
+ * Created by Krishna on AmazonApp.
  */
 
 public class Config {
-  // public static final String MAIN_URL = "http://development.ifuturz.com/core/FLAT_TEST/ecart_new/admin/webservice.php";
+
 
 
   public static final String GET_CATEGORIES="  http://18.216.15.198:3000/api/category/getcategories";
@@ -21,7 +21,7 @@ public class Config {
 
   public static final String FORGETPASSWORD="http://18.216.15.198:3000/api/customeruser/forgetPasswordCustomer";
   public static final String COMPANYDETAIL="http://18.216.15.198:3000/api/companyuser/getCompanyById?CompanyId=1";
-  public static final String ORDERHISTORY="http://18.216.15.198:3000/api/sales/getsalesbycustomerid";
+  public static final String ORDERHISTORY=" http://18.216.15.198:3000/api/sales/getsalesbycustomerid";
 
   public static final String GETPROFILE="http://18.216.15.198:3000/api/customeruser/getuserdetailsbyid?userid=";
   public static final String POSTPROFILE="http://18.218.124.225:3000/api/customeruser/editcustomeruser";

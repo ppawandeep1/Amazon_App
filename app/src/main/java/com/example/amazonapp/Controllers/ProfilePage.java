@@ -101,9 +101,9 @@ public class ProfilePage extends Fragment implements Spinner.OnItemSelectedListe
         edit_fname.setEnabled(false);
         btn_edit.setText("Edit");
         btn_edit.setOnClickListener(this);
-         btn_save.setOnClickListener(this);
+        btn_save.setOnClickListener(this);
 
-       //calling API for country Spinner(Drop Down List)
+        //calling API for country Spinner(Drop Down List)
         final String countery = Config.GET_COUNTERY;
 
         new WebServiceCallGet(getContext(), countery, null, "Getting Countery..", true, new AsyncResponse() {
@@ -185,56 +185,56 @@ public class ProfilePage extends Fragment implements Spinner.OnItemSelectedListe
     }
 
 
-        @Override
-        public void onItemSelected (AdapterView < ? > parent, View view,int position, long id){
+    @Override
+    public void onItemSelected (AdapterView < ? > parent, View view,int position, long id){
 
-            int counId = sp_ctry.getSelectedItemPosition() + 1;
-            countryId = String.valueOf(counId);
-            String[] keys = new String[]{"country_id"};
-            String[] values = new String[]{countryId};
-            final String JSONREQUEST = Utils.createJsonRequest(keys, values);
-            String URL = Config.PROVINCE;
-            new WebserviceCall(getContext(), URL, JSONREQUEST, "Getting catgeories..", true, new AsyncResponse() {
-                @Override
-                public void onCallback(String response) {
-                    Log.d("response", response);
-                    ProvinceResponseModel model = new Gson().fromJson(response, ProvinceResponseModel.class);
-                    ArrayList<ProvinceModel> provinceModels = model.getData();
+        int counId = sp_ctry.getSelectedItemPosition() + 1;
+        countryId = String.valueOf(counId);
+        String[] keys = new String[]{"country_id"};
+        String[] values = new String[]{countryId};
+        final String JSONREQUEST = Utils.createJsonRequest(keys, values);
+        String URL = Config.PROVINCE;
+        new WebserviceCall(getContext(), URL, JSONREQUEST, "Getting catgeories..", true, new AsyncResponse() {
+            @Override
+            public void onCallback(String response) {
+                Log.d("response", response);
+                ProvinceResponseModel model = new Gson().fromJson(response, ProvinceResponseModel.class);
+                ArrayList<ProvinceModel> provinceModels = model.getData();
 
-                    if (model.getSuccess().equals("1")) {
-                        Toast.makeText(getContext(), "" + response, Toast.LENGTH_SHORT).show();
+                if (model.getSuccess().equals("1")) {
+                    Toast.makeText(getContext(), "" + response, Toast.LENGTH_SHORT).show();
 
-                        /*  ArrayList<String> categoryName=new ArrayList<>();*/
+                    /*  ArrayList<String> categoryName=new ArrayList<>();*/
 
-                        ArrayList<String> provinceString = new ArrayList<>();
+                    ArrayList<String> provinceString = new ArrayList<>();
 
 
-                        for (ProvinceModel pm : provinceModels) {
-                            provinceString.add(pm.getName());
-
-                        }
-
-                        ArrayAdapter<String> bindCategory = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, provinceString);
-                        bindCategory.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-                        sp_province.setAdapter(bindCategory);
-                        //binding cardview with api data
-
-                    } else if (model.getSuccess().equals("0")) {
-                        Toast.makeText(getContext(), "" + model.getSuccess(), Toast.LENGTH_SHORT).show();
+                    for (ProvinceModel pm : provinceModels) {
+                        provinceString.add(pm.getName());
 
                     }
+
+                    ArrayAdapter<String> bindCategory = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, provinceString);
+                    bindCategory.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+                    sp_province.setAdapter(bindCategory);
+                    //binding cardview with api data
+
+                } else if (model.getSuccess().equals("0")) {
+                    Toast.makeText(getContext(), "" + model.getSuccess(), Toast.LENGTH_SHORT).show();
+
                 }
-            }).execute();
+            }
+        }).execute();
 
-            int provId = sp_province.getSelectedItemPosition() + 1;
-            provinceId = String.valueOf(provId);
-        }
+        int provId = sp_province.getSelectedItemPosition() + 1;
+        provinceId = String.valueOf(provId);
+    }
 
-        @Override
-        public void onNothingSelected (AdapterView < ? > parent){
+    @Override
+    public void onNothingSelected (AdapterView < ? > parent){
 
-        }
+    }
 
 
 
@@ -282,88 +282,88 @@ public class ProfilePage extends Fragment implements Spinner.OnItemSelectedListe
 
     public void registerUsers (){
 
-    final String get_firstname = edit_fname.getText().toString().trim();
-    final String get_lastname = edit_lname.getText().toString().trim();
-    final String get_email = edit_email.getText().toString().trim();
-    final String get_contactno = edit_cnumber.getText().toString().trim();
-    final String get_city = sp_city.getText().toString().trim();
-    final String get_postalcode = edit_pcode.getText().toString().trim();
-    final String get_address = edit_address.getText().toString().trim();
+        final String get_firstname = edit_fname.getText().toString().trim();
+        final String get_lastname = edit_lname.getText().toString().trim();
+        final String get_email = edit_email.getText().toString().trim();
+        final String get_contactno = edit_cnumber.getText().toString().trim();
+        final String get_city = sp_city.getText().toString().trim();
+        final String get_postalcode = edit_pcode.getText().toString().trim();
+        final String get_address = edit_address.getText().toString().trim();
 
 
-    //first we will do the validations
+        //first we will do the validations
 
-                if (TextUtils.isEmpty(get_firstname)) {
-        edit_fname.setError("Please enter your first name");
-        edit_fname.requestFocus();
-        return;
-    }
+        if (TextUtils.isEmpty(get_firstname)) {
+            edit_fname.setError("Please enter your first name");
+            edit_fname.requestFocus();
+            return;
+        }
 
-                else if (TextUtils.isEmpty(get_lastname)) {
-        edit_lname.setError("Please enter your last name");
-        edit_lname.requestFocus();
-        return;
-    }
+        else if (TextUtils.isEmpty(get_lastname)) {
+            edit_lname.setError("Please enter your last name");
+            edit_lname.requestFocus();
+            return;
+        }
 
-                else if (!Patterns.EMAIL_ADDRESS.matcher(get_email).matches()) {
-        edit_email.setError("Enter a valid email");
-        edit_email.requestFocus();
-        return;
-    }
+        else if (!Patterns.EMAIL_ADDRESS.matcher(get_email).matches()) {
+            edit_email.setError("Enter a valid email");
+            edit_email.requestFocus();
+            return;
+        }
 
-                else if(TextUtils.isEmpty(get_city)){
-        sp_city.setError("Enter city plz");
-        sp_city.requestFocus();
-        return;
-    }
+        else if(TextUtils.isEmpty(get_city)){
+            sp_city.setError("Enter city plz");
+            sp_city.requestFocus();
+            return;
+        }
 
 
-                else if (TextUtils.isEmpty(get_contactno)) {
-        edit_cnumber.setError("Enter a contact number");
-        edit_cnumber.requestFocus();
-        return;
-    }
+        else if (TextUtils.isEmpty(get_contactno)) {
+            edit_cnumber.setError("Enter a contact number");
+            edit_cnumber.requestFocus();
+            return;
+        }
 
-                else if (TextUtils.isEmpty(get_postalcode)) {
-        edit_pcode.setError("Enter a contact number");
-        edit_pcode.requestFocus();
-        return;
-    }
+        else if (TextUtils.isEmpty(get_postalcode)) {
+            edit_pcode.setError("Enter a contact number");
+            edit_pcode.requestFocus();
+            return;
+        }
 
-                else if (TextUtils.isEmpty(get_postalcode)) {
-        edit_pcode.setError("Enter a contact number");
-        edit_pcode.requestFocus();
-        return;
-    }
+        else if (TextUtils.isEmpty(get_postalcode)) {
+            edit_pcode.setError("Enter a contact number");
+            edit_pcode.requestFocus();
+            return;
+        }
 
-                else if (TextUtils.isEmpty(get_address)) {
-        edit_address.setError("Enter a address");
-        edit_address.requestFocus();
-        return;
-    }
+        else if (TextUtils.isEmpty(get_address)) {
+            edit_address.setError("Enter a address");
+            edit_address.requestFocus();
+            return;
+        }
 
-                else {
-        String[] keys1=new String[]{"Fname","Lname","email","phonenumber","countryid","provinceid","city","postal","address","CompanyId"};
-        String[] values1=new String[]{get_firstname,get_lastname,get_email,get_contactno, countryId, provinceId,get_city,get_postalcode,get_address, "1"};
-        String jsonReq= Utils.createJsonRequest(keys1,values1);
+        else {
+            String[] keys1=new String[]{"Fname","Lname","email","phonenumber","countryid","provinceid","city","postal","address","CompanyId"};
+            String[] values1=new String[]{get_firstname,get_lastname,get_email,get_contactno, countryId, provinceId,get_city,get_postalcode,get_address, "1"};
+            String jsonReq= Utils.createJsonRequest(keys1,values1);
 
-        //variable for calling api
-        String URL_CREATE_USER= Config.POSTPROFILE;
+            //variable for calling api
+            String URL_CREATE_USER= Config.POSTPROFILE;
 
-        new WebserviceCall(getContext(), URL_CREATE_USER, jsonReq, "Save Changes..!!", true, new AsyncResponse() {
-            @Override
-            public void onCallback(String response) {
-                profileModelmodel  = new Gson().fromJson(response, ProfileResponseModel.class);
-                if (profileModelmodel.getSuccess().equals("1")) {
-                    Toast.makeText(getActivity(), ""+profileModelmodel.getMessage(), Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getContext(), MainActivity.class);
-                    startActivity(intent);
+            new WebserviceCall(getContext(), URL_CREATE_USER, jsonReq, "Save Changes..!!", true, new AsyncResponse() {
+                @Override
+                public void onCallback(String response) {
+                    profileModelmodel  = new Gson().fromJson(response, ProfileResponseModel.class);
+                    if (profileModelmodel.getSuccess().equals("1")) {
+                        Toast.makeText(getActivity(), ""+profileModelmodel.getMessage(), Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getContext(), MainActivity.class);
+                        startActivity(intent);
+                    }
+                    else if (profileModelmodel.getSuccess().equals("0") ) {
+                        Toast.makeText(getActivity(), ""+profileModelmodel.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
                 }
-                else if (profileModelmodel.getSuccess().equals("0") ) {
-                    Toast.makeText(getActivity(), ""+profileModelmodel.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }
-        }).execute();
+            }).execute();
+        }
     }
-}
 }

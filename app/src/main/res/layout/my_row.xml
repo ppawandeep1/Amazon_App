@@ -6,7 +6,7 @@
     android:elevation="3dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#d9d9d9">
+   >
 
     android:layout_height="wrap_content">
 
@@ -51,7 +51,7 @@
         app:layout_constraintStart_toEndOf="@+id/order_image"
         app:layout_constraintTop_toBottomOf="@+id/order_title"
         app:layout_constraintVertical_bias="0.515"
-        tools:ignore="MissingConstraints" />
+         />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

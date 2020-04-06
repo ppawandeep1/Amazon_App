@@ -35,6 +35,9 @@ public class FireBaseHelper {
 
     public  void InsertCart(String customer_id,String product_id,String qty,String product_name,String  price,String imgUrl)
     {
+        /*
+        *To insert data in cart
+         */
         /*databaseReference_CartProduct = FirebaseDatabase.getInstance().getReference("CartProduct");*/
         String id  = databaseReference_CartProduct.push().getKey();
         CartFireBase cartFireBase= new CartFireBase();
@@ -49,7 +52,9 @@ public class FireBaseHelper {
 
         databaseReference_CartProduct.child(id).setValue(cartFireBase);
     }
-
+/*
+*to view the items in the cart
+ */
     public  void ViewCart(final String _CustomerId, final RecyclerView viewId, final TextView totalItem, final TextView totalShippingcost, final TextView totlaItemAmount)
 
     {
@@ -93,17 +98,24 @@ public class FireBaseHelper {
             }
         });
     }
+/*To remove an item from the cart
 
+ */
     public void removeItem(String snapId){
         databaseReference_CartProduct = FirebaseDatabase.getInstance().getReference("CartProduct").child(snapId);
         databaseReference_CartProduct.removeValue();
     }
-
+/*
+*To update the items in the cart
+ */
     public void updateItemQty(String snapId,String qty){
         databaseReference_CartProduct = FirebaseDatabase.getInstance().getReference("CartProduct").child(snapId);
 
         databaseReference_CartProduct.child("productQuantity").setValue(qty);
     }
+    /*
+    To update all the purchase order to isPurchase=true
+     */
 
     public void updatePurchaseOrder(ArrayList<String> arrsnapId){
         for(int i=0;i<arrsnapId.size();i++){

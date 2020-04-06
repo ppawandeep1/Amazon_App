@@ -1,7 +1,9 @@
 package com.example.amazonapp.Controllers;
 
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -71,33 +73,46 @@ public class SearchProduct extends Fragment {
                 ArrayList<GetProductByCategory> productModel=model.getData();
 
                 if (model.getSuccess().equals("1") ) {
-                    Toast.makeText(view.getContext(), "" + response, Toast.LENGTH_SHORT).show();
-
-                    /*  ArrayList<String> categoryName=new ArrayList<>();*/
-
-                    ArrayList<String> categoryString=new ArrayList<>();
-                    prodTitle=new ArrayList<>();
-                    prodImgUrl=new ArrayList<>();
-                    prodId=new ArrayList<>();
-                    recyclerView = view.findViewById(R.id.recyclerr);
-                    for(GetProductByCategory pm:productModel)
-                    {
-
-                        prodTitle.add(pm.getProductName());
-                        prodImgUrl.add(pm.getImage());
-                        prodId.add(pm.getProductId());
+                    if(productModel.size()==0){
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                        builder.setTitle("No Products");
+                        builder.setMessage("No Products Related to this catgeory Found");
+                        // add a button
+                        builder.setPositiveButton("OK", null);
+                        // create and show the alert dialog
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+                        Intent intent = new Intent(getActivity(), MainActivity.class);
+                        startActivity(intent);
                     }
+                    else {
 
 
-                    //binding cardview with api data
-                    adapter = new ProdRecyclerAdapter(view.getContext(),prodTitle,prodImgUrl,prodId);
-                    GridLayoutManager gridLayoutManager = new GridLayoutManager(view.getContext(), 2, GridLayoutManager.VERTICAL, false);
-                    recyclerView.setLayoutManager(gridLayoutManager);
-                    recyclerView.setAdapter(adapter);
+                        //Toast.makeText(view.getContext(), "" + response, Toast.LENGTH_SHORT).show();
+
+                        /*  ArrayList<String> categoryName=new ArrayList<>();*/
+
+                        ArrayList<String> categoryString = new ArrayList<>();
+                        prodTitle = new ArrayList<>();
+                        prodImgUrl = new ArrayList<>();
+                        prodId = new ArrayList<>();
+                        recyclerView = view.findViewById(R.id.recyclerr);
+                        for (GetProductByCategory pm : productModel) {
+
+                            prodTitle.add(pm.getProductName());
+                            prodImgUrl.add(pm.getImage());
+                            prodId.add(pm.getProductId());
+                        }
 
 
+                        //binding cardview with api data
+                        adapter = new ProdRecyclerAdapter(view.getContext(), prodTitle, prodImgUrl, prodId);
+                        GridLayoutManager gridLayoutManager = new GridLayoutManager(view.getContext(), 2, GridLayoutManager.VERTICAL, false);
+                        recyclerView.setLayoutManager(gridLayoutManager);
+                        recyclerView.setAdapter(adapter);
 
 
+                    }
 
 
 

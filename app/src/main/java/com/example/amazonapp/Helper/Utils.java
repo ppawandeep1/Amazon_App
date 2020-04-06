@@ -29,28 +29,6 @@ public class Utils{
         return jsonObject.toString();
     }
 /*
-    public static String getFile(Bitmap path) {
-        Bitmap bm = null;
-        ByteArrayOutputStream baos = null;
-        byte[] b = null;
-        String encodeString = null;
-        try {
-            bm = BitmapFactory.decodeFile(String.valueOf(path));
-            baos = new ByteArrayOutputStream();
-            bm.compress(Bitmap.CompressFormat.PNG, 100, baos);
-            b = baos.toByteArray();
-            encodeString = Base64.encodeToString(b, Base64.DEFAULT);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return encodeString;
-    }
-
-    public static String setImage(Bitmap path){
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        path.compress(Bitmap.CompressFormat.PNG, 100, baos);
-        byte[] imageBytes = baos.toByteArray();
-        String imageString = Base64.encodeToString(imageBytes, Base64.DEFAULT);
-        return imageString.trim();
-    }*/
+To create JSON object for body
+ */
 }

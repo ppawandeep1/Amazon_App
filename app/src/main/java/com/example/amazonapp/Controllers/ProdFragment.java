@@ -1,6 +1,8 @@
 package com.example.amazonapp.Controllers;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -30,6 +32,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProdFragment extends Fragment {
+    /*
+    Product Fragement on click of category or on the click of search button this whill be redirected to this page
+    created by krishna panchal
+
+    */
+
 
     View view;
     private RecyclerView recyclerView;
@@ -67,6 +75,7 @@ public class ProdFragment extends Fragment {
         String[] values=new String[]{"1"};
         final String JSONREQUEST= Utils.createJsonRequest(keys,values);
         String URL= Config.GETPRODCUTBYCATEGORY+categoryName;
+        //Using Post webservice call we are getiing all the products and displaying it in the recycler view
 
         new WebserviceCall(context, URL, JSONREQUEST, "Getting products..", true, new AsyncResponse() {
             @Override
@@ -76,13 +85,22 @@ public class ProdFragment extends Fragment {
                 ArrayList<GetProductByCategory> productModel=model.getData();
 
                 if (model.getSuccess().equals("1") ) {
-                    if(model.getData()==null){
-                        Toast.makeText(view.getContext(), "No products related to that category" , Toast.LENGTH_SHORT).show();
-
+                    if(productModel.size()==0){
+                        //Toast.makeText(view.getContext(), "No products related to that category" , Toast.LENGTH_SHORT).show();
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                        builder.setTitle("No Products");
+                        builder.setMessage("No Products Related to this catgeory Found");
+                        // add a button
+                        builder.setPositiveButton("OK", null);
+                        // create and show the alert dialog
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+                        Intent intent = new Intent(getActivity(), MainActivity.class);
+                        startActivity(intent);
 
                     }
                     else {
-                        Toast.makeText(view.getContext(), "" + response, Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(view.getContext(), "" + response, Toast.LENGTH_SHORT).show();
 
                         /*  ArrayList<String> categoryName=new ArrayList<>();*/
 

@@ -11,12 +11,14 @@ import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 
 import java.io.IOException;
-
-public class WebServiceCallGet extends AsyncTask<Void, Void, String> {
-        // interface for response
-
+/*
+**Same as WebServiceCall but it was for post request and this is for get request
+* two constructors one with header parameter and one without it
+* implemented by krishna panchal
+ */
+public class WebServiceCallGet extends AsyncTask<Void, Void, String>  {
         AsyncResponse delegate;
-        private final MediaType URLENCODE = MediaType.parse("application/json;charset=utf-8");
+private final MediaType URLENCODE = MediaType.parse("application/json;charset=utf-8");
         ProgressDialog dialog;
         Context context;
         String dialogMessage;
@@ -25,22 +27,13 @@ public class WebServiceCallGet extends AsyncTask<Void, Void, String> {
         String jsonBody;
         String header;
 
-        public WebServiceCallGet(Context context, String URL, String jsonRequestBody, String dialogMessage, boolean showDialog, AsyncResponse delegate){
-                this.context = context;
-                this.URL = URL;
-                this.jsonBody = jsonRequestBody;
-                this.dialogMessage = dialogMessage;
-                this.showDialog = showDialog;
-                this.delegate = delegate;
-        }
-        public WebServiceCallGet(Context context, String URL, String jsonRequestBody, String header, String dialogMessage, boolean showDialog, AsyncResponse delegate){
-                this.context = context;
-                this.URL = URL;
-                this.jsonBody = jsonRequestBody;
-                this.dialogMessage = dialogMessage;
-                this.showDialog = showDialog;
-                this.delegate = delegate;
-                this.header=header;
+public WebServiceCallGet(Context context, String URL, String jsonRequestBody, String dialogMessage, boolean showDialog, AsyncResponse delegate){
+        this.context = context;
+        this.URL = URL;
+        this.jsonBody = jsonRequestBody;
+        this.dialogMessage = dialogMessage;
+        this.showDialog = showDialog;
+        this.delegate = delegate;
         }
         public WebServiceCallGet(Context context, String URL, String jsonRequestBody,String header, String dialogMessage, boolean showDialog, AsyncResponse delegate){
                 this.context = context;
@@ -81,9 +74,7 @@ protected String doInBackground(Void... params) {
         body = null;
         };
         // creating request
-
         Request request = null;if(header == null){
-
                 request= new Request.Builder()
                         .get()
                         .url(URL)
@@ -96,6 +87,8 @@ protected String doInBackground(Void... params) {
                         .url(URL)
                         .build();
         }
+
+
         // creating webserivce call and get response
 
         try {

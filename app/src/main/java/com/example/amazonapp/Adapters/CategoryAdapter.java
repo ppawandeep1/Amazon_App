@@ -36,7 +36,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     List<String> titles;
     LayoutInflater inflater;
     Context context;
-
+/*
+*Category Adapter for all the category will bind single xml layout multile times as per the
+ */
     CoordinatorLayout main_layout;
     RecyclerView category,product;
 

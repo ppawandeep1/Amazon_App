@@ -1,7 +1,9 @@
 package com.example.amazonapp.Controllers;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -142,6 +144,14 @@ public class CartFragment extends Fragment {
                             }
                             else if (model.getSuccess().equals("0") ) {
                                 Toast.makeText(getContext(), ""+model.getMessage(), Toast.LENGTH_SHORT).show();
+                                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                                builder.setTitle("Error");
+                                builder.setMessage("Opps Error "+model.getMessage());
+                                // add a button
+                                builder.setPositiveButton("OK", null);
+                                // create and show the alert dialog
+                                AlertDialog dialog = builder.create();
+                                dialog.show();
 
                             }
                         }
