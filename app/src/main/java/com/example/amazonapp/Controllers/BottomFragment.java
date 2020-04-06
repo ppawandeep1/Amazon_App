@@ -51,13 +51,12 @@ public class BottomFragment extends BottomSheetDialogFragment {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()){
                     case R.id.login:
-
                         Intent intent=new Intent(getActivity(),LoginActivity.class);
                         getActivity().startActivity(intent);
                         navigationView.setVisibility(View.GONE);
                         break;
-                    // Toast.makeText(getActivity(), "Login", Toast.LENGTH_SHORT).show();
-                    //break;
+                       // Toast.makeText(getActivity(), "Login", Toast.LENGTH_SHORT).show();
+                        //break;
                     case R.id.contact_us:
                         Toast.makeText(getActivity(), "Contact US", Toast.LENGTH_SHORT).show();
                         ContactFragment contactFragment =new ContactFragment(getContext());
@@ -78,6 +77,7 @@ public class BottomFragment extends BottomSheetDialogFragment {
                                 editor.commit();
                                 Intent logout = new Intent(getActivity(), MainActivity.class);
                                 startActivity(logout);
+
 
 
                             }

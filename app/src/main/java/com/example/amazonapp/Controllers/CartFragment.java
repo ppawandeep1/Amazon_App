@@ -83,7 +83,7 @@ public class CartFragment extends Fragment {
         // Inflate the layout for this fragment
         SharedPreferences preferences = this.getActivity().getSharedPreferences("AmazonApp", Context.MODE_PRIVATE);
         final String customerId=preferences.getString("CustomerId",null);
-       final String token=preferences.getString("Token",null);
+        final String token=preferences.getString("Token",null);
         if(customerId!=null) {
             mQueue= Volley.newRequestQueue(getContext());
             View v = inflater.inflate(R.layout.fragment_cart, container, false);
@@ -130,11 +130,8 @@ public class CartFragment extends Fragment {
                         public void onCallback(String response) {
                             Log.d("myapp", response);
                             SuccessModel model=new Gson().fromJson(response,SuccessModel.class);
+                            //  Toast.makeText(LoginActivity.this,model.getMessage() , Toast.LENGTH_SHORT).show();
 
-
-
-
-                            //                           Toast.makeText(LoginActivity.this,model.getMessage() , Toast.LENGTH_SHORT).show();
                             if (model.getSuccess().equals("1")) {
                                 FireBaseHelper fireBaseHelper=new FireBaseHelper();
                                 ArrayList<String> array_snapId=new ArrayList<>();
@@ -182,11 +179,6 @@ public class CartFragment extends Fragment {
             View main = inflater.inflate(R.layout.activity_login, container, false);
             return main;
         }
-
-        //
-
-
-
     }
     public  void callCartAdapter(ArrayList<CartFireBase>  _adapterCart,RecyclerView _recyclerView_cart,TextView _totalItemsn,TextView _totalShippingCharges,TextView _totalItemsAmount){
 
@@ -224,24 +216,10 @@ public class CartFragment extends Fragment {
         _totalItemsn.setText(totalItemText);
         _totalShippingCharges.setText(totalShippingChargesText);
         _totalItemsAmount.setText(totalAmountText);
-           CartAdapter cartAdapter = new CartAdapter(cartModel, getContext());
-
+        CartAdapter cartAdapter = new CartAdapter(cartModel, getContext());
            _recyclerView_cart.setAdapter(cartAdapter);
            cartAdapter.notifyDataSetChanged();
-
-
            _recyclerView_cart.setLayoutManager(new LinearLayoutManager(getContext()));
 
-
-
-
-
-
-
-
-
     }
-
-
-
 }

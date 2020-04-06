@@ -67,6 +67,9 @@ public class HomeFragment extends Fragment {
 
 
                 if (model.getSuccess().equals("1") ) {
+
+                    Toast.makeText(context, "" + response, Toast.LENGTH_SHORT).show();
+
                    // Toast.makeText(context, "" + response, Toast.LENGTH_SHORT).show();
 
 
@@ -81,7 +84,10 @@ public class HomeFragment extends Fragment {
                     }
                     popularProductAdapter=new PopularProductAdapter(context,productName,imgUrl);
 
-                    GridLayoutManager gridLayoutManagerProduct = new GridLayoutManager(context, 1, GridLayoutManager.HORIZONTAL, true);
+
+                    GridLayoutManager gridLayoutManagerProduct = new GridLayoutManager(context, 1, GridLayoutManager.HORIZONTAL, false);
+
+
                     productList.setAdapter(popularProductAdapter);
                     productList.setLayoutManager(gridLayoutManagerProduct);
 
@@ -105,7 +111,11 @@ public class HomeFragment extends Fragment {
                 ArrayList<CategoryModel> categoryModel=model.getData();
 
                 if (model.getSuccess().equals("1") ) {
+
+                    Toast.makeText(getContext(), "" + response, Toast.LENGTH_SHORT).show();
+
                     //Toast.makeText(getContext(), "" + response, Toast.LENGTH_SHORT).show();
+
 
                       ArrayList<String> categoryName=new ArrayList<>();
 

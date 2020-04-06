@@ -12,19 +12,19 @@
     >
     <!--Design for Category Home Page-->
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-<!--
-                <ImageView
-                    android:id="@+id/imgCategory"
-                    android:layout_width="match_parent"
-                    android:layout_height="160dp"
-                    android:scaleType="centerCrop"
-                    android:background="#A8C7DB "/>
--->
+        <!--
+                        <ImageView
+                            android:id="@+id/imgCategory"
+                            android:layout_width="match_parent"
+                            android:layout_height="160dp"
+                            android:scaleType="centerCrop"
+                            android:background="#A8C7DB "/>
+        -->
 
                 <TextView
                     android:id="@+id/category_home"
@@ -37,16 +37,6 @@
                     android:textSize="18sp"
                     tools:ignore="DuplicateIds" />
 
-            </LinearLayout>
 
-
-
-
-
-
-
-
-
-    </androidx.cardview.widget.CardView>
-
-
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

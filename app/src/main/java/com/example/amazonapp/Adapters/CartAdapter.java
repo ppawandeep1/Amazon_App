@@ -59,8 +59,8 @@ public class CartAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
 
-                View cartItemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.cart_item_layout, viewGroup, false);
-            return  new CartItemViewHolder(cartItemView);
+        View cartItemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.cart_item_layout, viewGroup, false);
+        return  new CartItemViewHolder(cartItemView);
 
 
     }
@@ -68,14 +68,14 @@ public class CartAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
 
-            String resource = cartItemModelList.get(position).getProductImage();
-            String title = cartItemModelList.get(position).getProduct_name();
-            String price = cartItemModelList.get(position).getProductPrice();
-            String quantity = cartItemModelList.get(position).getProductQuantity();
+        String resource = cartItemModelList.get(position).getProductImage();
+        String title = cartItemModelList.get(position).getProduct_name();
+        String price = cartItemModelList.get(position).getProductPrice();
+        String quantity = cartItemModelList.get(position).getProductQuantity();
 
-            //
-            String snapId = cartItemModelList.get(position).getSnapId();
-            ((CartItemViewHolder) viewHolder).setItemDetails(resource, title, price, quantity, snapId);
+        //
+        String snapId = cartItemModelList.get(position).getSnapId();
+        ((CartItemViewHolder) viewHolder).setItemDetails(resource, title, price, quantity, snapId);
 
 
 
@@ -118,7 +118,7 @@ public class CartAdapter extends RecyclerView.Adapter {
             btnRemove.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                   Toast.makeText(v.getContext(),hiddenSnapId.getText().toString(),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(v.getContext(),hiddenSnapId.getText().toString(),Toast.LENGTH_SHORT).show();
                     Log.v("Show id",hiddenSnapId.getText().toString());
                     FireBaseHelper helper=new FireBaseHelper();
                     helper.removeItem(hiddenSnapId.getText().toString());
@@ -138,8 +138,6 @@ public class CartAdapter extends RecyclerView.Adapter {
            /* productQuantity.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-
                 }
             });*/
             productQuantity.setOnValueChangeListener(new ElegantNumberButton.OnValueChangeListener(){
@@ -148,7 +146,6 @@ public class CartAdapter extends RecyclerView.Adapter {
                 public void onValueChange(ElegantNumberButton view, int oldValue, int newValue) {
                     String qty=productQuantity.getNumber();
                     FireBaseHelper helper=new FireBaseHelper();
-                    helper.updateItemQty(hiddenSnapId.getText().toString(),qty);
                     AppCompatActivity activity = (AppCompatActivity) view.getContext();
                     CartFragment cartFragment = new CartFragment();
                     FragmentTransaction ft= activity.getSupportFragmentManager().beginTransaction();
