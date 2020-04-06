@@ -21,6 +21,7 @@ private final MediaType URLENCODE = MediaType.parse("application/json;charset=ut
         boolean showDialog = true;
         String URL;
         String jsonBody;
+        String header;
 
 public WebServiceCallGet(Context context, String URL, String jsonRequestBody, String dialogMessage, boolean showDialog, AsyncResponse delegate){
         this.context = context;
@@ -29,6 +30,15 @@ public WebServiceCallGet(Context context, String URL, String jsonRequestBody, St
         this.dialogMessage = dialogMessage;
         this.showDialog = showDialog;
         this.delegate = delegate;
+        }
+        public WebServiceCallGet(Context context, String URL, String jsonRequestBody,String header, String dialogMessage, boolean showDialog, AsyncResponse delegate){
+                this.context = context;
+                this.URL = URL;
+                this.jsonBody = jsonRequestBody;
+                this.dialogMessage = dialogMessage;
+                this.showDialog = showDialog;
+                this.delegate = delegate;
+                this.header=header;
         }
 
 @Override
@@ -60,10 +70,20 @@ protected String doInBackground(Void... params) {
         body = null;
         };
         // creating request
-        Request request = new Request.Builder()
-        .get()
-        .url(URL)
-        .build();
+        Request request = null;if(header == null){
+                request= new Request.Builder()
+                        .get()
+                        .url(URL)
+                        .build();
+        }
+        else {
+                request= new Request.Builder()
+                        .get()
+                        .addHeader("Authorization",header)
+                        .url(URL)
+                        .build();
+        }
+
 
         // creating webserivce call and get response
 

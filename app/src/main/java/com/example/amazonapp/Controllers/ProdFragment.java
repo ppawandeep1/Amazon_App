@@ -11,6 +11,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.amazonapp.Adapters.ProdRecyclerAdapter;
@@ -73,29 +76,37 @@ public class ProdFragment extends Fragment {
                 ArrayList<GetProductByCategory> productModel=model.getData();
 
                 if (model.getSuccess().equals("1") ) {
-                    Toast.makeText(view.getContext(), "" + response, Toast.LENGTH_SHORT).show();
+                    if(model.getData()==null){
+                        Toast.makeText(view.getContext(), "No products related to that category" , Toast.LENGTH_SHORT).show();
 
-                    /*  ArrayList<String> categoryName=new ArrayList<>();*/
 
-                    ArrayList<String> categoryString=new ArrayList<>();
-                    prodTitle=new ArrayList<>();
-                    prodImgUrl=new ArrayList<>();
-                    prodId=new ArrayList<>();
-                    recyclerView = view.findViewById(R.id.recyclerr);
-                    for(GetProductByCategory pm:productModel)
-                    {
+                    }
+                    else {
+                        Toast.makeText(view.getContext(), "" + response, Toast.LENGTH_SHORT).show();
 
-                        prodTitle.add(pm.getProductName());
-                        prodImgUrl.add(pm.getImage());
-                        prodId.add(pm.getProductId());
+                        /*  ArrayList<String> categoryName=new ArrayList<>();*/
+
+                        ArrayList<String> categoryString=new ArrayList<>();
+                        prodTitle=new ArrayList<>();
+                        prodImgUrl=new ArrayList<>();
+                        prodId=new ArrayList<>();
+                        recyclerView = view.findViewById(R.id.recyclerr);
+                        for(GetProductByCategory pm:productModel)
+                        {
+
+                            prodTitle.add(pm.getProductName());
+                            prodImgUrl.add(pm.getImage());
+                            prodId.add(pm.getProductId());
+                        }
+
+
+                        //binding cardview with api data
+                        adapter = new ProdRecyclerAdapter(view.getContext(),prodTitle,prodImgUrl,prodId);
+                        GridLayoutManager gridLayoutManager = new GridLayoutManager(view.getContext(), 2, GridLayoutManager.VERTICAL, false);
+                        recyclerView.setLayoutManager(gridLayoutManager);
+                        recyclerView.setAdapter(adapter);
                     }
 
-
-                    //binding cardview with api data
-                    adapter = new ProdRecyclerAdapter(view.getContext(),prodTitle,prodImgUrl,prodId);
-                    GridLayoutManager gridLayoutManager = new GridLayoutManager(view.getContext(), 2, GridLayoutManager.VERTICAL, false);
-                    recyclerView.setLayoutManager(gridLayoutManager);
-                    recyclerView.setAdapter(adapter);
 
 
 

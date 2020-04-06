@@ -10,19 +10,24 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.amazonapp.Controllers.OrderHistory;
 import com.example.amazonapp.R;
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapter.MyViewHolder> {
 
-    String data1[], data2[];
-    int images[];
+    ArrayList<String> img;
+    ArrayList<String> qty;
+    ArrayList<String> price;
     Context context;
 
-    public OrderHistoryAdapter(Context ct, String s1[], String s2[], int img[]) {
+    public OrderHistoryAdapter(Context ct, ArrayList<String> img,ArrayList<String> qty, ArrayList<String> price) {
         context = ct;
-        data1 = s1;
-        data2 = s2;
-        images = img;
+        this.price=price;
+        this.qty=qty;
+        this.img=img;
     }
 
     @NonNull
@@ -35,15 +40,18 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.mytitle.setText(data1[position]);
+        holder.mytitle.setText(price.get(position));
+        Picasso.with(context).load(img.get(position)).resize(150, 150).centerCrop().into(holder.myImage);
+        holder.myDescription.setText(qty.get(position));
+       /* holder.mytitle.setText(data1[position]);
         holder.myDescription.setText(data2[position]);
-        holder.myImage.setImageResource(images[position]);
+        holder.myImage.setImageResource(images[position]);*/
 
     }
 
     @Override
     public int getItemCount() {
-        return images.length;
+        return img.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -55,9 +63,9 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-                mytitle = itemView.findViewById(R.id.cloth_title);
-                myDescription = itemView.findViewById(R.id.cloth_description);
-                myImage = itemView.findViewById((R.id.image_icon));
+                mytitle = itemView.findViewById(R.id.order_title);
+                myDescription = itemView.findViewById(R.id.order_qty);
+                myImage = itemView.findViewById((R.id.order_image));
         }
     }
 }

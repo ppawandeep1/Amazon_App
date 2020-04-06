@@ -6,16 +6,20 @@ import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
@@ -56,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements Spinner.OnItemSel
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -92,6 +97,7 @@ public class MainActivity extends AppCompatActivity implements Spinner.OnItemSel
         ///--------------------------------------------------------------------------------------
 
         spinner_category=(Spinner)findViewById(R.id.spinner_category);
+
         spinner_category.setOnItemSelectedListener(this);
         //CAtegory List...//
 
@@ -177,27 +183,47 @@ public class MainActivity extends AppCompatActivity implements Spinner.OnItemSel
     }
 
 
-
+//not able to use the network connection method
     //Bottom Navigation menu
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case android.R.id.home:
-                //Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
+            case R.id.home:
+                Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
                 Fragment homeFrag = null;
                 homeFrag = new HomeFragment(MainActivity.this);
-                getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, homeFrag).commit();
+
+
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+                // Replace whatever is in the fragment_container view with this fragment,
+                // and add the transaction to the back stack if needed
+                transaction.replace(R.id.main_layout, homeFrag);
+                transaction.addToBackStack(null);
+
+                // Commit the transaction
+                transaction.commit();
                 break;
             case R.id.menu:
-                BottomSheetDialogFragment bottomSheetDialogFragment = new BottomFragment();
-                bottomSheetDialogFragment.show(getSupportFragmentManager(),bottomSheetDialogFragment.getClass().getSimpleName());
+                SharedPreferences myPrefs = getSharedPreferences("AmazonApp", Context.MODE_PRIVATE);
+                String user_name=myPrefs.getString("Fname",null);
+                if(user_name!=null){
+                    BottomSheetDialogFragment bottomSheetDialogFragment = new BottomFragment();
+                    bottomSheetDialogFragment.show(getSupportFragmentManager(),bottomSheetDialogFragment.getClass().getSimpleName());
+                }
+                else {
+                    BottomSheetDialogFragment bottomSheetDialogFragment = new GuestUserNav();
+                    bottomSheetDialogFragment.show(getSupportFragmentManager(),bottomSheetDialogFragment.getClass().getSimpleName());
+                }
+
                 //Toast.makeText(this, "Menu ", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.cart:
                 Fragment selectedFragment = null;
                 selectedFragment = new CartFragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, selectedFragment).commit();
-                //Toast.makeText(this, "Cart ", Toast.LENGTH_SHORT).show();
+
+
                 break;
 
         }

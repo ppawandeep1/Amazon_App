@@ -37,8 +37,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     LayoutInflater inflater;
     Context context;
 
-CoordinatorLayout main_layout;
-RecyclerView category,product;
+    CoordinatorLayout main_layout;
+    RecyclerView category,product;
 
     ProdRecyclerAdapter prodRecyclerAdapter;
     public CategoryAdapter(Context ctx, List<String> titles){

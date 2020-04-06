@@ -30,17 +30,6 @@ public class FireBaseHelper {
         databaseReference_CartProduct = FirebaseDatabase.getInstance().getReference("CartProduct");
 
     }
-//    public void InsertCustomer(String email, String fname, String customer_id)
-//    {
-//        String id  = databaseReference_Customer.push().getKey();
-//        CustomerFireBase login= new CustomerFireBase();
-//            login.setEmail(email);
-//        login.setCustomerName(fname);
-//        login.setCustomerId(customer_id);
-//
-//        databaseReference_Customer.child(id).setValue(login);
-//
-//    }
 
 
 
@@ -67,7 +56,7 @@ public class FireBaseHelper {
         final ArrayList<CartFireBase> _fireBasesCart=new ArrayList<CartFireBase>();;
        databaseReference_CartProduct = FirebaseDatabase.getInstance().getReference("CartProduct");
 
-        databaseReference_CartProduct.addValueEventListener(new ValueEventListener() {
+        databaseReference_CartProduct.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
@@ -77,7 +66,8 @@ public class FireBaseHelper {
 
                     String isPurchase = postSnapshot.child("isPurchase").getValue().toString();
                     String Customer_id = postSnapshot.child("customer_id").getValue().toString();
-                    if (isPurchase.equals("false") && Customer_id.equals(_CustomerId)) {
+                   String isActive=postSnapshot.child("isActive").getValue().toString();
+                    if (isPurchase.equals("false") && Customer_id.equals(_CustomerId) && isActive.equals("true")) {
                         cartProduct = new CartFireBase();
                         cartProduct.setSnapId(postSnapshot.getKey());
                         cartProduct.setProduct_name(postSnapshot.child("product_name").getValue().toString());
@@ -113,6 +103,15 @@ public class FireBaseHelper {
         databaseReference_CartProduct = FirebaseDatabase.getInstance().getReference("CartProduct").child(snapId);
 
         databaseReference_CartProduct.child("productQuantity").setValue(qty);
+    }
+
+    public void updatePurchaseOrder(ArrayList<String> arrsnapId){
+        for(int i=0;i<arrsnapId.size();i++){
+            databaseReference_CartProduct = FirebaseDatabase.getInstance().getReference("CartProduct").child(arrsnapId.get(i));
+
+            databaseReference_CartProduct.child("isPurchase").setValue("true");
+
+        }
     }
 
 

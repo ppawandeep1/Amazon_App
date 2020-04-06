@@ -28,13 +28,13 @@
 
                 <TextView
                     android:id="@+id/category_home"
-                    android:textColor="#2d2d2d"
-                    android:textSize="13sp"
-                    android:background="@drawable/bg_app"
-                    android:gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@color/colorAccent"
+                    android:gravity="center"
                     android:text="Category Name"
+                    android:textColor="#fff"
+                    android:textSize="18sp"
                     tools:ignore="DuplicateIds" />
 
             </LinearLayout>

@@ -134,7 +134,12 @@ public class CartFragment extends Fragment {
 
                             //                           Toast.makeText(LoginActivity.this,model.getMessage() , Toast.LENGTH_SHORT).show();
                             if (model.getSuccess().equals("1")) {
-
+                                FireBaseHelper fireBaseHelper=new FireBaseHelper();
+                                ArrayList<String> array_snapId=new ArrayList<>();
+                                for(int i=0;i<responseCartFireBase.size();i++){
+                                    array_snapId.add(responseCartFireBase.get(i).getSnapId());
+                                }
+                                fireBaseHelper.updatePurchaseOrder(array_snapId);
                                 Toast.makeText(getContext(), ""+model.getMessage(), Toast.LENGTH_SHORT).show();
 
                             }
@@ -213,6 +218,8 @@ public class CartFragment extends Fragment {
 
            _recyclerView_cart.setAdapter(cartAdapter);
            cartAdapter.notifyDataSetChanged();
+
+
            _recyclerView_cart.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
