@@ -59,18 +59,12 @@ public class GuestUserNav extends BottomSheetDialogFragment {
                     // Toast.makeText(getActivity(), "Login", Toast.LENGTH_SHORT).show();
                     //break;
 
-                    case R.id.order_history:
-                        OrderHistory orderHistory=new OrderHistory();
-
-
-                        FragmentManager fragmentManager = getFragmentManager();
-                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(android.R.id.content, orderHistory);
-                        fragmentTransaction.commit();
-
-                        Toast.makeText(getActivity(), "Oder History ", Toast.LENGTH_SHORT).show();
-
-                        break;
+                    case R.id.contact_us:
+                        Toast.makeText(getActivity(), "Contact US", Toast.LENGTH_SHORT).show();
+                        ContactFragment contactFragment =new ContactFragment(getContext());
+                        FragmentManager fragmentManagerContact=getFragmentManager();
+                        fragmentManagerContact.beginTransaction().replace(R.id.main_layout,contactFragment,contactFragment.getTag()).commit();
+                        navigationView.setVisibility(View.GONE);
 
                     default:
                         throw new IllegalStateException("Unexpected value: " + menuItem.getItemId());

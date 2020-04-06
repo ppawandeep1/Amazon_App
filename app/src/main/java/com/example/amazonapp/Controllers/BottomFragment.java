@@ -60,6 +60,10 @@ public class BottomFragment extends BottomSheetDialogFragment {
                     //break;
                     case R.id.contact_us:
                         Toast.makeText(getActivity(), "Contact US", Toast.LENGTH_SHORT).show();
+                        ContactFragment contactFragment =new ContactFragment(getContext());
+                        FragmentManager fragmentManagerContact=getFragmentManager();
+                        fragmentManagerContact.beginTransaction().replace(R.id.main_layout,contactFragment,contactFragment.getTag()).commit();
+                        navigationView.setVisibility(View.GONE);
                         break;
                     case R.id.logout:
                         Toast.makeText(getActivity(), "Log out ", Toast.LENGTH_SHORT).show();
