@@ -12,34 +12,32 @@
     >
     <!--Design for Category Home Page-->
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-<!--
-                <ImageView
-                    android:id="@+id/imgCategory"
-                    android:layout_width="match_parent"
-                    android:layout_height="160dp"
-                    android:scaleType="centerCrop"
-                    android:background="#A8C7DB "/>
--->
+        <!--
+                        <ImageView
+                            android:id="@+id/imgCategory"
+                            android:layout_width="match_parent"
+                            android:layout_height="160dp"
+                            android:scaleType="centerCrop"
+                            android:background="#A8C7DB "/>
+        -->
 
-                <TextView
-                    android:id="@+id/category_home"
-                    android:textColor="#2d2d2d"
-                    android:textSize="13sp"
-                    android:background="@drawable/bg_app"
-                    android:gravity="center"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Category Name"
-                    tools:ignore="DuplicateIds" />
+        <TextView
+            android:id="@+id/category_home"
+            android:textColor="#2d2d2d"
+            android:textSize="13sp"
+            android:background="@drawable/bg_app"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Category Name"
+            tools:ignore="DuplicateIds" />
 
-            </LinearLayout>
-
-
+    </LinearLayout>
 
 
 
@@ -47,6 +45,6 @@
 
 
 
-    </androidx.cardview.widget.CardView>
 
 
+</androidx.cardview.widget.CardView>

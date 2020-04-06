@@ -81,7 +81,7 @@ public class CartFragment extends Fragment {
         // Inflate the layout for this fragment
         SharedPreferences preferences = this.getActivity().getSharedPreferences("AmazonApp", Context.MODE_PRIVATE);
         final String customerId=preferences.getString("CustomerId",null);
-       final String token=preferences.getString("Token",null);
+        final String token=preferences.getString("Token",null);
         if(customerId!=null) {
             mQueue= Volley.newRequestQueue(getContext());
             View v = inflater.inflate(R.layout.fragment_cart, container, false);
@@ -128,11 +128,8 @@ public class CartFragment extends Fragment {
                         public void onCallback(String response) {
                             Log.d("myapp", response);
                             SuccessModel model=new Gson().fromJson(response,SuccessModel.class);
+                            //  Toast.makeText(LoginActivity.this,model.getMessage() , Toast.LENGTH_SHORT).show();
 
-
-
-
-                            //                           Toast.makeText(LoginActivity.this,model.getMessage() , Toast.LENGTH_SHORT).show();
                             if (model.getSuccess().equals("1")) {
 
                                 Toast.makeText(getContext(), ""+model.getMessage(), Toast.LENGTH_SHORT).show();
@@ -209,11 +206,11 @@ public class CartFragment extends Fragment {
         _totalItemsn.setText(totalItemText);
         _totalShippingCharges.setText(totalShippingChargesText);
         _totalItemsAmount.setText(totalAmountText);
-           CartAdapter cartAdapter = new CartAdapter(cartModel, getContext());
+        CartAdapter cartAdapter = new CartAdapter(cartModel, getContext());
 
-           _recyclerView_cart.setAdapter(cartAdapter);
-           cartAdapter.notifyDataSetChanged();
-           _recyclerView_cart.setLayoutManager(new LinearLayoutManager(getContext()));
+        _recyclerView_cart.setAdapter(cartAdapter);
+        cartAdapter.notifyDataSetChanged();
+        _recyclerView_cart.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
 

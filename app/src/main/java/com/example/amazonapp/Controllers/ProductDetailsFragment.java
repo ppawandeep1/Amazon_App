@@ -84,20 +84,20 @@ public class ProductDetailsFragment extends Fragment {
 
 
 
-                   String email=preferences.getString("Email",null);
-                   if(!preferences.contains("Email")){
-                       Toast.makeText(getContext()," Please login ",Toast.LENGTH_SHORT);
+                String email=preferences.getString("Email",null);
+                if(!preferences.contains("Email")){
+                    Toast.makeText(getContext()," Please login ",Toast.LENGTH_SHORT);
 
-                   }
-                   else {
-                       String customerName=preferences.getString("customerName",null);
-                       String customer_id=preferences.getString("CustomerId",null);
-                       FireBaseHelper fireBaseHelper=new FireBaseHelper();
+                }
+                else {
+                    String customerName=preferences.getString("customerName",null);
+                    String customer_id=preferences.getString("CustomerId",null);
+                    FireBaseHelper fireBaseHelper=new FireBaseHelper();
 
-                       fireBaseHelper.InsertCart(customer_id,prodId,String.valueOf(qty),prodDesc.getText().toString(),itemPrice.getText().toString(),imgURL);
-                        Toast.makeText(getContext(),"Added to cart successfully ...!",Toast.LENGTH_SHORT).show();
-                      /* ArrayList<CartFireBase> cartFireBases=fireBaseHelper.ViewCart(customer_id);*/
-                   }
+                    fireBaseHelper.InsertCart(customer_id,prodId,String.valueOf(qty),prodDesc.getText().toString(),itemPrice.getText().toString(),imgURL);
+                    Toast.makeText(getContext(),"Added to cart successfully ...!",Toast.LENGTH_SHORT).show();
+                    /* ArrayList<CartFireBase> cartFireBases=fireBaseHelper.ViewCart(customer_id);*/
+                }
 
 
             }
@@ -126,7 +126,8 @@ public class ProductDetailsFragment extends Fragment {
                     itemInStock.setText(productDetails.get(0).getAvailableQty());
                     itemPrice.setText(productDetails.get(0).getRetailPrice());
                     itemSku.setText(productDetails.get(0).getSKU());
-                } else if (model.getSuccess().equals("0")) {
+                }
+                else if (model.getSuccess().equals("0")) {
                     Toast.makeText(view.getContext(), "" + model.getSuccess(), Toast.LENGTH_SHORT).show();
 
                 }

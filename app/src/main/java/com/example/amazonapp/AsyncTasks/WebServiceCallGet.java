@@ -12,23 +12,35 @@ import com.squareup.okhttp.Response;
 
 import java.io.IOException;
 
-public class WebServiceCallGet extends AsyncTask<Void, Void, String>  {
+public class WebServiceCallGet extends AsyncTask<Void, Void, String> {
+        // interface for response
+
         AsyncResponse delegate;
-private final MediaType URLENCODE = MediaType.parse("application/json;charset=utf-8");
+        private final MediaType URLENCODE = MediaType.parse("application/json;charset=utf-8");
         ProgressDialog dialog;
         Context context;
         String dialogMessage;
         boolean showDialog = true;
         String URL;
         String jsonBody;
+        String header=null;
 
-public WebServiceCallGet(Context context, String URL, String jsonRequestBody, String dialogMessage, boolean showDialog, AsyncResponse delegate){
-        this.context = context;
-        this.URL = URL;
-        this.jsonBody = jsonRequestBody;
-        this.dialogMessage = dialogMessage;
-        this.showDialog = showDialog;
-        this.delegate = delegate;
+        public WebServiceCallGet(Context context, String URL, String jsonRequestBody, String dialogMessage, boolean showDialog, AsyncResponse delegate){
+                this.context = context;
+                this.URL = URL;
+                this.jsonBody = jsonRequestBody;
+                this.dialogMessage = dialogMessage;
+                this.showDialog = showDialog;
+                this.delegate = delegate;
+        }
+        public WebServiceCallGet(Context context, String URL, String jsonRequestBody, String header, String dialogMessage, boolean showDialog, AsyncResponse delegate){
+                this.context = context;
+                this.URL = URL;
+                this.jsonBody = jsonRequestBody;
+                this.dialogMessage = dialogMessage;
+                this.showDialog = showDialog;
+                this.delegate = delegate;
+                this.header=header;
         }
 
 @Override
@@ -60,10 +72,20 @@ protected String doInBackground(Void... params) {
         body = null;
         };
         // creating request
-        Request request = new Request.Builder()
-        .get()
-        .url(URL)
-        .build();
+        Request request;
+        if(header == null){
+                request= new Request.Builder()
+                        .get()
+                        .url(URL)
+                        .build();
+        }
+        else {
+                request= new Request.Builder()
+                        .get()
+                        .addHeader("Authorization",header)
+                        .url(URL)
+                        .build();
+        }
 
         // creating webserivce call and get response
 

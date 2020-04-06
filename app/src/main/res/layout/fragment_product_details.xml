@@ -71,31 +71,31 @@
                 </TextView>
             </LinearLayout>
             <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="25dp"
-            android:layout_marginBottom="10dp">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="10dp">
 
-            <TextView
-                android:layout_width="129dp"
-                android:layout_height="match_parent"
-                android:text="Price"
-                android:layout_marginLeft="20dp"
-                android:textColor="@color/colorPrimary">
+                <TextView
+                    android:layout_width="129dp"
+                    android:layout_height="match_parent"
+                    android:text="Price"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/colorPrimary">
 
-            </TextView>
+                </TextView>
 
-            <TextView
-                android:id="@+id/itemPrice"
-                android:layout_width="129dp"
-                android:layout_height="match_parent"
-                android:text="checking"
-                android:layout_marginLeft="40dp"
-                android:textColor="@color/white">
-            </TextView>
+                <TextView
+                    android:id="@+id/itemPrice"
+                    android:layout_width="129dp"
+                    android:layout_height="match_parent"
+                    android:text="checking"
+                    android:layout_marginLeft="40dp"
+                    android:textColor="@color/white">
+                </TextView>
 
-        </LinearLayout>
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -128,15 +128,15 @@
                 android:orientation="horizontal">
 
 
-<!--                <EditText-->
-<!--                    android:id="@+id/txtQty"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginLeft="20dp"-->
-<!--                    android:layout_marginTop="10dp"-->
-<!--                    android:text="Quantity"-->
-<!--                    android:textColor="@color/colorPrimaryDark"-->
-<!--                    android:textSize="18sp" />-->
+                <!--                <EditText-->
+                <!--                    android:id="@+id/txtQty"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginLeft="20dp"-->
+                <!--                    android:layout_marginTop="10dp"-->
+                <!--                    android:text="Quantity"-->
+                <!--                    android:textColor="@color/colorPrimaryDark"-->
+                <!--                    android:textSize="18sp" />-->
 
                 <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
                     android:layout_width="100dp"

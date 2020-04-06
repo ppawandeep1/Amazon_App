@@ -5,6 +5,8 @@ package com.example.amazonapp.Helper;
  */
 
 public class Config {
+  // public static final String MAIN_URL = "http://development.ifuturz.com/core/FLAT_TEST/ecart_new/admin/webservice.php";
+
 
   public static final String GET_CATEGORIES="  http://18.216.15.198:3000/api/category/getcategories";
   public static final String LOGIN_USER="  http://18.216.15.198:3000/api/customeruser/authcustomeruser";
@@ -16,6 +18,9 @@ public class Config {
   public static final String PRODUCTDETAILS="http://18.216.15.198:3000/api/product/getproductbyId?ProductId=";
   public static final String SEARCHPRODUCT="http://18.216.15.198:3000/api/product/getproducts?ProductName=";
   public static final String PURCHASEPRODUCT="http://18.216.15.198:3000/api/sales/createsales";
+  public static final String GETPROFILE="http://18.216.15.198:3000/api/customeruser/getuserdetailsbyid?userid=";
+  public static final String POSTPROFILE="http://18.218.124.225:3000/api/customeruser/editcustomeruser";
+
 
 
 }

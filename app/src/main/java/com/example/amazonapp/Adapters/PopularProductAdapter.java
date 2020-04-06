@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.amazonapp.Controllers.MainActivity;
 import com.example.amazonapp.R;
 import com.squareup.picasso.Picasso;
 
@@ -30,6 +31,7 @@ public class PopularProductAdapter extends RecyclerView.Adapter<PopularProductAd
         this.inflater = LayoutInflater.from(ctx);
         this.context=ctx;
     }
+
 
 
     @NonNull

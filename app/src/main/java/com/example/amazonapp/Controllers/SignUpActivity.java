@@ -75,7 +75,6 @@ public class SignUpActivity extends AppCompatActivity implements Spinner.OnItemS
         country =(Spinner) findViewById(R.id.country);
         country.setOnItemSelectedListener(this);
         province =(Spinner) findViewById(R.id.province);
-        /*province.setOnItemSelectedListener(this);*/
         //***
         city = (EditText) findViewById(R.id.city);
         postalcode =(EditText)findViewById(R.id.postal_code);
@@ -204,27 +203,18 @@ public class SignUpActivity extends AppCompatActivity implements Spinner.OnItemS
         }
 
         else {
-            String[] keys=new String[]{"Fname","Lname","email","phonenumber","countryid","provinceid","city","postal","address","password","companyid"};
+            String[] keys=new String[]{"Fname","Lname","email","phonenumber","countryid","provinceid","city","postal","address","password","CompanyId"};
             String[] values=new String[]{get_firstname,get_lastname,get_email,get_contactno, countryId, provinceId,get_city,get_postalcode,get_address,get_password, "1"};
             String jsonReq= Utils.createJsonRequest(keys,values);
 
             //variable for calling api
-            String URL_CREATE_USER= Config.CREATEUSER;
+            String URL_CREATE_USER= Config.GET_CATEGORIES;
 
             new WebserviceCall(SignUpActivity.this, URL_CREATE_USER, jsonReq, "Login...!!", true, new AsyncResponse() {
                 @Override
                 public void onCallback(String response) {
                     signupModelmodel = new Gson().fromJson(response, ResponseSignupModel.class);
                       if (signupModelmodel.getSuccess().equals("1")) {
-                          SharedPreferences sharedPreferences = SignUpActivity.this.getSharedPreferences("AmazonApp", Context.MODE_PRIVATE);
-
-                          SharedPreferences.Editor editor = sharedPreferences.edit();
-                          editor.clear();
-                          editor.commit();
-                          editor.putString(
-                                  "Fname","Welcome "+
-                                          get_firstname);
-                          editor.commit();
                         Toast.makeText(SignUpActivity.this, ""+signupModelmodel.getMessage(), Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
                         startActivity(intent);
@@ -280,8 +270,8 @@ public class SignUpActivity extends AppCompatActivity implements Spinner.OnItemS
             }
         }).execute();
 
-         id=province.getSelectedItemPosition()+1;
-        provinceId=String.valueOf(id);
+        int provId=province.getSelectedItemPosition()+1;
+        provinceId=String.valueOf(provId);
     }
 
     @Override
