@@ -20,6 +20,6 @@ public class Config {
   public static final String PURCHASEPRODUCT="http://18.216.15.198:3000/api/sales/createsales";
   public static final String FORGETPASSWORD="http://18.216.15.198:3000/api/customeruser/forgetPasswordCustomer";
   public static final String COMPANYDETAIL="http://18.216.15.198:3000/api/companyuser/getCompanyById?CompanyId=1";
-  public static final String ORDERHISTORY="http://18.216.15.198:3000/api/sales/getsalesbycustomerid";
+  public static final String ORDERHISTORY=" http://18.216.15.198:3000/api/sales/getsalesbycustomerid";
 
 }

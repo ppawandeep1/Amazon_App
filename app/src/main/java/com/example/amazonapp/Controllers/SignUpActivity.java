@@ -225,8 +225,8 @@ public class SignUpActivity extends AppCompatActivity implements Spinner.OnItemS
                                   "Fname","Welcome "+
                                           get_firstname);
                           editor.commit();
-                        Toast.makeText(SignUpActivity.this, ""+signupModelmodel.getMessage(), Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+                        //Toast.makeText(SignUpActivity.this, ""+signupModelmodel.getMessage(), Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
                         startActivity(intent);
                     }
                     else if (signupModelmodel.getSuccess().equals("0") ) {
@@ -254,7 +254,7 @@ public class SignUpActivity extends AppCompatActivity implements Spinner.OnItemS
                 ArrayList<ProvinceModel> provinceModels=model.getData();
 
                 if (model.getSuccess().equals("1") ) {
-                    Toast.makeText(SignUpActivity.this, "" + response, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(SignUpActivity.this, "" + response, Toast.LENGTH_SHORT).show();
 
                     /*  ArrayList<String> categoryName=new ArrayList<>();*/
 

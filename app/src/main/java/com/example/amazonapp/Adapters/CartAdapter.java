@@ -29,7 +29,10 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 public class CartAdapter extends RecyclerView.Adapter {
-
+/*
+*To display all the cart items that will bind multiple times with cart layout and will be displyed through Adapter
+*
+ */
     private List<CartModel> cartItemModelList;
     PurchaseCartModel purchaseCartModel;
     Context context;
@@ -126,7 +129,10 @@ public class CartAdapter extends RecyclerView.Adapter {
                     CartFragment cartFragment = new CartFragment();
                     FragmentTransaction ft= activity.getSupportFragmentManager().beginTransaction();
                     ft.detach(cartFragment).attach(cartFragment).commit();
-
+                    /*
+                    *there is one bug here on click of remove its remove from the database but
+                    * its not directly reflected to this page and same for the purchase total part
+                     */
                 }
             });
            /* productQuantity.setOnClickListener(new View.OnClickListener() {
@@ -148,6 +154,9 @@ public class CartAdapter extends RecyclerView.Adapter {
                     FragmentTransaction ft= activity.getSupportFragmentManager().beginTransaction();
                     ft.detach(cartFragment).attach(cartFragment).commit();
                    /* Toast.makeText(getContext(),"Quantity updated successfully..!!",Toast.LENGTH_SHORT).show();*/
+                    /*On update of any item it will update to the fire database and also reflected here
+
+                     */
                 }
             });
 

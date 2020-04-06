@@ -11,7 +11,11 @@ import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 
 import java.io.IOException;
-
+/*
+**Same as WebServiceCall but it was for post request and this is for get request
+* two constructors one with header parameter and one without it
+* implemented by krishna panchal
+ */
 public class WebServiceCallGet extends AsyncTask<Void, Void, String>  {
         AsyncResponse delegate;
 private final MediaType URLENCODE = MediaType.parse("application/json;charset=utf-8");

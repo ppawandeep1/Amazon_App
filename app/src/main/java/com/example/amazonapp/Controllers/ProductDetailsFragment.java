@@ -1,6 +1,8 @@
 package com.example.amazonapp.Controllers;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -87,6 +89,16 @@ public class ProductDetailsFragment extends Fragment {
                    String email=preferences.getString("Email",null);
                    if(!preferences.contains("Email")){
                        Toast.makeText(getContext()," Please login ",Toast.LENGTH_SHORT);
+                       AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                       builder.setTitle("Please login");
+                       builder.setMessage("please login to add the products");
+                       // add a button
+                       builder.setPositiveButton("OK", null);
+                       // create and show the alert dialog
+                       AlertDialog dialog = builder.create();
+                       dialog.show();
+                       Intent intent = new Intent(getActivity(), MainActivity.class);
+                       startActivity(intent);
 
                    }
                    else {
