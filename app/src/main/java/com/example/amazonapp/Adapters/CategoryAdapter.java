@@ -65,43 +65,43 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
     }
 
-        @Override
-        public int getItemCount () {
-            return titles.size();
-        }
-
-
-        public class ViewHolder extends RecyclerView.ViewHolder {
-
-            TextView title;
-
-
-            public ViewHolder(@NonNull final View itemView) {
-                super(itemView);
-                title = itemView.findViewById(R.id.category_home);
-
-
-                itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        main_layout=v.findViewById(R.id.main_layout);
-                        //Toast.makeText(v.getContext(), "Clicked -> " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
-                        //calling
-                        AppCompatActivity activity = (AppCompatActivity) v.getContext();
-                        ProdFragment productFragment = new ProdFragment(v.getContext(),titles.get(getAdapterPosition()));
-
-
-
-                        activity.getSupportFragmentManager().beginTransaction();
-                        activity.getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, productFragment).addToBackStack(null).commit();
-
-
-
-
-                    }
-                });
-            }
-        }
-
-
+    @Override
+    public int getItemCount () {
+        return titles.size();
     }
+
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+
+        TextView title;
+
+
+        public ViewHolder(@NonNull final View itemView) {
+            super(itemView);
+            title = itemView.findViewById(R.id.category_home);
+
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    main_layout=v.findViewById(R.id.main_layout);
+                    //Toast.makeText(v.getContext(), "Clicked -> " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
+                    //calling
+                    AppCompatActivity activity = (AppCompatActivity) v.getContext();
+                    ProdFragment productFragment = new ProdFragment(v.getContext(),titles.get(getAdapterPosition()));
+
+
+
+                    activity.getSupportFragmentManager().beginTransaction();
+                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, productFragment).addToBackStack(null).commit();
+
+
+
+
+                }
+            });
+        }
+    }
+
+
+}
