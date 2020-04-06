@@ -27,7 +27,7 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity  {
 
     TextView forgetpassword;
     TextView signUp;
@@ -54,6 +54,18 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //for going to forget password page
+        forgetpassword=findViewById(R.id.forgetPassword);
+        forgetpassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, ForgetPassword.class);
+                startActivity(intent);
+            }
+        });
+
+
         /*on click of sign in i.e login we will try to fetch the
          data from the api and its success 1 then we will redirect
           to home page and display login info, i.e username*/
@@ -87,7 +99,7 @@ public class LoginActivity extends AppCompatActivity {
                             SharedPreferences preferences=getSharedPreferences("AmazonApp", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor=preferences.edit();
 
-                            //                           Toast.makeText(LoginActivity.this,model.getMessage() , Toast.LENGTH_SHORT).show();
+                            // Toast.makeText(LoginActivity.this,model.getMessage() , Toast.LENGTH_SHORT).show();
                             if (model.getSuccess().equals("1")) {
                               editor.putString(
                                         "Fname","Welcome "+
@@ -113,7 +125,8 @@ public class LoginActivity extends AppCompatActivity {
 
 
         });
-        /*toolbar.findViewById(R.id.bar);
-        toolbar.getMenu().findItem(R.id.login).setVisible(false);*/
+
+
+
     }
 }
