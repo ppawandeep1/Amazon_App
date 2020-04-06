@@ -51,22 +51,18 @@ public class BottomFragment extends BottomSheetDialogFragment {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()){
                     case R.id.login:
-                       /* Login login =new Login();
-                        FragmentManager manager=getFragmentManager();*/
-                       // FragmentTransaction fragmentTransaction=manager.beginTransaction();
-                        /*manager.beginTransaction().replace(R.id.main_layout,login,login.getTag()).commit();
-                        navigationView.setVisibility(View.GONE);*/
-                        /*fragmentTransaction.replace(R.id.container, login);
-                        fragmentTransaction.addToBackStack(null);
-                        fragmentTransaction.commit();*/
                         Intent intent=new Intent(getActivity(),LoginActivity.class);
                         getActivity().startActivity(intent);
-
+                        navigationView.setVisibility(View.GONE);
                         break;
                        // Toast.makeText(getActivity(), "Login", Toast.LENGTH_SHORT).show();
                         //break;
                     case R.id.contact_us:
                         Toast.makeText(getActivity(), "Contact US", Toast.LENGTH_SHORT).show();
+                        ContactFragment contactFragment =new ContactFragment(getContext());
+                        FragmentManager fragmentManagerContact=getFragmentManager();
+                        fragmentManagerContact.beginTransaction().replace(R.id.main_layout,contactFragment,contactFragment.getTag()).commit();
+                        navigationView.setVisibility(View.GONE);
                         break;
                     case R.id.logout:
                         Toast.makeText(getActivity(), "Log out ", Toast.LENGTH_SHORT).show();
@@ -92,29 +88,29 @@ public class BottomFragment extends BottomSheetDialogFragment {
                             }
                         });
                         AlertLogout.create().show();
-                        /*AlertDialog alertDialog=AlertLogout.create();
-                        alertDialog.setTitle("Sign out");
-                        alertDialog.show();*/
+                        navigationView.setVisibility(View.GONE);
+                            break;
+                    case R.id.order_history:
+                        OrderHistory orderHistory=new OrderHistory();
 
 
-                        break;
-                    case R.id.order_history:  OrderHistory orderHistory=new OrderHistory();
-
-
-
-
-                        FragmentManager fragmentManager = getFragmentManager();
+                       /* FragmentManager fragmentManager = getFragmentManager();
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                         fragmentTransaction.replace(android.R.id.content, orderHistory);
-                        fragmentTransaction.commit();
+                        fragmentTransaction.commit();*/
 
-                        Toast.makeText(getActivity(), "Oder History ", Toast.LENGTH_SHORT).show();
+                        FragmentManager order=getFragmentManager();
+                        order.beginTransaction().replace(R.id.main_layout,orderHistory,orderHistory.getTag()).commit();
+                        navigationView.setVisibility(View.GONE);
+                       // Toast.makeText(getActivity(), "Oder History ", Toast.LENGTH_SHORT).show();
 
                         break;
                     case R.id.profile:
                         ProfilePage profile =new ProfilePage();
                         FragmentManager managerpofile=getFragmentManager();
                         managerpofile.beginTransaction().replace(R.id.main_layout,profile,profile.getTag()).commit();
+                        navigationView.setVisibility(View.GONE);
+
                         break;
 
                     default:

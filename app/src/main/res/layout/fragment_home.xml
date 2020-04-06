@@ -3,31 +3,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="65dp"
+
     tools:context=".Controllers.HomeFragment">
 
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/popularproduct"
+        android:layout_width="422dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="25dp"
+        android:textColor="@color/white" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/categoryList"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_below="@+id/popularproduct"
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/popularproduct"
-            android:layout_width="422dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="25dp"
-            android:textColor="@color/white" />
+        android:layout_marginTop="220dp"
+        android:orientation="horizontal"
+        android:textColor="@color/white"
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/categoryList"
-            android:layout_width="match_parent"
-            android:layout_height="400dp"
-            android:layout_below="@+id/popularproduct"
-
-            android:layout_marginTop="220dp"
-            android:orientation="horizontal"
-            android:textColor="@color/white"
-
-            tools:layout_editor_absoluteX="74dp" />
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        tools:layout_editor_absoluteX="74dp" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
 

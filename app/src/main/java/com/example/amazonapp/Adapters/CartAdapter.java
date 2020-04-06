@@ -11,10 +11,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
+import com.example.amazonapp.Controllers.CartFragment;
 import com.example.amazonapp.Controllers.LoginActivity;
+import com.example.amazonapp.Controllers.ProdFragment;
 import com.example.amazonapp.Helper.FireBaseHelper;
 import com.example.amazonapp.Models.CartFireBase;
 import com.example.amazonapp.Models.CartModel;
@@ -73,7 +77,19 @@ public class CartAdapter extends RecyclerView.Adapter {
 
 
     }
+/*
+    @Override
+    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+        Message message = dataSnapshot.getValue(Message.class);
 
+        for (int i = 0; i < messagesList.size(); i++) {
+            if (messagesList.get(i).getMessageID().equals(message.getMessageID())) {
+                messagesList.set(i, message);
+                adapter.notifyItemChanged(i);
+                break;
+            }
+        }
+    }*/
     @Override
     public int getItemCount() {
         return cartItemModelList.size();
@@ -104,6 +120,13 @@ public class CartAdapter extends RecyclerView.Adapter {
                     FireBaseHelper helper=new FireBaseHelper();
                     helper.removeItem(hiddenSnapId.getText().toString());
                     Toast.makeText(v.getContext(),"Item removed successfully..!!",Toast.LENGTH_SHORT).show();
+                    /*FragmentTransaction ft = getFragmentManager().beginTransaction();
+                    ft.detach(this).attach(this).commit();*/
+                    AppCompatActivity activity = (AppCompatActivity) v.getContext();
+                    CartFragment cartFragment = new CartFragment();
+                    FragmentTransaction ft= activity.getSupportFragmentManager().beginTransaction();
+                    ft.detach(cartFragment).attach(cartFragment).commit();
+
                 }
             });
            /* productQuantity.setOnClickListener(new View.OnClickListener() {
@@ -117,8 +140,11 @@ public class CartAdapter extends RecyclerView.Adapter {
                 public void onValueChange(ElegantNumberButton view, int oldValue, int newValue) {
                     String qty=productQuantity.getNumber();
                     FireBaseHelper helper=new FireBaseHelper();
-                    helper.updateItemQty(hiddenSnapId.getText().toString(),qty);
-                    /* Toast.makeText(getContext(),"Quantity updated successfully..!!",Toast.LENGTH_SHORT).show();*/
+                    AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                    CartFragment cartFragment = new CartFragment();
+                    FragmentTransaction ft= activity.getSupportFragmentManager().beginTransaction();
+                    ft.detach(cartFragment).attach(cartFragment).commit();
+                   /* Toast.makeText(getContext(),"Quantity updated successfully..!!",Toast.LENGTH_SHORT).show();*/
                 }
             });
 

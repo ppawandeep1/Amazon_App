@@ -23,7 +23,7 @@ public class WebServiceCallGet extends AsyncTask<Void, Void, String> {
         boolean showDialog = true;
         String URL;
         String jsonBody;
-        String header=null;
+        String header;
 
         public WebServiceCallGet(Context context, String URL, String jsonRequestBody, String dialogMessage, boolean showDialog, AsyncResponse delegate){
                 this.context = context;
@@ -34,6 +34,15 @@ public class WebServiceCallGet extends AsyncTask<Void, Void, String> {
                 this.delegate = delegate;
         }
         public WebServiceCallGet(Context context, String URL, String jsonRequestBody, String header, String dialogMessage, boolean showDialog, AsyncResponse delegate){
+                this.context = context;
+                this.URL = URL;
+                this.jsonBody = jsonRequestBody;
+                this.dialogMessage = dialogMessage;
+                this.showDialog = showDialog;
+                this.delegate = delegate;
+                this.header=header;
+        }
+        public WebServiceCallGet(Context context, String URL, String jsonRequestBody,String header, String dialogMessage, boolean showDialog, AsyncResponse delegate){
                 this.context = context;
                 this.URL = URL;
                 this.jsonBody = jsonRequestBody;
@@ -72,8 +81,9 @@ protected String doInBackground(Void... params) {
         body = null;
         };
         // creating request
-        Request request;
-        if(header == null){
+
+        Request request = null;if(header == null){
+
                 request= new Request.Builder()
                         .get()
                         .url(URL)
@@ -86,7 +96,6 @@ protected String doInBackground(Void... params) {
                         .url(URL)
                         .build();
         }
-
         // creating webserivce call and get response
 
         try {

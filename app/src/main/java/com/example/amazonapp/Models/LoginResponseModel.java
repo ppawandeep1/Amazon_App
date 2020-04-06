@@ -24,8 +24,6 @@ public class LoginResponseModel {
         this.message = message;
     }
 
-
-
     public String getSuccess() {
         return success;
     }

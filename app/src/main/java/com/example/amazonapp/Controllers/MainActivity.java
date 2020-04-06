@@ -4,17 +4,19 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -60,7 +62,8 @@ public class MainActivity extends AppCompatActivity implements Spinner.OnItemSel
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -85,9 +88,6 @@ public class MainActivity extends AppCompatActivity implements Spinner.OnItemSel
 
                 if (model.getSuccess().equals("1") ) {
                     Toast.makeText(MainActivity.this, "" + response, Toast.LENGTH_SHORT).show();
-
-
-
 
                     for(PopularProductModel pm:popularProductModels)
                     {
@@ -114,6 +114,7 @@ public class MainActivity extends AppCompatActivity implements Spinner.OnItemSel
         ///--------------------------------------------------------------------------------------
 
         spinner_category=(Spinner)findViewById(R.id.spinner_category);
+
         spinner_category.setOnItemSelectedListener(this);
         //CAtegory List...//
 
@@ -155,11 +156,6 @@ public class MainActivity extends AppCompatActivity implements Spinner.OnItemSel
 
                     //will call api of popular product
 
-
-
-
-
-
                 } else if (model.getSuccess().equals("0")) {
                     Toast.makeText(MainActivity.this, "" + model.getSuccess(), Toast.LENGTH_SHORT).show();
 
@@ -167,42 +163,52 @@ public class MainActivity extends AppCompatActivity implements Spinner.OnItemSel
             }
         }).execute();
 
-
-
-
-
         categoryList = findViewById(R.id.categoryList);
         productList=findViewById(R.id.popularproduct);
         bottomAppBar=findViewById(R.id.bar);
         setSupportActionBar(bottomAppBar);
         titles = new ArrayList<>();
         //Spinner put data using api
-
-
-
-
-
     }
 
 
-
+//not able to use the network connection method
     //Bottom Navigation menu
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case android.R.id.home:
+            case R.id.home:
                 Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
+                Fragment homeFrag = null;
+                homeFrag = new HomeFragment(MainActivity.this);
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+                // Replace whatever is in the fragment_container view with this fragment,
+                // and add the transaction to the back stack if needed
+                transaction.replace(R.id.main_layout, homeFrag);
+                transaction.addToBackStack(null);
+
+                // Commit the transaction
+                transaction.commit();
                 break;
             case R.id.menu:
-                BottomSheetDialogFragment bottomSheetDialogFragment = new BottomFragment();
-                bottomSheetDialogFragment.show(getSupportFragmentManager(),bottomSheetDialogFragment.getClass().getSimpleName());
+                SharedPreferences myPrefs = getSharedPreferences("AmazonApp", Context.MODE_PRIVATE);
+                String user_name=myPrefs.getString("Fname",null);
+                if(user_name!=null){
+                    BottomSheetDialogFragment bottomSheetDialogFragment = new BottomFragment();
+                    bottomSheetDialogFragment.show(getSupportFragmentManager(),bottomSheetDialogFragment.getClass().getSimpleName());
+                }
+                else {
+                    BottomSheetDialogFragment bottomSheetDialogFragment = new GuestUserNav();
+                    bottomSheetDialogFragment.show(getSupportFragmentManager(),bottomSheetDialogFragment.getClass().getSimpleName());
+                }
+
                 //Toast.makeText(this, "Menu ", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.cart:
                 Fragment selectedFragment = null;
                 selectedFragment = new CartFragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, selectedFragment).commit();
-                Toast.makeText(this, "Cart ", Toast.LENGTH_SHORT).show();
                 break;
 
         }

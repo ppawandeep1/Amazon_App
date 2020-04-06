@@ -36,6 +36,9 @@
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="@+id/toolbar"
             tools:layout_editor_absoluteX="16dp"
+            android:dropDownWidth="150dp"
+            android:dropDownHorizontalOffset="150dp"
+            android:gravity="center"
             />
 
         <androidx.appcompat.widget.SearchView
