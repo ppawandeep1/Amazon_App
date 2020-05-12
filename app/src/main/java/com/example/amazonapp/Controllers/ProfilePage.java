@@ -92,7 +92,6 @@ public class ProfilePage extends Fragment implements Spinner.OnItemSelectedListe
         edit_pcode = view.findViewById(R.id.postalcode_pr);
         edit_address = view.findViewById(R.id.address_pr);
         sp_city = view.findViewById(R.id.city_pr);
-
         //Spinner
         sp_ctry = view.findViewById(R.id.country_pr);
         sp_ctry.setOnItemSelectedListener(this);
